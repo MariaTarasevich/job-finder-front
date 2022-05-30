@@ -1,0 +1,51 @@
+.promo__wrap {
+    width: 100%;
+    background-color: rgb(175, 174, 174);
+}
+
+.promo__content-wrap{
+    height: 35em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.promo__content {
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around
+}
+
+.promo__title-blue {
+    color: blue;
+}
+
+.promo__search, .promo__select, .promo__search-btn {
+    height: 4em;
+    padding: 1em;
+}
+
+.promo__search {
+    width: 30em;
+}
+
+.promo__select {
+    width: 10em;
+}
+
+.promo__search-btn {
+    width: 8em;
+}
+
+.promo__post {
+    width: 10em;
+    height: 3em;
+}
+
+.promo__btns-block {
+    width: 21em;
+    display: flex;
+    justify-content: space-between;
+}

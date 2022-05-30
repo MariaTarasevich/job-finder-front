@@ -1,0 +1,70 @@
+.promo__wrap {
+  width: 100%;
+  background-color: #afaeae;
+}
+
+.promo__content-wrap {
+  height: 35em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.promo__content {
+  height: 60%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.promo__title-blue {
+  color: blue;
+}
+
+.promo__search, .promo__select, .promo__search-btn {
+  height: 4em;
+  padding: 1em;
+}
+
+.promo__search {
+  width: 30em;
+}
+
+.promo__select {
+  width: 10em;
+}
+
+.promo__search-btn {
+  width: 8em;
+}
+
+.promo__post {
+  width: 10em;
+  height: 3em;
+}
+
+.promo__btns-block {
+  width: 21em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+/*# sourceMappingURL=Promo.css.map */
