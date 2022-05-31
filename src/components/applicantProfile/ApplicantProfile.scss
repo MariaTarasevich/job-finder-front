@@ -1,0 +1,35 @@
+.profile {
+    display: flex;
+    width: 42%;
+    justify-content: space-between;
+    border: 1px solid rgb(146, 146, 146);
+    padding: 1em;
+}
+
+.profile__creds {
+    display: flex;
+    align-items: flex-end;
+}
+
+.profile__name {
+    margin-left: 1em;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.profile__span {
+    font-weight: bold;
+}
+
+.profile__extracred, .profile__span {
+    font-size: 18px;
+}
+
+
+.profile__extracreds {
+    margin-top: 5%;
+    height: 15em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}

@@ -1,21 +1,21 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import Nav from '../nav/Nav'
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
-import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
-
-
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
 
 import './Promo.css'
 
 function Promo() {
-  const age = 0
-  const handleChange = function(){
-    console.log(age)
+  const [type, setType] = React.useState('')
+
+  const handleChange = (event) => {
+    setType(event.target.value)
   }
   return (
     <div className="promo__wrap">
@@ -27,30 +27,55 @@ function Promo() {
             jobs and employees all over the world.
           </h2>
           <div className="promo__search-block">
-          <TextField label="Free solo with text demo" />
-
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Age</InputLabel>
+            <TextField
+              label="Find vacancy or resume"
+              className="promo__search"
+            />
+            <FormControl sx={{ m: 1, minWidth: 80 }}>
+              <InputLabel id="demo-simple-select-autowidth-label">
+                Age
+              </InputLabel>
               <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={age}
-                label="Age"
+                labelId="demo-simple-select-autowidth-label"
+                id="demo-simple-select-autowidth"
+                value={type}
                 onChange={handleChange}
+                autoWidth
+                label="Type"
+                className="promo__select"
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={'vacancy'}>Vacancy</MenuItem>
+                <MenuItem value={'resume'}>Resume</MenuItem>
+                <MenuItem value={'company'}>Company</MenuItem>
               </Select>
             </FormControl>
-            <button className="promo__search-btn">Search</button>
+            <Box sx={{ '& button': { m: 1 } }}>
+              <Button
+                variant="outlined"
+                size="large"
+                className="promo__search-btn"
+              >
+                Search
+              </Button>
+            </Box>
           </div>
           <div className="promo__btns-block">
-            <NavLink to="/">
-              <button className="promo__post">Post a vacancy</button>
+            <NavLink to="/" className='promo__post-link'>
+              <Box sx={{ '& button': { m: 1 } }}>
+                <Button variant="contained" size="large" className="promo__post">
+                  Post a vacancy
+                </Button>
+              </Box>
             </NavLink>
-            <NavLink to="/">
-              <button className="promo__post">Post a resume</button>
+            <NavLink to="/" className='promo__post-link'>
+              <Box sx={{ '& button': { m: 1 } }}>
+                <Button variant="contained" size="large" className="promo__post">
+                  Post a resume
+                </Button>
+              </Box>
             </NavLink>
           </div>
         </div>

@@ -1,10 +1,10 @@
 .promo__wrap {
   width: 100%;
-  background-color: #afaeae;
+  background-color: #dadada;
 }
 
 .promo__content-wrap {
-  height: 35em;
+  height: 30em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -36,30 +36,45 @@
   color: blue;
 }
 
-.promo__search, .promo__select, .promo__search-btn {
-  height: 4em;
-  padding: 1em;
+.promo__search-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .promo__search {
   width: 30em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .promo__select {
-  width: 10em;
+  width: 20em;
+  color: sienna;
 }
 
-.promo__search-btn {
-  width: 8em;
+.css-9y1egq-MuiButtonBase-root-MuiButton-root {
+  padding: 14px 21px !important;
 }
 
 .promo__post {
-  width: 10em;
+  width: 14em;
   height: 3em;
 }
 
 .promo__btns-block {
-  width: 21em;
+  width: 30em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

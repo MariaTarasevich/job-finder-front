@@ -1,4 +1,6 @@
 .home {
   width: 100%;
+  min-height: 100vh;
+  background-color: rgba(8, 11, 209, 0.712);
 }
 /*# sourceMappingURL=Home.css.map */

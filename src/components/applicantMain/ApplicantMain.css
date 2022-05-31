@@ -1,0 +1,19 @@
+.css-jh47zj-MuiButtonBase-root-MuiButton-root:hover {
+  color: #fff;
+}
+
+.css-hyum1k-MuiToolbar-root {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.nav__auth-wrap button {
+  background-color: #fff;
+  color: #1976d2;
+}
+/*# sourceMappingURL=ApplicantMain.css.map */
