@@ -19,10 +19,10 @@ function Nav() {
         </NavLink>
       </div>
       <div className="nav__auth-wrap">
-        <NavLink to="/" className="nav__auth-link">
+        <NavLink to="/signup" className="nav__auth-link">
           Sign up
         </NavLink>
-        <NavLink to="/" className="nav__auth-link">
+        <NavLink to="/signin" className="nav__auth-link">
           Sign in
         </NavLink>
       </div>

@@ -18,11 +18,13 @@ import { NavLink } from 'react-router-dom'
 import './ApplicantMain.css'
 import ApplicantProfile from '../applicantProfile/ApplicantProfile'
 import Mail from '../mail/Mail'
+import ResumeConstructor from '../resumeConstructor/ResumeConstructor'
 
 const drawerWidth = 240
 
 export default function ApplicantMain() {
-    const [ page, setPage ] = React.useState('')
+  const [page, setPage] = React.useState('')
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -31,7 +33,7 @@ export default function ApplicantMain() {
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
         <Toolbar>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" className='main__logo'>
             Job finder
           </Typography>
           <div className="nav__auth-wrap">
@@ -74,21 +76,27 @@ export default function ApplicantMain() {
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
-            {['Profile', 'Mail', 'Responces', 'Promotion'].map((text, index) => (
-              <ListItem key={text} disablePadding onClick={()=>setPage(text)}>
-                <ListItemButton>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
+            {['Profile', 'Mail', 'Responces', 'Promotion'].map(
+              (text, index) => (
+                <ListItem
+                  key={text}
+                  disablePadding
+                  onClick={() => setPage(text)}
+                >
+                  <ListItemButton>
+                    <ListItemIcon>
+                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    </ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItemButton>
+                </ListItem>
+              )
+            )}
           </List>
           <Divider />
           <List>
-            {['Resume', 'Post resume', 'Support'].map((text, index) => (
-              <ListItem key={text} disablePadding>
+            {['Resume constructor', 'My resume', 'Support'].map((text, index) => (
+              <ListItem key={text} disablePadding onClick={() => setPage(text)}>
                 <ListItemButton>
                   <ListItemIcon>
                     {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -102,10 +110,11 @@ export default function ApplicantMain() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
-                {page === 'Profile' ? <ApplicantProfile /> : <Mail />}
-                <div className='main__bot'>
-
-                </div>
+        {page === '' && <ApplicantProfile />}
+        {page === 'Profile' && <ApplicantProfile />}
+        {page === 'Mail' && <Mail />}
+        {page === 'Resume constructor' && <ResumeConstructor />}
+        <div className="main__bot"></div>
       </Box>
     </Box>
   )

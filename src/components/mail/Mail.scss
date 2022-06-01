@@ -1,9 +1,41 @@
-.css-1s0hp0k-MuiDataGrid-columnHeadersInner, .MuiDataGrid-row {
-    display: grid !important;
-    grid-template-columns: 100px 600px 400px 400px;
-    width: 1500px;
+// .css-1s0hp0k-MuiDataGrid-columnHeadersInner, .MuiDataGrid-row {
+//     display: grid !important;
+//     grid-template-columns: 100px 600px 400px 400px;
+//     width: 1500px;
+// }
+
+// .MuiDataGrid-cell--textLeft {
+//     max-width: 600px;
+// }
+.MuiDataGrid-columnHeaderTitleContainer {
+    width: 400px !important;
+    max-width: 400px;
+
 }
 
-.MuiDataGrid-cell--textLeft {
-    max-width: 600px;
+.MuiDataGrid-virtualScrollerRenderZone, .css-s1v7zr-MuiDataGrid-virtualScrollerRenderZone, .css-s1v7zr-MuiDataGrid-virtualScrollerRenderZone {
+    width: 100%;
+}
+
+.css-1s0hp0k-MuiDataGrid-columnHeadersInner {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.MuiDataGrid-row {
+    width: 100%;
+}
+
+.css-1kwdphh-MuiDataGrid-virtualScrollerContent div {
+    width: 100%;
+}
+
+.MuiDataGrid-cell {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.MuiDataGrid-cell-row:last-child {
+    display: none;
+
 }

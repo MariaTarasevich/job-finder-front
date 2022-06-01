@@ -1,0 +1,21 @@
+.constr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.constr__wrap {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.resumeInput, .resumeTextarea {
+    width: 50em;
+}
+
+.constr_btns-wrap {
+    display: flex;
+    margin-top: 2%;
+}
