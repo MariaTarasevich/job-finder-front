@@ -79,7 +79,7 @@ export default function EmployerMain() {
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
-            {['Profile', 'Mail', 'Responces', 'Promotion'].map(
+            {['Company profile', 'Mail', 'Responces', 'Promotion'].map(
               (text, index) => (
                 <ListItem
                   key={text}
