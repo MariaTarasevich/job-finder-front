@@ -1,0 +1,65 @@
+.support {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.support__wrap {
+  height: 70vh;
+  width: 75%;
+  padding: 1em;
+  border: 1px solid #e0e0e0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.support__bot-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  margin-top: 2em;
+}
+
+.support__bot-wrap form {
+  width: 70%;
+}
+
+.css-xn6ruc > :not(style) {
+  width: 100% !important;
+}
+
+.css-hjtp1-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused {
+  width: 100%;
+}
+
+.support__send-btn {
+  margin-left: 2em !important;
+}
+
+.support__no-messages {
+  color: rgba(90, 89, 89, 0.603);
+  font-size: 14px;
+}
+/*# sourceMappingURL=Support.css.map */

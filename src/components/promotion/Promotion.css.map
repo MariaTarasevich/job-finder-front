@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,8BAA8B,CAAC;EAC3B,WAAW,EAAE,YAAY;CAC5B",
+    "sources": [
+        "Promotion.scss"
+    ],
+    "names": [],
+    "file": "Promotion.css"
+}

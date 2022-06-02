@@ -1,13 +1,22 @@
+.profile__wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .profile {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 42%;
+  width: 50%;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
   border: 1px solid #929292;
-  padding: 1em;
+  padding: 2em;
 }
 
 .profile__creds {

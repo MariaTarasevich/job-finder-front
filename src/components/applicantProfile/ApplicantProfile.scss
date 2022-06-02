@@ -1,9 +1,14 @@
+.profile__wrap {
+    display: flex;
+    justify-content: center;
+}
+
 .profile {
     display: flex;
-    width: 42%;
+    width: 50%;
     justify-content: space-between;
     border: 1px solid rgb(146, 146, 146);
-    padding: 1em;
+    padding: 2em;
 }
 
 .profile__creds {

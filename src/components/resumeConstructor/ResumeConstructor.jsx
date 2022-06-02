@@ -261,7 +261,7 @@ export default function ResumeConstructor() {
                         <br />
                         <input
                           className={'input resumeInput'}
-                          type={'number'}
+                          type={'text'}
                           name={'contacts'}
                           onChange={handleChange}
                           onBlur={handleBlur}

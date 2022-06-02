@@ -15,7 +15,6 @@ import InboxIcon from '@mui/icons-material/MoveToInbox'
 import MailIcon from '@mui/icons-material/Mail'
 import Button from '@mui/material/Button'
 import { NavLink } from 'react-router-dom'
-import './ApplicantMain.css'
 import ApplicantProfile from '../applicantProfile/ApplicantProfile'
 import Mail from '../mail/Mail'
 import ResumeConstructor from '../resumeConstructor/ResumeConstructor'
@@ -26,7 +25,7 @@ import Support from '../support/Support'
 
 const drawerWidth = 240
 
-export default function ApplicantMain() {
+export default function EmployerMain() {
   const [page, setPage] = React.useState('')
 
   return (
