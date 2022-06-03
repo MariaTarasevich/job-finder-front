@@ -1,4 +1,4 @@
-.resume__wrap {
+.vac__wrap {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8,7 +8,7 @@
   width: 100%;
 }
 
-.resume__content {
+.vac__content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -21,15 +21,11 @@
   height: 100%;
 }
 
-.resume__name {
-  margin-left: 3%;
-}
-
-.resume__creds-wrap {
+.vac__creds-wrap {
   width: 100%;
 }
 
-.resume__creds {
+.vac__creds {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -38,7 +34,11 @@
       justify-content: space-around;
 }
 
-.resume__creds-content {
+.vac__name {
+  margin-left: 5%;
+}
+
+.vac__creds-content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -51,20 +51,20 @@
           justify-content: center;
 }
 
-.resume__name {
+.vac__name {
   font-size: 22px;
   font-weight: bold;
 }
 
-.resume__creds-wrap, .resume__extracreds {
+.vac__creds-wrap, .vac__extracreds {
   height: 100%;
 }
 
-.resume__extracred {
+.vac__extracred {
   margin-bottom: 3%;
 }
 
-.resume__creds-wrap .css-69324s {
+.vac__creds-wrap .css-69324s {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -72,4 +72,8 @@
       -ms-flex-pack: center;
           justify-content: center;
 }
-/*# sourceMappingURL=ResumeFolder.css.map */
+
+.vac__span {
+  font-weight: bold;
+}
+/*# sourceMappingURL=VacancyFolder.css.map */

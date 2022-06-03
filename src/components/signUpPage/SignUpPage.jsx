@@ -130,7 +130,7 @@ export default function SignUpPage() {
                 </Grid>
                 <FormControl sx={{ m: 1, minWidth: 80 }}>
                   <InputLabel id="demo-simple-select-autowidth-label">
-                    You are an
+                    You
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-autowidth-label"

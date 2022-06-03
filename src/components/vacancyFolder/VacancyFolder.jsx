@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+import './VacancyFolder.css'
 
 export default function VacancyFolder() {
   const [vacList, setVacList] = useState('')
@@ -11,46 +12,40 @@ export default function VacancyFolder() {
 
  
   return (
-    <div className="resume">
+    <div className="vac">
       {vacList ? (
-        <div className="resume__wrap">
-            {
-                
-            }
-            <div className="resume__content">
-              <div className="resume__creds-wrap">
-                <div className="resume__creds">
-                    <div className='resume__creds-content'>
+        <div className="vac__wrap">
+            <div className="vac__content">
+              <div className="vac__creds-wrap">
+                <div className="vac__creds">
+                    <div className='vac__creds-content'>
                   <Avatar
                     alt="Company"
                     src="/static/images/avatar/1.jpg"
                     onClick={() => console.log(vacList)}
                   />
-                  <p className="resume__name">{vacList.title}</p>
+                  <p className="vac__name">{vacList.title}</p>
                   </div>
                 </div>
-                <div className="resume__extracreds">
-                  <p className="resume__extracred">{vacList.generalInfo}</p>
-                  <p className="resume__extracred">
-                    Email: <span className="profile__span">{vacList.email}</span>
+                <div className="vac__extracreds">
+
+                  <p className="vac__extracred">
+                   
+                    <span className="vac__span"> Salary:</span>{vacList.salary}
                   </p>
-                  <p className="resume__extracred">
-                    Date of birth:{' '}
-                    <span className="profile__span">{vacList.salary}</span>
+                  <p className="vac__extracred">
+                     <span className="vac__span">Contacts:</span>{vacList.contacts}
                   </p>
-                  <p className="resume__extracred">
-                    Phone: <span className="profile__span">{vacList.contacts}</span>
+                  <p className="vac__extracred">
+                    <span className="vac__span">Required work experience: </span>{vacList.reqExperience}
                   </p>
-                  <p className="resume__extracred">
-                    Gender: <span className="profile__span">{vacList.reqExperience}</span>
+                  <p className="vac__extracred">
+                    <span className="vac__span">City: </span>{vacList.city}
                   </p>
-                  <p className="resume__extracred">
-                    Country: <span className="profile__span">{vacList.city}</span>
+                  <p className="vac__extracred">
+                    <span className="vac__span">Schedule:</span>{vacList.schedule}
                   </p>
-                  <p className="resume__extracred">
-                    Place of education:{' '}
-                    <span className="profile__span">{vacList.schedule}</span>
-                  </p>
+                  <p className="vac__extracred">{vacList.generalInfo}</p>
               </div>
               <Box sx={{ '& button': { m: 1 } }}>
                 <Button variant="contained" size="large">

@@ -5,12 +5,16 @@
 }
 
 .resume__content {
-display: flex;
-width: 50%;
-justify-content: space-between;
-border: 1px solid rgb(146, 146, 146);
-padding: 2em;
-height: 100%;
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    border: 1px solid rgb(146, 146, 146);
+    padding: 2em;
+    height: 100%;
+}
+
+.resume__name {
+    margin-left: 3%;
 }
 
 .resume__creds-wrap {
@@ -27,8 +31,8 @@ height: 100%;
 .resume__creds-content {
     display: flex;
     align-items: center;
-    width: 35%;
-    justify-content: space-between;
+    width: 100%;
+    justify-content: center;
 }
 
 .resume__name {
