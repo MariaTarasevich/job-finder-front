@@ -1,16 +1,11 @@
-// .css-1s0hp0k-MuiDataGrid-columnHeadersInner, .MuiDataGrid-row {
-//     display: grid !important;
-//     grid-template-columns: 100px 600px 400px 400px;
-//     width: 1500px;
-// }
-
-// .MuiDataGrid-cell--textLeft {
-//     max-width: 600px;
-// }
 .MuiDataGrid-columnHeaderTitleContainer {
     width: 400px !important;
     max-width: 400px;
 
+}
+
+.css-1xy1myn-MuiDataGrid-root:last-child {
+    border-bottom: 1px solid rgba(224, 224, 224, 1) !important;
 }
 
 .MuiDataGrid-virtualScrollerRenderZone, .css-s1v7zr-MuiDataGrid-virtualScrollerRenderZone, .css-s1v7zr-MuiDataGrid-virtualScrollerRenderZone {

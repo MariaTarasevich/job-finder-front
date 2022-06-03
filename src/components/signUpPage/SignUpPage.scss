@@ -27,3 +27,16 @@
 .signup__link-already {
     color: #1976d2e0;
 }
+
+.MuiGrid-spacing-xs-2 div {
+    width: 100% !important;
+}
+
+.MuiGrid-spacing-xs-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.css-1agwao2-MuiFormControl-root{
+margin: 16px 0 0px 16px !important;
+}

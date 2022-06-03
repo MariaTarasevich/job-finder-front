@@ -17,11 +17,13 @@ import Button from '@mui/material/Button'
 import { NavLink } from 'react-router-dom'
 import ApplicantProfile from '../applicantProfile/ApplicantProfile'
 import Mail from '../mail/Mail'
-import ResumeConstructor from '../resumeConstructor/ResumeConstructor'
+import VacancyConstructor from '../vacancyConstructor/VacancyConstructor'
 import Promotion from '../promotion/Promotion'
 import Responces from '../responces/Responces'
 import ResumeFolder from '../resumeFolder/ResumeFolder'
 import Support from '../support/Support'
+import EmployerProfile from '../employerProfile/EmployerProfile'
+import VacancyFolder from '../vacancyFolder/VacancyFolder'
 
 const drawerWidth = 240
 
@@ -98,7 +100,7 @@ export default function EmployerMain() {
           </List>
           <Divider />
           <List>
-            {['Resume constructor', 'My resume', 'Support'].map((text, index) => (
+            {['Vacancy constructor', 'My vacancies', 'Support'].map((text, index) => (
               <ListItem key={text} disablePadding onClick={() => setPage(text)}>
                 <ListItemButton>
                   <ListItemIcon>
@@ -113,13 +115,13 @@ export default function EmployerMain() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
-        {page === '' && <ApplicantProfile />}
-        {page === 'Profile' && <ApplicantProfile />}
+        {page === '' && <EmployerProfile />}
+        {page === 'Company profile' && <EmployerProfile />}
         {page === 'Mail' && <Mail />}
-        {page === 'Resume constructor' && <ResumeConstructor />}
+        {page === 'Vacancy constructor' && <VacancyConstructor />}
         {page === 'Promotion' && <Promotion />}
         {page === 'Responces' && <Responces />}
-        {page === 'My resume' && <ResumeFolder />}
+        {page === 'My vacancies' && <VacancyFolder />}
         {page === 'Support' && <Support />}
         <div className="main__bot"></div>
       </Box>

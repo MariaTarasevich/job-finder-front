@@ -1,32 +1,11 @@
 import React from 'react'
-import { Formik, Field, Form, ErrorMessage } from 'formik'
+import { Formik, Form } from 'formik'
 import * as yup from 'yup'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import './ResumeConstructor.css'
 
 export default function ResumeConstructor() {
-  const validationsSchema = yup.object().shape({
-    name: yup.string().typeError('Должно быть строкой').required('Обязательно'),
-    secondName: yup
-      .string()
-      .typeError('Должно быть строкой')
-      .required('Обязательно'),
-    password: yup
-      .string()
-      .typeError('Должно быть строкой')
-      .required('Обязательно'),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref('password')], 'Пароли не совпадают')
-      .required('Обязательно'),
-    email: yup.string().email('Введите верный email').required('Обязательно'),
-    confirmEmail: yup
-      .string()
-      .email('Введите верный email')
-      .oneOf([yup.ref('email')], 'Email не совпадают')
-      .required('Обязательно'),
-  })
 
   const resetForm = () => {
     const signUpInput = document.querySelectorAll('.signUpInput')
@@ -56,7 +35,6 @@ export default function ResumeConstructor() {
             contacts: '',
           }}
           validateOnBlur
-          validationSchema={validationsSchema}
         >
           <Formik
             initialValues={{
@@ -67,16 +45,6 @@ export default function ResumeConstructor() {
                 .bool()
                 .oneOf([true], 'Accept Terms & Conditions is required'),
             })}
-            onSubmit={(fields) => {
-              if (localStorage.getItem('user')) {
-                localStorage.clear()
-                localStorage.setItem('user', JSON.stringify(fields))
-                localStorage.setItem('signedup', JSON.stringify(true))
-              } else {
-                localStorage.setItem('user', JSON.stringify(fields))
-                localStorage.setItem('signedup', JSON.stringify(true))
-              }
-            }}
           >
             {({
               values,
@@ -276,6 +244,7 @@ export default function ResumeConstructor() {
                           <Button
                             variant="contained"
                             size="large"
+                            onClick={()=>localStorage.setItem('resume', JSON.stringify(values))}
                             className={`sign-in__btn btn btn-primary mr-2 ${
                               dirty && isValid ? '' : 'disabled-btn'
                             }`}

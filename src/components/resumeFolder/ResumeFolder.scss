@@ -1,0 +1,50 @@
+.resume__wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.resume__content {
+display: flex;
+width: 50%;
+justify-content: space-between;
+border: 1px solid rgb(146, 146, 146);
+padding: 2em;
+height: 100%;
+}
+
+.resume__creds-wrap {
+    width: 100%;
+}
+
+.resume__creds {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+
+}
+
+.resume__creds-content {
+    display: flex;
+    align-items: center;
+    width: 35%;
+    justify-content: space-between;
+}
+
+.resume__name {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.resume__creds-wrap, .resume__extracreds  {
+    height: 100%;
+}
+
+.resume__extracred {
+    margin-bottom: 3%;
+}
+
+.resume__creds-wrap .css-69324s {
+    display: flex;
+    justify-content: center;
+}
