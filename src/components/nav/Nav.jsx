@@ -11,10 +11,10 @@ function Nav() {
         </NavLink>
       </div>
       <div className="nav__search-wrap">
-        <NavLink to="/" className="nav__search-link">
+        <NavLink to="/vacancysearch" className="nav__search-link">
           Job search
         </NavLink>
-        <NavLink to="/" className="nav__search-link">
+        <NavLink to="/resumesearch" className="nav__search-link">
           Resume Search
         </NavLink>
       </div>

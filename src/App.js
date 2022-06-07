@@ -4,8 +4,10 @@ import './App.css'
 import ApplicantMain from './components/applicantMain/ApplicantMain'
 import EmployerMain from './components/employerMain/EmployerMain'
 import Home from './components/home/Home'
+import ResumeSearch from './components/resumeSearch/ResumeSearch'
 import SignInPage from './components/signInPage/SignInPage'
 import SignUpPage from './components/signUpPage/SignUpPage'
+import VacancySearch from './components/vacancySearch/VacancySearch'
 
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
         <Route  path="/employer" element={<EmployerMain />} />
         <Route  path="/signup" element={<SignUpPage />} />
         <Route  path="/signin" element={<SignInPage />} />
+        <Route  path="/resumesearch" element={<ResumeSearch />} />
+        <Route  path="/vacancysearch" element={<VacancySearch />} />
       </Routes>
     </div>
   )
