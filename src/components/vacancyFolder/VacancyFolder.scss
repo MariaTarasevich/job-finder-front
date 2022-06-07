@@ -1,16 +1,18 @@
 .vac__wrap {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
 }
 
 .vac__content {
-display: flex;
-width: 50%;
-justify-content: space-between;
-border: 1px solid rgb(146, 146, 146);
-padding: 2em;
-height: 100%;
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    border: 1px solid rgb(146, 146, 146);
+    padding: 2em;
+    height: 100%;
+    margin-bottom: 2%;
 }
 
 .vac__creds-wrap {
@@ -55,4 +57,10 @@ height: 100%;
 
 .vac__span {
     font-weight: bold;
+}
+
+.vac__btn-wrap {
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
 }

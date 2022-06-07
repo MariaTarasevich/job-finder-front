@@ -5,6 +5,13 @@ import Button from '@mui/material/Button'
 import './EmployerProfile.css'
 
 export default function EmployerProfile() {
+  const  companyProf = {
+    name: '',
+    email: '',
+    address: '',
+    phone: '',
+    aboutCompany: ''
+  }
   return (
     <div className="company__wrap">
       <div className="company">

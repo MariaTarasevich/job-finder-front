@@ -5,6 +5,13 @@ import Button from '@mui/material/Button'
 import './ApplicantProfile.css'
 
 export default function ApplicantProfile() {
+  const applicatProf = {
+    name: '',
+    surname: '',
+    email: '',
+    age: '',
+    phone: 'gender'
+  }
   return (
     <div className="profile__wrap">
       <div className="profile">

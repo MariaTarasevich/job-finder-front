@@ -1,10 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as yup from 'yup'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 
 export default function ResumeConstructor() {
+ // const [vacList, setVacList] = useState([])
+
+  function collectVacs (values) {
+    let vacList = []
+    // try { 
+    //   vacList = JSON.parse(localStorage.getItem('vacancy'))
+    // } catch (e) {
+    //   console.error(e)
+    // }
+    let loc = localStorage.getItem('vacancy')
+    if (loc) {
+      vacList = JSON.parse(localStorage.getItem('vacancy'))
+      vacList.push(values)
+    } else {
+      vacList.push(values)
+    }
+    console.log(vacList)
+
+    localStorage.setItem('vacancy', JSON.stringify(vacList))
+  }
 
   const resetForm = () => {
     const signUpInput = document.querySelectorAll('.signUpInput')
@@ -137,7 +157,7 @@ export default function ResumeConstructor() {
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={()=>localStorage.setItem('vacancy', JSON.stringify(values))}
+                            onClick={()=>collectVacs(values)}
                             className={`sign-in__btn btn btn-primary mr-2`}
                           >
                             Save

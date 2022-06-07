@@ -6,3 +6,20 @@
     justify-content: center;
     align-items: center;
 }
+
+.vacsearch__search-block {
+    margin-top: 5em;
+    display: flex;
+    width: 30%;
+    
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vacsearch__search {
+    width: 30em;
+}
+
+.vacsearch__title {
+    font-size: 36px;
+}
