@@ -10,8 +10,14 @@ import TextField from '@mui/material/TextField'
 import './VacancySearch.css'
 
 export default function VacancySearch() {
+  const [searchValue, setSearchValue] = React.useState('')
+
   const vacs = JSON.parse(localStorage.getItem('vacancy'))
   console.log(vacs)
+  const showSearchVal = (e) => {
+    setSearchValue(e.target.value)
+  }
+
   return (
     <div className="vacsearch__wrap">
       <Box sx={{ flexGrow: 1 }}>
@@ -36,7 +42,11 @@ export default function VacancySearch() {
       <div className="vacsearch__content">
         <h2 className="vacsearch__title">Find your best job ASAP.</h2>
         <div className="vacsearch__search-block">
-          <TextField label="Find vacancy" className="vacsearch__search" />
+          <TextField
+            label="Find vacancy"
+            className="vacsearch__search"
+            onChange={(e) => showSearchVal(e)}
+          />
           <Box sx={{ '& button': { m: 1 } }}>
             <Button
               variant="outlined"
@@ -49,22 +59,31 @@ export default function VacancySearch() {
         </div>
       </div>
       <div className="vacsearch__list-wrap">
-        <ul className="vacseatch__list">
-          {vacs.map((item, index) => {
-            return (
-              <li key={index}>
-                <NavLink to="/">
-                  <p className="vaclist__title">{item.title}</p>
-                  <div className="vaclist__desc-wrap">
-                    <p className="vaclist__desc">{item.salary}</p>
-                    <p className="vaclist__desc">{item.reqExperience}</p>
-                    <p className="vaclist__desc">{item.schedule}</p>
-                  </div>
-                </NavLink>
-              </li>
-            )
-          })}
-        </ul>
+        {vacs ? (
+          <ul className="vacseatch__list">
+            {vacs
+              .filter(({ title }) =>
+                title.toLowerCase().includes(searchValue.toLowerCase())
+              )
+              .map((item, index) => {
+                console.log(item.id)
+                return (
+                  <li key={index} className="vacsearch_item">
+                    <NavLink to={'/vacancy/' + item.id}>
+                      <p className="vaclist__title">{item.title}</p>
+                      <div className="vaclist__desc-wrap">
+                        <p className="vaclist__desc">{item.salary}</p>
+                        <p className="vaclist__desc">{item.reqExperience}</p>
+                        <p className="vaclist__desc">{item.schedule}</p>
+                      </div>
+                    </NavLink>
+                  </li>
+                )
+              })}
+          </ul>
+        ) : (
+          ''
+        )}
       </div>
     </div>
   )

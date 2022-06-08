@@ -10,38 +10,14 @@ import Link from '@mui/material/Link'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import './ResumeSearch.css'
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {'Copyright © '}
-      <Link color="inherit" href="#">
-        job-finder.com
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  )
-}
-
-const theme = createTheme()
 export default function ResumeSearch() {
-  const [type, setType] = React.useState('')
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    })
-  }
+  const res = JSON.parse(localStorage.getItem('resume'))
+  const [searchValue, setSearchValue] = React.useState('')
 
-  const handleType = (event) => {
-    setType(event.target.value)
+  const vacs = JSON.parse(localStorage.getItem('vacancy'))
+  console.log(vacs)
+  const showSearchVal = (e) => {
+    setSearchValue(e.target.value)
   }
   return (
     <div className="ressearch__wrap">
@@ -70,6 +46,7 @@ export default function ResumeSearch() {
           <TextField
             label="Find resume"
             className="ressearch__search"
+            onChange={(e) => showSearchVal(e)}
           />
           <Box sx={{ '& button': { m: 1 } }}>
             <Button
@@ -81,6 +58,32 @@ export default function ResumeSearch() {
             </Button>
           </Box>
         </div>
+      </div>
+      <div className="vacsearch__list-wrap">
+        {res ? (
+          <ul className="vacseatch__list">
+            {res
+              .filter(({ specialization }) =>
+                specialization.toLowerCase().includes(searchValue.toLowerCase())
+              )
+              .map((item, index) => {
+                return (
+                  <li key={index} className="vacsearch_item">
+                    <NavLink to={'/resume/' + item.id}>
+                      <p className="vaclist__title">{item.specialization}</p>
+                      <div className="vaclist__desc-wrap">
+                        <p className="vaclist__desc">{item.generalInfo}</p>
+                        <p className="vaclist__desc">{item.country}</p>
+                        <p className="vaclist__desc">{item.placeOfEducation}</p>
+                      </div>
+                    </NavLink>
+                  </li>
+                )
+              })}
+          </ul>
+        ) : (
+          ''
+        )}
       </div>
     </div>
   )

@@ -4,21 +4,37 @@ import * as yup from 'yup'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import './ResumeConstructor.css'
+import { nanoid } from 'nanoid'
 
 export default function ResumeConstructor() {
+  function collectCVs (values) {
+    let resList = []
+    let loc = localStorage.getItem('resume')
+    if (loc) {
+      resList = JSON.parse(localStorage.getItem('resume'))
+      resList.push(values)
+    } else {
+      resList.push(values)
+    }
+    console.log(resList)
+
+    localStorage.setItem('resume', JSON.stringify(resList))
+  }
 
   const resetForm = () => {
-    const signUpInput = document.querySelectorAll('.signUpInput')
-    signUpInput.forEach(function (item) {
+    const input = document.querySelectorAll('input')
+    input.forEach(function (item) {
       item.value = ''
     })
   }
+
   return (
     <div className="constr">
       <div className="constr__wrap">
         <h3 className="resume__title">Create your resume here!</h3>
         <Formik
           initialValues={{
+            id: '',
             name: '',
             secondName: '',
             dateOfBirth: '',
@@ -244,7 +260,7 @@ export default function ResumeConstructor() {
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={()=>localStorage.setItem('resume', JSON.stringify(values))}
+                            onClick={()=>{values.id= nanoid(); collectCVs(values)}}
                             className={`sign-in__btn btn btn-primary mr-2 ${
                               dirty && isValid ? '' : 'disabled-btn'
                             }`}

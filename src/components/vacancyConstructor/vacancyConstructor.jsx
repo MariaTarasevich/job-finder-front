@@ -3,17 +3,13 @@ import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as yup from 'yup'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+import { nanoid } from 'nanoid'
 
 export default function ResumeConstructor() {
  // const [vacList, setVacList] = useState([])
 
   function collectVacs (values) {
     let vacList = []
-    // try { 
-    //   vacList = JSON.parse(localStorage.getItem('vacancy'))
-    // } catch (e) {
-    //   console.error(e)
-    // }
     let loc = localStorage.getItem('vacancy')
     if (loc) {
       vacList = JSON.parse(localStorage.getItem('vacancy'))
@@ -27,17 +23,19 @@ export default function ResumeConstructor() {
   }
 
   const resetForm = () => {
-    const signUpInput = document.querySelectorAll('.signUpInput')
-    signUpInput.forEach(function (item) {
+    const input = document.querySelectorAll('input')
+    input.forEach(function (item) {
       item.value = ''
     })
   }
+
   return (
     <div className="constr">
       <div className="constr__wrap">
         <h3 className="vac__title">Create your vacancy here!</h3>
         <Formik
           initialValues={{
+            id: '',
             title: '',
             salary: '',
             reqExperience: '',
@@ -157,7 +155,7 @@ export default function ResumeConstructor() {
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={()=>collectVacs(values)}
+                            onClick={()=>{values.id=nanoid(); collectVacs(values)}}
                             className={`sign-in__btn btn btn-primary mr-2`}
                           >
                             Save

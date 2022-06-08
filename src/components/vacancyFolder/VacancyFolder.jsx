@@ -5,9 +5,7 @@ import Button from '@mui/material/Button'
 import './VacancyFolder.css'
 
 export default function VacancyFolder() {
-  let vacList
-
-  vacList = JSON.parse(localStorage.getItem('vacancy'))
+  let vacList = JSON.parse(localStorage.getItem('vacancy'))
 
   return (
     <div className="vac">
@@ -53,16 +51,18 @@ export default function VacancyFolder() {
                     <p className="vac__extracred">{item.generalInfo}</p>
                   </div>
                   <div className="vac__btn-wrap">
-                    <Box sx={{ '& button': { m: 1 } }}>
-                      <Button variant="contained" size="large">
-                        Edit
-                      </Button>
-                    </Box>
-                    <Box sx={{ '& button': { m: 1 } }}>
-                      <Button variant="contained" size="large">
-                        delete
-                      </Button>
-                    </Box>
+                    <div className="vac__btn-cont">
+                      <Box sx={{ '& button': { m: 1 } }}>
+                        <Button variant="contained" size="large">
+                          Edit
+                        </Button>
+                      </Box>
+                      <Box sx={{ '& button': { m: 1 } }}>
+                        <Button variant="contained" size="large">
+                          delete
+                        </Button>
+                      </Box>
+                    </div>
                   </div>
                 </div>
               </div>

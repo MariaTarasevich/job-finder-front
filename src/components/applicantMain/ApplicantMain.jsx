@@ -38,10 +38,13 @@ export default function ApplicantMain() {
       >
         <Toolbar>
           <Typography variant="h6" noWrap component="div" className='main__logo'>
+            <NavLink to='/' className='main__logo-link'>
             Job finder
+            </NavLink>
+
           </Typography>
           <div className="nav__auth-wrap">
-            <NavLink to="/" className="nav__auth-link">
+            <NavLink to="/vacancysearch" className="nav__auth-link">
               <Box sx={{ '& button': { m: 1 } }}>
                 <Button
                   variant="contained"

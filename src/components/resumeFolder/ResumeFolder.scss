@@ -1,7 +1,12 @@
 .resume__wrap {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
+}
+
+.resume__content {
+    margin-bottom: 2%;
 }
 
 .resume__content {
@@ -11,6 +16,18 @@
     border: 1px solid rgb(146, 146, 146);
     padding: 2em;
     height: 100%;
+}
+
+.res__btn-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.res__btn-cont {
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
 }
 
 .resume__name {

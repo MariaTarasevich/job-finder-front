@@ -70,7 +70,7 @@ function Footer() {
           </div>
           <div className='foo__copyright-wrap'>
             <p className='foo__copyright'>© 2022 ODO "Work for You", UNP 101541485</p>
-            <p className='foo__copyright'>Legal address: 220037, Minsk, lane. Kozlova, 7G, 7 fl., office 14</p>
+            <p className='foo__copyright'>Legal address: 220037, Minsk, Kozlova lane, 7G, 7 fl., office 14</p>
           </div>
         </div>
       </div>
