@@ -28,6 +28,18 @@ export default function ResumeConstructor() {
     })
   }
 
+  function validateEmail(value) {
+    let error;
+    if (!value) {
+      error = 'Required';
+      alert('Insert email')
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+      alert('Invalid email address')
+      error = 'Invalid email address';
+    }
+    return error;
+  }
+
   return (
     <div className="constr">
       <div className="constr__wrap">
@@ -77,7 +89,7 @@ export default function ResumeConstructor() {
                   <div className="form-group">
                     <div className={'from'}>
                       <p>
-                        <label htmlFor={'name'}>Name</label>
+                        <label htmlFor={'name'}>Name *</label>
                         <br />
                         <input
                           className={'input resumeInput'}
@@ -86,13 +98,11 @@ export default function ResumeConstructor() {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.name}
+                          required
                         />
                       </p>
-                      {touched.name && errors.name && (
-                        <p className={'error'}>{errors.name}</p>
-                      )}
                       <p>
-                        <label htmlFor={'secondName'}>Surname</label>
+                        <label htmlFor={'secondName'}>Surname *</label>
                         <br />
                         <input
                           className={'input resumeInput'}
@@ -101,10 +111,11 @@ export default function ResumeConstructor() {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.secondName}
+                          required
                         />
                       </p>
                       <p>
-                        <label htmlFor={'dateOfBirth'}>Date of birth</label>
+                        <label htmlFor={'dateOfBirth'}>Date of birth *</label>
                         <br />
                         <input
                           className={'input resumeInput'}
@@ -113,6 +124,7 @@ export default function ResumeConstructor() {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.dateOfBirth}
+                          required
                         />
                       </p>
                       <p>
@@ -128,7 +140,7 @@ export default function ResumeConstructor() {
                         />
                       </p>
                       <p>
-                        <label htmlFor={'email'}>Email</label>
+                        <label htmlFor={'email'}>Email *</label>
                         <br />
                         <input
                           className={'input resumeInput'}
@@ -137,10 +149,11 @@ export default function ResumeConstructor() {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.email}
+                          required
                         />
                       </p>
                       <p>
-                        <label htmlFor={'country'}>Country</label>
+                        <label htmlFor={'country'}>Country *</label>
                         <br />
                         <input
                           className={'input resumeInput'}
@@ -149,6 +162,7 @@ export default function ResumeConstructor() {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.country}
+                          required
                         />
                       </p>
                       <p>
@@ -216,7 +230,7 @@ export default function ResumeConstructor() {
                         />
                       </p>
                       <p>
-                        <label htmlFor={'profession'}>Profession</label>
+                        <label htmlFor={'profession'}>Profession *</label>
                         <br />
                         <input
                           className={'input resumeInput'}
@@ -225,6 +239,7 @@ export default function ResumeConstructor() {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.profession}
+                          required
                         />
                       </p>
                       <p>
@@ -252,15 +267,13 @@ export default function ResumeConstructor() {
                           value={values.contacts}
                         />
                       </p>
-                      {touched.secondName && errors.secondName && (
-                        <p className={'error'}>{errors.secondName}</p>
-                      )}
+                      <p className='constr__req-info'>* is for requires fields</p>
                       <div className="constr_btns-wrap">
                         <Box sx={{ '& button': { m: 1 } }}>
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={()=>{values.id= nanoid(); collectCVs(values)}}
+                            onClick={()=>{ values.id= nanoid(); collectCVs(values)}}
                             className={`sign-in__btn btn btn-primary mr-2 ${
                               dirty && isValid ? '' : 'disabled-btn'
                             }`}

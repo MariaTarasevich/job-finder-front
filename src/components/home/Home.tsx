@@ -1,6 +1,6 @@
 import React from 'react'
-import Footer from '../footer/Footer';
-import Promo from '../promo/Promo'
+import Footer from '../footer/Footer.tsx';
+import Promo from '../promo/Promo.tsx'
 import './Home.css'
 
 function Home() {
