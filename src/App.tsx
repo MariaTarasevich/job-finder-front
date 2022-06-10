@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import ApplicantMain from './components/applicantMain/ApplicantMain.tsx'
-import EmployerMain from './components/employerMain/EmployerMain'
+import EmployerMain from './components/employerMain/EmployerMain.tsx'
 import Home from './components/home/Home.tsx'
 import { ResumePage } from './components/resumePage/ResumePage.tsx'
 import ResumeSearch from './components/resumeSearch/ResumeSearch.tsx'
@@ -12,7 +12,7 @@ import { VacancyPage } from './components/vacancyPage/VacancyPage.tsx'
 import VacancySearch from './components/vacancySearch/VacancySearch.tsx'
 
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
       <Routes>

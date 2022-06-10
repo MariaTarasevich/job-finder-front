@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import './ResumeFolder.css'
 
-export default function ResumeFolder() {
+const ResumeFolder: React.FC = () => {
   let resumeList = JSON.parse(localStorage.getItem('resume'))
 
   return (
@@ -107,3 +107,4 @@ export default function ResumeFolder() {
     </div>
   )
 }
+export default ResumeFolder

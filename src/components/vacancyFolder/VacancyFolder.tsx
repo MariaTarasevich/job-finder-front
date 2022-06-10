@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import './VacancyFolder.css'
 
-export default function VacancyFolder() {
+const VacancyFolder: React.FC = () => {
   let vacList = JSON.parse(localStorage.getItem('vacancy'))
 
   return (
@@ -75,3 +75,5 @@ export default function VacancyFolder() {
     </div>
   )
 }
+
+export default VacancyFolder

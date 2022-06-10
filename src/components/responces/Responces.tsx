@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Responces.css'
 
-export default function Responces () {
+const Responces: React.FC = () => {
     const [res, setRes] = useState('')
     return (
         <div className='responces'>
@@ -11,3 +11,5 @@ export default function Responces () {
         </div>
     )
 }
+
+export default Responces

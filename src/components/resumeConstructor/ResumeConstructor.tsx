@@ -1,12 +1,11 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
-import * as yup from 'yup'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import './ResumeConstructor.css'
 import { nanoid } from 'nanoid'
 
-export default function ResumeConstructor() {
+const ResumeConstructor: React.FC = () => {
   function collectCVs (values) {
     let resList = []
     let loc = localStorage.getItem('resume')
@@ -44,7 +43,7 @@ export default function ResumeConstructor() {
     <div className="constr">
       <div className="constr__wrap">
         <h3 className="resume__title">Create your resume here!</h3>
-        <Formik
+        <Formik onSubmit={console.log('adssa')}
           initialValues={{
             id: '',
             name: '',
@@ -68,11 +67,6 @@ export default function ResumeConstructor() {
             initialValues={{
               acceptTerms: false,
             }}
-            validationSchema={yup.object().shape({
-              acceptTerms: yup
-                .bool()
-                .oneOf([true], 'Accept Terms & Conditions is required'),
-            })}
           >
             {({
               values,
@@ -304,3 +298,4 @@ export default function ResumeConstructor() {
     </div>
   )
 }
+export default ResumeConstructor

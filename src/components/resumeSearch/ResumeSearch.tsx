@@ -10,7 +10,7 @@ import Link from '@mui/material/Link'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import './ResumeSearch.css'
 
-export default function ResumeSearch() {
+const ResumeSearch: React.FC = () => {
   const res = JSON.parse(localStorage.getItem('resume'))
   const [searchValue, setSearchValue] = React.useState('')
 
@@ -88,3 +88,4 @@ export default function ResumeSearch() {
     </div>
   )
 }
+export default ResumeSearch

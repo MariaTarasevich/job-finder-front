@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import './Support.css'
 
-export default function Support() {
+const Support: React.FC = () => {
     const [ supMessages, setSupMessages ] = useState('')
 
   function getEl() {
@@ -37,3 +37,4 @@ export default function Support() {
     </div>
   )
 }
+export default Support

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import AppBar from '@mui/material/AppBar'
@@ -26,7 +26,7 @@ import VacancyFolder from '../vacancyFolder/VacancyFolder.tsx'
 const drawerWidth = 240
 
 export default function EmployerMain() {
-  const [page, setPage] = React.useState('')
+  const [page, setPage] = useState<string>('')
 
   return (
     <Box sx={{ display: 'flex' }}>

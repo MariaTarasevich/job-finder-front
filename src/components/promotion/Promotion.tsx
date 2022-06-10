@@ -69,7 +69,7 @@ const tiers = [
   },
 ];
 
- export default function Promotion() {
+const Promotion: React.FC = () =>  {
   return (
     <React.Fragment>
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
@@ -158,3 +158,5 @@ const tiers = [
     </React.Fragment>
   );
 }
+
+export default Promotion

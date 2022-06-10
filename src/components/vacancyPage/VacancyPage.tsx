@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom"
 
-export const VacancyPage = () => {
+export const VacancyPage: React.FC = () => {
     let vacList = JSON.parse(localStorage.getItem('vacancy'))
     const params = useParams()
     return (

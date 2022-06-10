@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { Formik, Field, Form, ErrorMessage } from 'formik'
-import * as yup from 'yup'
+import { Formik, Form } from 'formik'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import { nanoid } from 'nanoid'
 
-export default function ResumeConstructor() {
+const ResumeConstructor: React.FC = () => {
  // const [vacList, setVacList] = useState([])
 
   function collectVacs (values) {
@@ -50,11 +49,6 @@ export default function ResumeConstructor() {
             initialValues={{
               acceptTerms: false,
             }}
-            validationSchema={yup.object().shape({
-              acceptTerms: yup
-                .bool()
-                .oneOf([true], 'Accept Terms & Conditions is required'),
-            })}
           >
             {({
               values,
@@ -184,3 +178,4 @@ export default function ResumeConstructor() {
     </div>
   )
 }
+export default ResumeConstructor

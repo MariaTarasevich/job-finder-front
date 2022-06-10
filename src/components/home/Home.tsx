@@ -3,7 +3,7 @@ import Footer from '../footer/Footer.tsx';
 import Promo from '../promo/Promo.tsx'
 import './Home.css'
 
-function Home() {
+const Home: React.FC = () => {
     return (
         <div className='home'>
             <Promo />

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 import './Footer.css'
 
-function Footer() {
+const Footer: React.FC = () =>{
   return (
     <footer className="footer">
       <div className="foo__top">

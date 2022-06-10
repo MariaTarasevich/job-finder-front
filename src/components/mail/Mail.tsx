@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import './Mail.css'
 
-export default function Mail() {
+export const Mail: React.FC = () => {
   return (
     <div style={{ height: 250, width: '100%' }}>
       <DataGrid
@@ -16,3 +16,6 @@ export default function Mail() {
     </div>
   );
 }
+
+
+export default Mail

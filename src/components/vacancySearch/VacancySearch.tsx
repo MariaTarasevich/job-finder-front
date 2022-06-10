@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField'
 
 import './VacancySearch.css'
 
-export default function VacancySearch() {
+const VacancySearch: React.FC = () => {
   const [searchValue, setSearchValue] = React.useState('')
 
   const vacs = JSON.parse(localStorage.getItem('vacancy'))
@@ -88,3 +88,4 @@ export default function VacancySearch() {
     </div>
   )
 }
+export default VacancySearch

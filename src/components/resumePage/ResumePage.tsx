@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom"
 
-export const ResumePage = () => {
+export const ResumePage: React.FC = () => {
     let resList = JSON.parse(localStorage.getItem('resume'))
     const params = useParams()
     return (

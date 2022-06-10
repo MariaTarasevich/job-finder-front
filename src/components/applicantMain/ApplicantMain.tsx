@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import AppBar from '@mui/material/AppBar'
@@ -25,9 +25,8 @@ import ResumeFolder from '../resumeFolder/ResumeFolder.tsx'
 import Support from '../support/Support.tsx'
 
 const drawerWidth = 240
-
-export default function ApplicantMain() {
-  const [page, setPage] = React.useState('')
+const ApplicantMain: React.FC = () => {
+  const [page, setPage] = useState<string>('')
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -130,3 +129,5 @@ export default function ApplicantMain() {
     </Box>
   )
 }
+
+export default ApplicantMain

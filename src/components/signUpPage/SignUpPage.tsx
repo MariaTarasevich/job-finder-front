@@ -41,7 +41,7 @@ function Copyright(props) {
 }
 
 const theme = createTheme()
-export default function SignUpPage() {
+const SignUpPage: React.FC = () => {
   const [type, setType] = React.useState('');
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -194,3 +194,4 @@ export default function SignUpPage() {
     </div>
   )
 }
+export default SignUpPage

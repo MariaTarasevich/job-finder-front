@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import './EmployerProfile.css'
 
-export default function EmployerProfile() {
+export const EmployerProfile: React.FC = () => {
   const  companyProf = {
     name: '',
     email: '',
@@ -36,12 +36,21 @@ export default function EmployerProfile() {
                           
           </div>
         </div>
-        <Box sx={{ '& button': { m: 1 } }}>
-          <Button variant="contained" size="large">
-            Edit
-          </Button>
-        </Box>
+        <div className='profile__wrap-btns'>
+          <Box sx={{ '& button': { m: 1 } }}>
+            <Button variant="contained" size="large">
+              Edit
+            </Button>
+          </Box>
+          <Box sx={{ '& button': { m: 1 } }}>
+            <Button variant="contained" size="large">
+              delete
+            </Button>
+          </Box>
+        </div>
       </div>
     </div>
   )
 }
+
+export default EmployerProfile

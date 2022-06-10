@@ -33,7 +33,7 @@ function Copyright(props) {
   
   const theme = createTheme();
 
-export default function SignInPage() {
+const SignInPage: React.FC = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -129,3 +129,5 @@ export default function SignInPage() {
     </div>
  )
 }
+
+export default SignInPage

@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './Nav.css'
 
-function Nav() {
+const Nav: React.FC = () => {
   return (
     <div className="nav__wrap">
       <div className="nav__logo-wrap">

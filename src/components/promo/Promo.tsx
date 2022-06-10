@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { NavLink } from 'react-router-dom'
-import Nav from '../nav/Nav'
+import Nav from '../nav/Nav.tsx'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
@@ -11,8 +11,8 @@ import Box from '@mui/material/Box'
 
 import './Promo.css'
 
-function Promo() {
-  const [type, setType] = React.useState('')
+const Promo: React.FC = () => {
+  const [type, setType] = useState<string>('')
 
   const handleChange = (event) => {
     setType(event.target.value)
@@ -63,14 +63,14 @@ function Promo() {
             </Box>
           </div>
           <div className="promo__btns-block">
-            <NavLink to="/" className='promo__post-link'>
+            <NavLink to="/signup" className='promo__post-link'>
               <Box sx={{ '& button': { m: 1 } }}>
                 <Button variant="contained" size="large" className="promo__post">
                   Post a vacancy
                 </Button>
               </Box>
             </NavLink>
-            <NavLink to="/" className='promo__post-link'>
+            <NavLink to="/signup" className='promo__post-link'>
               <Box sx={{ '& button': { m: 1 } }}>
                 <Button variant="contained" size="large" className="promo__post">
                   Post a resume
