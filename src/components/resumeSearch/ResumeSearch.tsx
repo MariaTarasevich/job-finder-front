@@ -6,19 +6,39 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import { NavLink } from 'react-router-dom'
 import TextField from '@mui/material/TextField'
-import Link from '@mui/material/Link'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { getResume } from '../../api.tsx'
 import './ResumeSearch.css'
 
 const ResumeSearch: React.FC = () => {
   const res = JSON.parse(localStorage.getItem('resume'))
-  const [searchValue, setSearchValue] = React.useState('')
+  const [searchValue, setSearchValue] = React.useState<string>('')
+  const [searchedResumes, setSearchedResumes] = React.useState([])
+  const [isResumes, setIsResumes] = React.useState<string>('')
+  let resumesObj, resumes
 
   const vacs = JSON.parse(localStorage.getItem('vacancy'))
   console.log(vacs)
   const showSearchVal = (e) => {
     setSearchValue(e.target.value)
   }
+
+  function getSomeResume () {
+    getResume(searchValue.toLowerCase())
+    .then((data) => {
+       resumes = data.data
+       resumes.forEach(item => resumesObj = item)
+  //   const {name, secondName, dateOfBirth, gender, email, country, placeOfEducation, periodOfEducation, specialization, prevCompany, periodOfWork, profession, generalInfo, contacts} = resumesObj
+     setSearchedResumes(resumesObj)
+     setIsResumes('yes')
+    })
+    .catch((err) => {
+      alert('Sorry')
+      setIsResumes('no')
+    })
+  }
+  
+  // let someResumes = getResume("rtyeryte")
+
   return (
     <div className="ressearch__wrap">
       <Box sx={{ flexGrow: 1 }}>
@@ -53,6 +73,7 @@ const ResumeSearch: React.FC = () => {
               variant="outlined"
               size="large"
               className="ressearch__search-btn"
+              onClick={()=>getSomeResume()}
             >
               Search
             </Button>
@@ -60,7 +81,7 @@ const ResumeSearch: React.FC = () => {
         </div>
       </div>
       <div className="vacsearch__list-wrap">
-        {res ? (
+        {/* {!isResumes && (
           <ul className="vacseatch__list">
             {res
               .filter(({ specialization }) =>
@@ -81,9 +102,24 @@ const ResumeSearch: React.FC = () => {
                 )
               })}
           </ul>
-        ) : (
-          ''
+        )} */}
+        {isResumes == 'yes' && (
+          <div className='searchedres__wrap'>
+            <ul>
+                  <li  className="vacsearch_item">
+                    <NavLink to={'/resume/' + searchedResumes.id}>
+                      <p className="vaclist__title">{searchedResumes.specialization}</p>
+                      <div className="vaclist__desc-wrap">
+                        <p className="vaclist__desc">{searchedResumes.generalInfo}</p>
+                        <p className="vaclist__desc">{searchedResumes.country}</p>
+                        <p className="vaclist__desc">{searchedResumes.placeOfEducation}</p>
+                      </div>
+                    </NavLink>
+                  </li>
+            </ul>
+          </div>
         )}
+        {}
       </div>
     </div>
   )

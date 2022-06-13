@@ -1,23 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Formik, Form } from 'formik'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import './ResumeConstructor.css'
 import { nanoid } from 'nanoid'
+import { string } from 'yup'
+import { createResume } from '../../api.tsx'
 
 const ResumeConstructor: React.FC = () => {
-  function collectCVs (values) {
-    let resList = []
-    let loc = localStorage.getItem('resume')
-    if (loc) {
-      resList = JSON.parse(localStorage.getItem('resume'))
-      resList.push(values)
-    } else {
-      resList.push(values)
-    }
-    console.log(resList)
 
-    localStorage.setItem('resume', JSON.stringify(resList))
+  const [ resumeList, setResumeList ] = useState<string>('')
+  function collectCVs (values) {
+    // let resList = []
+    // let loc = localStorage.getItem('resume')
+    // if (loc) {
+    //   resList = JSON.parse(localStorage.getItem('resume'))
+    //   resList.push(values)
+    // } else {
+    //   resList.push(values)
+    // }
+    // console.log(resList)
+
+    // localStorage.setItem('resume', JSON.stringify(resList))
+values.profession.toLowerCase()
+    createResume(values)
+    .then((data) => {
+      console.log('OKEY');
+    })
+    .catch((err) => {
+      console.log('ERROR')
+    })
+    resetForm()
   }
 
   const resetForm = () => {
@@ -25,6 +38,24 @@ const ResumeConstructor: React.FC = () => {
     input.forEach(function (item) {
       item.value = ''
     })
+  }
+
+  interface  resumeFormValues {
+    id: string,
+    name: string,
+    secondName: string,
+    dateOfBirth: string,
+    gender: string,
+    email: string,
+    country: string,
+    placeOfEducation: string,
+    periodOfEducation: string,
+    specialization: string,
+    prevCompany: string,
+    periodOfWork: string,
+    profession: string,
+    generalInfo: string,
+    contacts: string,
   }
 
   function validateEmail(value) {
@@ -39,33 +70,56 @@ const ResumeConstructor: React.FC = () => {
     return error;
   }
 
+  const initialValues: resumeFormValues = {
+    id: '',
+    name: '',
+    secondName: '',
+    dateOfBirth: '',
+    gender: '',
+    email: '',
+    country: '',
+    placeOfEducation: '',
+    periodOfEducation: '',
+    specialization: '',
+    prevCompany: '',
+    periodOfWork: '',
+    profession: '',
+    generalInfo: '',
+    contacts: '',
+  }
+
+  interface doAcceptTerms {
+    acceptTerms: boolean
+  }
+
+
   return (
     <div className="constr">
       <div className="constr__wrap">
         <h3 className="resume__title">Create your resume here!</h3>
-        <Formik onSubmit={console.log('adssa')}
-          initialValues={{
-            id: '',
-            name: '',
-            secondName: '',
-            dateOfBirth: '',
-            gender: '',
-            email: '',
-            country: '',
-            placeOfEducation: '',
-            periodOfEducation: '',
-            specialization: '',
-            prevCompany: '',
-            periodOfWork: '',
-            profession: '',
-            generalInfo: '',
-            contacts: '',
-          }}
+        <Formik onSubmit={()=>console.log('adssa')}
+          initialValues={initialValues}
           validateOnBlur
         >
           <Formik
+          onSubmit={()=>console.log('adssa')}
             initialValues={{
               acceptTerms: false,
+              id: string,
+              name: string,
+              secondName: string,
+              dateOfBirth: string,
+              gender: string,
+              email: string,
+              country: string,
+              placeOfEducation: string,
+              periodOfEducation: string,
+              specialization: string,
+              prevCompany: string,
+              periodOfWork: string,
+              profession: string,
+              generalInfo: string,
+              contacts: string,
             }}
           >
             {({
@@ -261,13 +315,13 @@ const ResumeConstructor: React.FC = () => {
                           value={values.contacts}
                         />
                       </p>
-                      <p className='constr__req-info'>* is for requires fields</p>
+                      <p className='constr__req-info'>* is for required fields</p>
                       <div className="constr_btns-wrap">
                         <Box sx={{ '& button': { m: 1 } }}>
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={()=>{ values.id= nanoid(); collectCVs(values)}}
+                            onClick={()=>{  collectCVs(values)}}
                             className={`sign-in__btn btn btn-primary mr-2 ${
                               dirty && isValid ? '' : 'disabled-btn'
                             }`}
