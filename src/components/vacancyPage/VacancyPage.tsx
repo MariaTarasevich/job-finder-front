@@ -1,9 +1,24 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom"
+import { getVacs } from "../../api.tsx";
 
 export const VacancyPage: React.FC = () => {
-    let vacList = JSON.parse(localStorage.getItem('vacancy'))
+    const [vacList, setVacList] = useState([])
     const params = useParams()
+    let allVacs
+    
+
+    function getSomeResume () {
+        getVacs()
+        .then((data) => {
+            allVacs = data.data
+            setVacList(allVacs)
+        })
+        .catch((err) => {
+          alert(err)
+        })
+      }
+      useEffect(()=>getSomeResume(), [])
     return (
         <div className="vacpage">
         {vacList.filter(({ id }) => id == params.id).map(({      

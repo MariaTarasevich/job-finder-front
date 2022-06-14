@@ -2,14 +2,40 @@ import React, { useState, useEffect } from 'react'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+import { getAllResumes, deleteResume } from '../../api.tsx'
+
 import './ResumeFolder.css'
 
 const ResumeFolder: React.FC = () => {
-  let resumeList = JSON.parse(localStorage.getItem('resume'))
 
+  const [resumeList, setResumeList] = useState([])
+  let allResumes
+  const getAllRes = () => {
+    getAllResumes()
+    .then((data=>{
+      allResumes = data.data
+      setResumeList(allResumes)
+
+    }))
+    .catch(()=>{
+      console.log('ERR')
+    })
+  }
+  useEffect(()=>getAllRes(), [])
+
+  const deleteCV = (id) => {
+    deleteResume(id)
+    .then(()=>{
+      console.log('Deleted')
+      window.location.reload()
+    })
+    .catch(()=>{
+      console.log('error')
+    })
+  }
   return (
     <div className="resume">
-      {resumeList ? (
+      {resumeList.length > 0 && (
         <div className="resume__wrap">
           {resumeList.map((item, index) => {
             return (
@@ -90,7 +116,7 @@ const ResumeFolder: React.FC = () => {
                         </Button>
                       </Box>
                       <Box sx={{ '& button': { m: 1 } }}>
-                        <Button variant="contained" size="large">
+                        <Button variant="contained" size="large" onClick={()=>deleteCV(item.id)}>
                           delete
                         </Button>
                       </Box>
@@ -101,7 +127,8 @@ const ResumeFolder: React.FC = () => {
             )
           })}
         </div>
-      ) : (
+      )}
+      {resumeList.length == 0 && (
         <h3 className="res__nores">You have no resume yet</h3>
       )}
     </div>

@@ -6,16 +6,44 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import { NavLink } from 'react-router-dom'
 import TextField from '@mui/material/TextField'
+import { getVacs, getVacancy } from '../../api.tsx'
 
 import './VacancySearch.css'
 
 const VacancySearch: React.FC = () => {
   const [searchValue, setSearchValue] = React.useState('')
-
-  const vacs = JSON.parse(localStorage.getItem('vacancy'))
-  console.log(vacs)
+  const [isVacs, setIsValue] = React.useState('')
+  const [showVacs, setShowVacs] = React.useState<boolean>(false)
+  const [vacsList, setVacList] = React.useState([])
+  const {searchedVacsList, setSearchedVacsList} = React.useState([])
+  let allVacs, vacs, vacsObj
   const showSearchVal = (e) => {
     setSearchValue(e.target.value)
+  }
+
+  const getAllVacs = () => {
+    getVacs()
+    .then((data=>{
+      allVacs = data.data
+      setVacList(allVacs)
+    }))
+    .catch(()=>{
+      console.log('ERR')
+    })
+  }
+
+  function getSomeVacs () {
+    getVacancy(searchValue.toLowerCase())
+    .then((data) => {
+      vacs = data.data
+      vacs.forEach(item => vacsObj = item)
+    setSearchedVacsList(vacsObj)
+    setIsValue('yes')
+    })
+    .catch((err) => {
+      alert('Sorry')
+      setIsValue('no')
+    })
   }
 
   return (
@@ -52,21 +80,28 @@ const VacancySearch: React.FC = () => {
               variant="outlined"
               size="large"
               className="vacsearch__search-btn"
+              onClick={()=>getSomeVacs()}
             >
               Search
             </Button>
           </Box>
         </div>
+        <Box sx={{ '& button': { m: 1 } }}>
+            <Button
+              variant="contained"
+              size="large"
+              className="vacsearch__search-btn"
+              onClick={()=>{getAllVacs(); setShowVacs(true)}}
+            >
+              Show all vacancies
+            </Button>
+          </Box>
       </div>
       <div className="vacsearch__list-wrap">
-        {vacs ? (
+        {showVacs && (
           <ul className="vacseatch__list">
-            {vacs
-              .filter(({ title }) =>
-                title.toLowerCase().includes(searchValue.toLowerCase())
-              )
+            {vacsList
               .map((item, index) => {
-                console.log(item.id)
                 return (
                   <li key={index} className="vacsearch_item">
                     <NavLink to={'/vacancy/' + item.id}>
@@ -81,8 +116,6 @@ const VacancySearch: React.FC = () => {
                 )
               })}
           </ul>
-        ) : (
-          ''
         )}
       </div>
     </div>

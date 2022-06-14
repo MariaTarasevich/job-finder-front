@@ -11,18 +11,6 @@ const ResumeConstructor: React.FC = () => {
 
   const [ resumeList, setResumeList ] = useState<string>('')
   function collectCVs (values) {
-    // let resList = []
-    // let loc = localStorage.getItem('resume')
-    // if (loc) {
-    //   resList = JSON.parse(localStorage.getItem('resume'))
-    //   resList.push(values)
-    // } else {
-    //   resList.push(values)
-    // }
-    // console.log(resList)
-
-    // localStorage.setItem('resume', JSON.stringify(resList))
-values.profession.toLowerCase()
     createResume(values)
     .then((data) => {
       console.log('OKEY');
@@ -90,6 +78,10 @@ values.profession.toLowerCase()
 
   interface doAcceptTerms {
     acceptTerms: boolean
+  }
+
+  const inpStyle = {
+    textTransform: 'lowercase'
   }
 
 
@@ -284,6 +276,7 @@ values.profession.toLowerCase()
                           className={'input resumeInput'}
                           type={'text'}
                           name={'profession'}
+                          style={inpStyle}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.profession}
@@ -321,7 +314,7 @@ values.profession.toLowerCase()
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={()=>{  collectCVs(values)}}
+                            onClick={()=>{collectCVs(values)}}
                             className={`sign-in__btn btn btn-primary mr-2 ${
                               dirty && isValid ? '' : 'disabled-btn'
                             }`}

@@ -3,22 +3,20 @@ import { Formik, Form } from 'formik'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import { nanoid } from 'nanoid'
+import { createVacancy } from '../../api.tsx'
 
 const ResumeConstructor: React.FC = () => {
  // const [vacList, setVacList] = useState([])
 
   function collectVacs (values) {
-    let vacList = []
-    let loc = localStorage.getItem('vacancy')
-    if (loc) {
-      vacList = JSON.parse(localStorage.getItem('vacancy'))
-      vacList.push(values)
-    } else {
-      vacList.push(values)
-    }
-    console.log(vacList)
-
-    localStorage.setItem('vacancy', JSON.stringify(vacList))
+    createVacancy(values)
+    .then((data) => {
+      console.log('OKEY');
+    })
+    .catch((err) => {
+      console.log('ERROR')
+    })
+    resetForm()
   }
 
   const resetForm = () => {
@@ -27,6 +25,12 @@ const ResumeConstructor: React.FC = () => {
       item.value = ''
     })
   }
+
+  const inpStyle = {
+    textTransform: 'lowercase'
+  }
+
+
 
   return (
     <div className="constr">
@@ -66,6 +70,7 @@ const ResumeConstructor: React.FC = () => {
                           className={'input resumeInput'}
                           type={'text'}
                           name={'title'}
+                          style={inpStyle}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.title}
@@ -149,7 +154,7 @@ const ResumeConstructor: React.FC = () => {
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={()=>{values.id=nanoid(); collectVacs(values)}}
+                            onClick={()=>{collectVacs(values)}}
                             className={`sign-in__btn btn btn-primary mr-2`}
                           >
                             Save

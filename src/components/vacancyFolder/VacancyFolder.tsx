@@ -2,14 +2,36 @@ import React, { useState, useEffect } from 'react'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+import { getVacs, deleteVacancy } from '../../api.tsx'
 import './VacancyFolder.css'
 
 const VacancyFolder: React.FC = () => {
-  let vacList = JSON.parse(localStorage.getItem('vacancy'))
-
+  const [vacList, setVacList] = useState([])
+  let allVacs
+  const getAllRes = () => {
+    getVacs()
+    .then((data=>{
+      allVacs = data.data
+      setVacList(allVacs)
+    }))
+    .catch(()=>{
+      console.log('ERR')
+    })
+  }
+  useEffect(()=>getAllRes(), [])
+  const deleteVac = (id) => {
+    deleteVacancy(id)
+    .then(()=>{
+      console.log('Deleted')
+      window.location.reload()
+    })
+    .catch(()=>{
+      console.log('error')
+    })
+  }
   return (
     <div className="vac">
-      {vacList ? (
+      {vacList && (
         <div className="vac__wrap">
           {vacList.map((item, index) => {
             return (
@@ -58,7 +80,7 @@ const VacancyFolder: React.FC = () => {
                         </Button>
                       </Box>
                       <Box sx={{ '& button': { m: 1 } }}>
-                        <Button variant="contained" size="large">
+                        <Button variant="contained" size="large" onClick={()=>deleteVac(item.id)}>
                           delete
                         </Button>
                       </Box>
@@ -69,7 +91,8 @@ const VacancyFolder: React.FC = () => {
             )
           })}
         </div>
-      ) : (
+      )
+        }{!vacList && (
         <h3 className="res__nores">You have no vacancies yet</h3>
       )}
     </div>

@@ -1,29 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import { getResume } from '../../api.tsx'
+import { getAllResumes } from '../../api.tsx'
 
 export const ResumePage: React.FC = () => {
-    let resList = JSON.parse(localStorage.getItem('resume'))
+  const [resumeList, setResumeList] = useState([])
     const params = useParams()
-    let someCVs
+    let allCVs
+    
 
     function getSomeResume () {
-        getResume('Engineer')
+      getAllResumes()
         .then((data) => {
-            someCVs = data.data
-    //        resumes.forEach(item => resumesObj = item)
-    //   //   const {name, secondName, dateOfBirth, gender, email, country, placeOfEducation, periodOfEducation, specialization, prevCompany, periodOfWork, profession, generalInfo, contacts} = resumesObj
-    //      setSearchedResumes(resumesObj)
-    //      setIsResumes('yes')
+          allCVs = data.data
+          setResumeList(allCVs)
         })
         .catch((err) => {
-          alert('Sorry')
-        //   setIsResumes('no')
+          alert(err)
         })
       }
+      useEffect(()=>getSomeResume(), [])
     return (
         <div className="respage">
-        {someCVs.filter(({ id }) => id == params.id).map(({       
+        {resumeList.filter(({ id }) => id == params.id).map(({       
               id,      
               name,
               secondName,
