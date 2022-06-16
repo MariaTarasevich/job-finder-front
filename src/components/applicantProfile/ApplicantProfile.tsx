@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -6,36 +6,46 @@ import { Formik, Form } from 'formik'
 import './ApplicantProfile.css'
 
 export default function ApplicantProfile() {
+
+  const [isProfile, setIsProfile] = useState<boolean>(true)
+  const [createProfile, setCreateProfile] = useState<boolean>(false)
+  const [noProf, setNoProf] = useState<boolean>(true)
+  const [localProfile, setLocalProfile] = useState('')
+
+
   const applicatProf = {
     name: '',
     surname: '',
     email: '',
     age: '',
-    phone: 'gender'
+    phone: '',
+    gender: ''
   }
-  const [isProfile, setIsProfile] = useState<boolean>(true)
-  const [createProfile, setCreateProfile] = useState<boolean>(false)
-  const [ noProf, setNoProf] = useState<boolean>(false)
+
+  useEffect(() => {
+    setLocalProfile(JSON.parse(localStorage.getItem('applicantProfile')))
+  }, [])
   return (
-    <div className="profile__wrap">{isProfile && (<div className="profile">
-      <div className="profile__creds-wrap">
+    <div className="profile__wrap">
+      {localProfile && (<div className="profile">
+ <div className="profile__creds-wrap">
         <div className="profile__creds">
           <Avatar alt="User" src="/static/images/avatar/1.jpg" />
-          <p className="profile__name">Name</p>
-          <p className="profile__name">Surname</p>
+          <p className="profile__name">{localProfile.name}</p>
+          <p className="profile__name">{localProfile.surname}</p>
         </div>
         <div className="profile__extracreds">
           <p className="profile__extracred">
-            Email: <span className="profile__span">user@gmail.com</span>
+            Email: <span className="profile__span">{localProfile.email}</span>
           </p>
           <p className="profile__extracred">
-            Age: <span className="profile__span">23</span>
+            Age: <span className="profile__span">{localProfile.age}</span>
           </p>
           <p className="profile__extracred">
-            Phone: <span className="profile__span">+111-11-111-11-11</span>
+            Phone: <span className="profile__span">{localProfile.phone}</span>
           </p>
           <p className="profile__extracred">
-            Gender: <span className="profile__span">Male</span>
+            Gender: <span className="profile__span">{localProfile.gender}</span>
           </p>
         </div>
       </div>
@@ -46,15 +56,15 @@ export default function ApplicantProfile() {
           </Button>
         </Box>
         <Box sx={{ '& button': { m: 1 } }}>
-          <Button variant="contained" size="large" onClick={() => {setIsProfile(false); setNoProf(true)}}>
+          <Button variant="contained" size="large" onClick={() => { setLocalProfile('');  localStorage.clear(); setNoProf(true)}}>
             delete
           </Button>
         </Box>
       </div>
     </div>)}
-      {!isProfile && noProf && (<div className='noprof__wrap'><h3 className='noprof__title'>You have no profile yet</h3>
+      {!localProfile && noProf && (<div className='noprof__wrap'><h3 className='noprof__title'>You have no profile yet</h3>
         <Box sx={{ '& button': { m: 1 } }}>
-          <Button variant="contained" size="large" onClick={() => {setCreateProfile(true); setNoProf(false)}}>
+          <Button variant="contained" size="large" onClick={() => { setCreateProfile(true); setNoProf(false) }}>
             Create profile
           </Button>
         </Box></div>
@@ -76,88 +86,75 @@ export default function ApplicantProfile() {
                   <div className="form-group">
                     <div className={'from'}>
                       <p>
-                        <label htmlFor={'title'}>Vacancy title</label>
+                        <label htmlFor={'name'}>Name</label>
                         <br />
                         <input
                           className={'input resumeInput'}
                           type={'text'}
-                          name={'title'}
+                          name={'name'}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          value={values.title}
+                          value={values.name}
                         />
                       </p>
                       <p>
-                        <label htmlFor={'salary'}>Salary</label>
+                        <label htmlFor={'surname'}>Surname</label>
                         <br />
                         <input
                           className={'input resumeInput'}
                           type={'text'}
-                          name={'salary'}
+                          name={'surname'}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          value={values.salary}
+                          value={values.surname}
                         />
                       </p>
                       <p>
-                        <label htmlFor={'reqExperience'}>Required work experience</label>
+                        <label htmlFor={'email'}>Email</label>
                         <br />
                         <input
                           className={'input resumeInput'}
                           type={'text'}
-                          name={'reqExperience'}
+                          name={'email'}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          value={values.reqExperience}
+                          value={values.email}
                         />
                       </p>
                       <p>
-                        <label htmlFor={'schedule'}>Working schedule</label>
+                        <label htmlFor={'age'}>Age</label>
                         <br />
                         <input
                           className={'input resumeInput'}
                           type={'text'}
-                          name={'schedule'}
+                          name={'age'}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          value={values.schedule}
+                          value={values.age}
                         />
                       </p>
                       <p>
-                        <label htmlFor={'city'}>City</label>
+                        <label htmlFor={'phone'}>Phone</label>
                         <br />
                         <input
                           className={'input resumeInput'}
                           type={'text'}
-                          name={'city'}
+                          name={'phone'}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          value={values.city}
+                          value={values.phone}
                         />
                       </p>
                       <p>
-                        <label htmlFor={'generalInfo'}>
-                          General information
-                        </label>
-                        <br />
-                        <textarea
-                          name={'generalInfo'}
-                          className="resumeTextarea"
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.generalInfo}
-                        />
-                      </p>
-                      <p>
-                        <label htmlFor={'contacts'}>Contacts</label>
+                        <label htmlFor={'gender'}>Gender</label>
                         <br />
                         <input
                           className={'input resumeInput'}
                           type={'text'}
-                          name={'contacts'}
+                          name={'gender'}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          value={values.contacts}
+                          value={values.gender}
                         />
                       </p>
                       <div className="constr_btns-wrap">
@@ -165,7 +162,7 @@ export default function ApplicantProfile() {
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={() => {setIsProfile(true); setCreateProfile(false)}}
+                            onClick={() => { setIsProfile(true); setCreateProfile(false); localStorage.setItem('applicantProfile', JSON.stringify(values)); setLocalProfile(values) }}
                             className={`sign-in__btn btn btn-primary mr-2`}
                           >
                             Save
@@ -190,8 +187,8 @@ export default function ApplicantProfile() {
             )}
           </Formik>
         </div>
-  )
-}
+      )
+      }
     </div >
   )
 }

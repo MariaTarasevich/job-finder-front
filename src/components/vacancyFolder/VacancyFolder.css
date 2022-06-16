@@ -101,15 +101,4 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-
-#text_area_div {
-  width: 170px;
-  font-family: Arial;
-  font-size: 12px;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  visibility: hidden;
-  position: absolute;
-  left: -9999px;
-}
 /*# sourceMappingURL=VacancyFolder.css.map */

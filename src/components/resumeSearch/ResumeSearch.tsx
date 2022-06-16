@@ -16,7 +16,8 @@ const ResumeSearch: React.FC = () => {
   const [isResumes, setIsResumes] = React.useState<string>('')
   const [resumeList, setResumeList] = React.useState([])
   const [showResumes, setShowResumes] = React.useState<boolean>(false)
-  let resumesObj, resumes, allResumes
+  const [showBtn, setShowBtn] = React.useState<boolean>(false)
+  let  resumes, allResumes
 
   const vacs = JSON.parse(localStorage.getItem('vacancy'))
   console.log(vacs)
@@ -28,9 +29,8 @@ const ResumeSearch: React.FC = () => {
     getResume(searchValue.toLowerCase())
     .then((data) => {
        resumes = data.data
-       resumes.forEach(item => resumesObj = item)
   //   const {name, secondName, dateOfBirth, gender, email, country, placeOfEducation, periodOfEducation, specialization, prevCompany, periodOfWork, profession, generalInfo, contacts} = resumesObj
-     setSearchedResumes(resumesObj)
+     setSearchedResumes(resumes)
      setIsResumes('yes')
     })
     .catch((err) => {
@@ -93,16 +93,26 @@ const ResumeSearch: React.FC = () => {
             </Button>
           </Box>
         </div>
-        <Box sx={{ '& button': { m: 1 } }}>
+        {!showBtn && (<Box sx={{ '& button': { m: 1 } }}>
             <Button
               variant="contained"
               size="large"
               className="vacsearch__search-btn"
-              onClick={()=>{getAllRes(); setShowResumes(true)}}
+              onClick={()=>{getAllRes(); setShowResumes(true); setShowBtn(true)}}
             >
               Show all CVs
             </Button>
-          </Box>
+          </Box>)}
+          {showBtn && (<Box sx={{ '& button': { m: 1 } }}>
+            <Button
+              variant="contained"
+              size="large"
+              className="vacsearch__search-btn"
+              onClick={()=>{getAllRes(); setShowResumes(false); setShowBtn(false)}}
+            >
+              Hide
+            </Button>
+          </Box>)}
       </div>
       <div className="vacsearch__list-wrap">
         {showResumes && (
@@ -112,7 +122,7 @@ const ResumeSearch: React.FC = () => {
                 return (
                   <li key={index} className="vacsearch_item">
                     <NavLink to={'/resume/' + item.id}>
-                      <p className="vaclist__title">{item.specialization}</p>
+                      <p className="vaclist__title">{item.profession}</p>
                       <div className="vaclist__desc-wrap">
                         <p className="vaclist__desc">{item.generalInfo}</p>
                         <p className="vaclist__desc">{item.country}</p>
@@ -126,17 +136,22 @@ const ResumeSearch: React.FC = () => {
         )}
         {isResumes == 'yes' && (
           <div className='searchedres__wrap'>
-            <ul>
-                  <li  className="vacsearch_item">
-                    <NavLink to={'/resume/' + searchedResumes.id}>
-                      <p className="vaclist__title">{searchedResumes.specialization}</p>
+            <ul className='searched_list'>
+              {searchedResumes.map((item)=>{
+                return (
+                  <li  className="vacsearch_item" key={item.id}>
+                    <NavLink to={'/resume/' + item.id}>
+                      <p className="vaclist__title">{item.profession}</p>
                       <div className="vaclist__desc-wrap">
-                        <p className="vaclist__desc">{searchedResumes.generalInfo}</p>
-                        <p className="vaclist__desc">{searchedResumes.country}</p>
-                        <p className="vaclist__desc">{searchedResumes.placeOfEducation}</p>
+                        <p className="vaclist__desc">{item.generalInfo}</p>
+                        <p className="vaclist__desc">{item.country}</p>
+                        <p className="vaclist__desc">{item.placeOfEducation}</p>
                       </div>
                     </NavLink>
                   </li>
+                )
+              })}
+
             </ul>
           </div>
         )}

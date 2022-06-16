@@ -12,10 +12,13 @@ import './VacancySearch.css'
 
 const VacancySearch: React.FC = () => {
   const [searchValue, setSearchValue] = React.useState('')
-  const [isVacs, setIsValue] = React.useState('')
+  const [isVacs, setIsVacs] = React.useState('')
   const [showVacs, setShowVacs] = React.useState<boolean>(false)
   const [vacsList, setVacList] = React.useState([])
-  const {searchedVacsList, setSearchedVacsList} = React.useState([])
+  const [searchedVacsList, setSearchedVacsList] =  React.useState([])
+  const [showBtn, setShowBtn] = React.useState<boolean>(false)
+
+
   let allVacs, vacs, vacsObj
   const showSearchVal = (e) => {
     setSearchValue(e.target.value)
@@ -36,13 +39,11 @@ const VacancySearch: React.FC = () => {
     getVacancy(searchValue.toLowerCase())
     .then((data) => {
       vacs = data.data
-      vacs.forEach(item => vacsObj = item)
-    setSearchedVacsList(vacsObj)
-    setIsValue('yes')
+    setSearchedVacsList(vacs)
+    setIsVacs('yes')
     })
     .catch((err) => {
-      alert('Sorry')
-      setIsValue('no')
+      setIsVacs('no')
     })
   }
 
@@ -86,16 +87,26 @@ const VacancySearch: React.FC = () => {
             </Button>
           </Box>
         </div>
-        <Box sx={{ '& button': { m: 1 } }}>
+          {!showBtn && (<Box sx={{ '& button': { m: 1 } }}>
             <Button
               variant="contained"
               size="large"
               className="vacsearch__search-btn"
-              onClick={()=>{getAllVacs(); setShowVacs(true)}}
+              onClick={()=>{getAllVacs(); setShowVacs(true); setShowBtn(true)}}
             >
-              Show all vacancies
+              Show all CVs
             </Button>
-          </Box>
+          </Box>)}
+          {showBtn && (<Box sx={{ '& button': { m: 1 } }}>
+            <Button
+              variant="contained"
+              size="large"
+              className="vacsearch__search-btn"
+              onClick={()=>{setShowVacs(false); setShowBtn(false)}}
+            >
+              Hide
+            </Button>
+          </Box>)}
       </div>
       <div className="vacsearch__list-wrap">
         {showVacs && (
@@ -116,6 +127,27 @@ const VacancySearch: React.FC = () => {
                 )
               })}
           </ul>
+        )}
+                {isVacs == 'yes' && (
+          <div className='searchedres__wrap'>
+            <ul className='searched_list'>
+              {searchedVacsList.map((item)=>{
+                return (
+                  <li  className="vacsearch_item" key={item.id}>
+                    <NavLink to={'/vacancy/' + item.id}>
+                      <p className="vaclist__title">{item.title}</p>
+                      <div className="vaclist__desc-wrap">
+                        <p className="vaclist__desc">{item.salary}</p>
+                        <p className="vaclist__desc">{item.reqExperience}</p>
+                        <p className="vaclist__desc">{item.schedule}</p>
+                      </div>
+                    </NavLink>
+                  </li>
+                )
+              })}
+
+            </ul>
+          </div>
         )}
       </div>
     </div>
