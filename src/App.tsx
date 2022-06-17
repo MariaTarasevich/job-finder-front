@@ -10,6 +10,8 @@ import SignInPage from './components/signInPage/SignInPage.tsx'
 import SignUpPage from './components/signUpPage/SignUpPage.tsx'
 import { VacancyPage } from './components/vacancyPage/VacancyPage.tsx'
 import VacancySearch from './components/vacancySearch/VacancySearch.tsx'
+import Contacts from './components/contacts/Contacts.tsx'
+import About from './components/about/About.tsx'
 
 
 const App: React.FC = () => {
@@ -25,6 +27,8 @@ const App: React.FC = () => {
         <Route  path="/vacancysearch" element={<VacancySearch />} />
         <Route  path="/vacancy/:id" element={<VacancyPage />} />
         <Route  path="/resume/:id" element={<ResumePage />} />
+        <Route  path="/contacts" element={<Contacts />} />
+        <Route  path="/about" element={<About />} />
       </Routes>
     </div>
   )

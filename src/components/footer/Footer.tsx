@@ -52,20 +52,19 @@ const Footer: React.FC = () =>{
           <div className='foo__nav'>
             <div className='foo__nav-items'>
               <p className='foo__nav-title'>For Applicants</p>
-              <NavLink to='/' className='foo__nav-link'>Search for vacancies</NavLink>
-              <NavLink to='/' className='foo__nav-link'>Post a Resume</NavLink>
+              <NavLink to='/vacancysearch' className='foo__nav-link'>Search for vacancies</NavLink>
+              <NavLink to='/signin' className='foo__nav-link'>Post a Resume</NavLink>
             </div>
             <div className='foo__nav-items'>
               <p className='foo__nav-title'>For Employers</p>
-              <NavLink to='/' className='foo__nav-link'>Search for resume</NavLink>
-              <NavLink to='/' className='foo__nav-link'>Post a Vacancy</NavLink>
-              <NavLink to='/' className='foo__nav-link'>Pricing</NavLink>
-              <NavLink to='/' className='foo__nav-link'>Our Partners</NavLink>
+              <NavLink to='/resumesearch' className='foo__nav-link'>Search for resume</NavLink>
+              <NavLink to='/signin' className='foo__nav-link'>Post a Vacancy</NavLink>
+              <NavLink to='/signin' className='foo__nav-link'>Pricing</NavLink>
             </div>
             <div className='foo__nav-items'>
               <p className='foo__nav-title'>Info</p>
-              <NavLink to='/' className='foo__nav-link'>Contacts</NavLink>
-              <NavLink to='/' className='foo__nav-link'>About company</NavLink>
+              <NavLink to='/contacts' className='foo__nav-link'>Contacts</NavLink>
+              <NavLink to='/about' className='foo__nav-link'>About company</NavLink>
             </div>
           </div>
           <div className='foo__copyright-wrap'>

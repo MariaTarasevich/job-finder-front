@@ -20,7 +20,11 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  border: 1px solid #929292;
+  border: 1px solid #e0e0e0;
+  border-right: 0;
+  border-radius: 4px 0 0 4px;
+  -webkit-box-shadow: 0 4px 14px rgba(0, 0, 0, 0.055);
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.055);
   padding: 2em;
   height: 100%;
   margin-bottom: 2%;
