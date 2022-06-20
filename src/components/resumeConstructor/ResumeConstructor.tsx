@@ -3,22 +3,26 @@ import { Formik, Form } from 'formik'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import './ResumeConstructor.css'
-import { nanoid } from 'nanoid'
 import { string } from 'yup'
 import { createResume } from '../../api.tsx'
 
 const ResumeConstructor: React.FC = () => {
-
-  const [ resumeList, setResumeList ] = useState<string>('')
+  const [correctEmail, setCorrectEmail] = useState<boolean>(false)
+  const [correctPhone, setCorrectPhone] = useState<boolean>(false)
   function collectCVs (values) {
+    if(!correctEmail || !correctPhone) return
     createResume(values)
-    .then((data) => {
-      console.log('OKEY');
-    })
-    .catch((err) => {
-      console.log('ERROR')
-    })
-    resetForm()
+      .then(() => {
+        console.log('OKEY');
+  
+      })
+      .catch(() => {
+        console.log('ERROR')
+      })
+
+    if(correctEmail || correctPhone){resetForm()}
+    setCorrectEmail(false)
+    setCorrectPhone(false)
   }
 
   const resetForm = () => {
@@ -37,23 +41,43 @@ const ResumeConstructor: React.FC = () => {
     email: string,
     country: string,
     placeOfEducation: string,
-    periodOfEducation: string,
+    startOfEducation: string,
+    endOfEducation: string,
     specialization: string,
     prevCompany: string,
-    periodOfWork: string,
+    startOfWork: string,
+    endOfWork: string,
     profession: string,
     generalInfo: string,
     contacts: string,
   }
 
   function validateEmail(value) {
-    let error;
+    let error, re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!value) {
       error = 'Required';
       alert('Insert email')
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+    } else if (!re.test(value)) {
       alert('Invalid email address')
       error = 'Invalid email address';
+    } else {
+      alert('OK')
+      setCorrectPhone(true)
+    }
+    return error;
+  }
+
+  function validatePhone(value) {
+    let error, re = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/
+    if (!value) {
+      error = 'Required';
+      alert('Insert phone')
+    } else if (!re.test(value)) {
+      alert('Invalid phone number')
+      error = 'Invalid phone number';
+    } else {
+      alert('OK')
+      setCorrectPhone(true)
     }
     return error;
   }
@@ -67,17 +91,15 @@ const ResumeConstructor: React.FC = () => {
     email: '',
     country: '',
     placeOfEducation: '',
-    periodOfEducation: '',
+    startOfEducation: '',
+    endOfEducation: '',
     specialization: '',
     prevCompany: '',
-    periodOfWork: '',
+    startOfWork: '',
+    endOfWork: '',
     profession: '',
     generalInfo: '',
     contacts: '',
-  }
-
-  interface doAcceptTerms {
-    acceptTerms: boolean
   }
 
   const inpStyle = {
@@ -96,7 +118,6 @@ const ResumeConstructor: React.FC = () => {
           <Formik
           onSubmit={()=>console.log('adssa')}
             initialValues={{
-              acceptTerms: false,
               id: string,
               name: string,
               secondName: string,
@@ -105,10 +126,12 @@ const ResumeConstructor: React.FC = () => {
               email: string,
               country: string,
               placeOfEducation: string,
-              periodOfEducation: string,
+              startOfEducation: string,
+              endOfEducation: string,
               specialization: string,
               prevCompany: string,
-              periodOfWork: string,
+              startOfWork: string,
+              endOfWork: string,
               profession: string,
               generalInfo: string,
               contacts: string,
@@ -116,12 +139,9 @@ const ResumeConstructor: React.FC = () => {
           >
             {({
               values,
-              errors,
-              touched,
               handleChange,
               handleBlur,
               isValid,
-              handleSubmit,
               dirty,
             }) => (
               <Form>
@@ -220,17 +240,31 @@ const ResumeConstructor: React.FC = () => {
                         />
                       </p>
                       <p>
-                        <label htmlFor={'periodOfEducation'}>
-                          Period of education
+                        <label htmlFor={'startOfEducation'}>
+                          Period of education (start)
                         </label>
                         <br />
                         <input
                           className={'input resumeInput'}
                           type={'text'}
-                          name={'periodOfEducation'}
+                          name={'startOfEducation'}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          value={values.periodOfEducation}
+                          value={values.startOfEducation}
+                        />
+                      </p>
+                      <p>
+                        <label htmlFor={'endOfEducation'}>
+                          Period of education (end)
+                        </label>
+                        <br />
+                        <input
+                          className={'input resumeInput'}
+                          type={'text'}
+                          name={'endOfEducation'}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.endOfEducation}
                         />
                       </p>
                       <p>
@@ -258,15 +292,27 @@ const ResumeConstructor: React.FC = () => {
                         />
                       </p>
                       <p>
-                        <label htmlFor={'periodOfWork'}>Period of work</label>
+                        <label htmlFor={'startOfWork'}>Period of work (start)</label>
                         <br />
                         <input
                           className={'input resumeInput'}
                           type={'text'}
-                          name={'periodOfWork'}
+                          name={'startOfWork'}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          value={values.periodOfWork}
+                          value={values.startOfWork}
+                        />
+                      </p>
+                      <p>
+                        <label htmlFor={'endOfWork'}>Period of work (end)</label>
+                        <br />
+                        <input
+                          className={'input resumeInput'}
+                          type={'text'}
+                          name={'endOfWork'}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.endOfWork}
                         />
                       </p>
                       <p>
@@ -297,7 +343,7 @@ const ResumeConstructor: React.FC = () => {
                         />
                       </p>
                       <p>
-                        <label htmlFor={'contacts'}>Contacts</label>
+                        <label htmlFor={'contacts'}>Phone</label>
                         <br />
                         <input
                           className={'input resumeInput'}
@@ -314,7 +360,7 @@ const ResumeConstructor: React.FC = () => {
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={()=>{collectCVs(values)}}
+                            onClick={()=>{validateEmail(values.email); validatePhone(values.contacts); collectCVs(values)}}
                             className={`sign-in__btn btn btn-primary mr-2 ${
                               dirty && isValid ? '' : 'disabled-btn'
                             }`}

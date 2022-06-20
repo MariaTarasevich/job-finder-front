@@ -3,6 +3,7 @@ import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import { Formik, Form } from 'formik'
+import {createApplicantProfile, getApplicantProfile, deleteApplicantProf } from './../../api.tsx'
 import './ApplicantProfile.css'
 
 export default function ApplicantProfile() {
@@ -11,8 +12,42 @@ export default function ApplicantProfile() {
   const [createProfile, setCreateProfile] = useState<boolean>(false)
   const [noProf, setNoProf] = useState<boolean>(true)
   const [localProfile, setLocalProfile] = useState('')
+  let prof
 
+  function collectProfileData (values) {
+    createApplicantProfile(values)
+    .then((data) => {
+      console.log('OKEY');
+    })
+    .catch((err) => {
+      console.log('ERROR')
+    })
+  }
 
+  const getProfile = () => {
+    getApplicantProfile()
+    .then((data=>{
+      prof = data.data
+      setLocalProfile(prof)  
+      console.log(localProfile)
+    }))
+    .catch(()=>{
+      console.log('ERR')
+    })
+  }
+
+  const deleteProf = (id) => {
+    deleteApplicantProf(id)
+      .then(() => {
+        console.log('Deleted')
+        window.location.reload()
+      })
+      .catch(() => {
+        console.log('error')
+      })
+  }
+
+  useEffect(()=>{getProfile(); console.log(localProfile)}, [])
   const applicatProf = {
     name: '',
     surname: '',
@@ -22,30 +57,30 @@ export default function ApplicantProfile() {
     gender: ''
   }
 
-  useEffect(() => {
-    setLocalProfile(JSON.parse(localStorage.getItem('applicantProfile')))
-  }, [])
+  
   return (
     <div className="profile__wrap">
-      {localProfile && (<div className="profile">
+      {localProfile && (localProfile.map((item, index) => {
+        return (
+      <div className="profile" key={index}>
  <div className="profile__creds-wrap">
         <div className="profile__creds">
           <Avatar alt="User" src="/static/images/avatar/1.jpg" />
-          <p className="profile__name">{localProfile.name}</p>
-          <p className="profile__name">{localProfile.surname}</p>
+          <p className="profile__name">{item.name}</p>
+          <p className="profile__name">{item.surname}</p>
         </div>
         <div className="profile__extracreds">
           <p className="profile__extracred">
-            Email: <span className="profile__span">{localProfile.email}</span>
+            Email: <span className="profile__span">{item.email}</span>
           </p>
           <p className="profile__extracred">
-            Age: <span className="profile__span">{localProfile.age}</span>
+            Age: <span className="profile__span">{item.age}</span>
           </p>
           <p className="profile__extracred">
-            Phone: <span className="profile__span">{localProfile.phone}</span>
+            Phone: <span className="profile__span">{item.phone}</span>
           </p>
           <p className="profile__extracred">
-            Gender: <span className="profile__span">{localProfile.gender}</span>
+            Gender: <span className="profile__span">{item.gender}</span>
           </p>
         </div>
       </div>
@@ -56,12 +91,12 @@ export default function ApplicantProfile() {
           </Button>
         </Box>
         <Box sx={{ '& button': { m: 1 } }}>
-          <Button variant="contained" size="large" onClick={() => { setLocalProfile('');  localStorage.clear(); setNoProf(true)}}>
+          <Button variant="contained" size="large" onClick={() => {deleteProf(1); setLocalProfile(''); setNoProf(true)}}>
             delete
-          </Button>
+          </Button> 
         </Box>
       </div>
-    </div>)}
+    </div>)}))}
       {!localProfile && noProf && (<div className='noprof__wrap'><h3 className='noprof__title'>You have no profile yet</h3>
         <Box sx={{ '& button': { m: 1 } }}>
           <Button variant="contained" size="large" onClick={() => { setCreateProfile(true); setNoProf(false) }}>
@@ -162,7 +197,7 @@ export default function ApplicantProfile() {
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={() => { setIsProfile(true); setCreateProfile(false); localStorage.setItem('applicantProfile', JSON.stringify(values)); setLocalProfile(values) }}
+                            onClick={() => { setIsProfile(true); setCreateProfile(false); collectProfileData(values); setLocalProfile(values) }}
                             className={`sign-in__btn btn btn-primary mr-2`}
                           >
                             Save

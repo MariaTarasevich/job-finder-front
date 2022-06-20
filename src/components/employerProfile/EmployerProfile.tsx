@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+import { createEmployerProfile, getCompamnyProfile, deleteCompanyProf } from './../../api.tsx'
 import { Formik, Form } from 'formik'
 
 import './EmployerProfile.css'
@@ -11,62 +12,99 @@ export const EmployerProfile: React.FC = () => {
   const [createProfile, setCreateProfile] = useState<boolean>(false)
   const [noProf, setNoProf] = useState<boolean>(true)
   const [localProfile, setLocalProfile] = useState('')
-  const  companyProf = {
+  let prof
+  const companyProf = {
     name: '',
     email: '',
     address: '',
     phone: '',
     aboutCompany: ''
   }
-  useEffect(() => {
-    setLocalProfile(JSON.parse(localStorage.getItem('vacancyProfile')))
 
-  }, [])
+  function collectProfileData(values) {
+    createEmployerProfile(values)
+      .then((data) => {
+        console.log('OKEY');
+      })
+      .catch((err) => {
+        console.log('ERROR')
+      })
+  }
+
+  const getProfile = () => {
+    getCompamnyProfile()
+      .then((data => {
+        prof = data.data
+        setLocalProfile(prof)
+        console.log(localProfile)
+      }))
+      .catch(() => {
+        console.log('ERR ')
+      })
+  }
+
+  const deleteProf = (id) => {
+    deleteCompanyProf(id)
+      .then(() => {
+        console.log('Deleted')
+        window.location.reload()
+      })
+      .catch(() => {
+        console.log('error')
+      })
+  }
+
+  useEffect(() => { getProfile(); console.log(Boolean(localProfile), typeof (localProfile)) }, [])
   return (
     <div className="company__wrap">
-     {localProfile &&  (<div className="company">
-        <div className="company__creds-wrap">
-          <div className="company__creds">
-            <Avatar alt="User" src="/static/images/avatar/1.jpg" />
-            <p className="company__name">{localProfile.name}</p>
-          </div>
-          <div className="company__extracreds">
-            <p className="company__extracred">
-              Email: <span className="company__span">{localProfile.email}</span>
-            </p>
-            <p className="company__extracred">
-              Address: <span className="company__span">{localProfile.address}</span>
-            </p>
-            <p className="company__extracred">
-              Phone: <span className="company__span">{localProfile.phone}</span>
-            </p>
-            <p className="company__extracred">
-            About company: <span className="company__span">{localProfile.aboutCompany}</span>
-            </p>
-                          
-          </div>
-        </div>
-        <div className='profile__wrap-btns'>
+      {localProfile && (localProfile.map((item, index) => {
+        return (
+          <div className="company" key={index}>
+            <div className="company__creds-wrap">
+              <div className="company__creds">
+                <Avatar alt="User" src="/static/images/avatar/1.jpg" />
+                <p className="company__name">{item.name}</p>
+              </div>
+              <div className="company__extracreds">
+                <p className="company__extracred">
+                  Email: <span className="company__span">{item.email}</span>
+                </p>
+                <p className="company__extracred">
+                  Address: <span className="company__span">{item.address}</span>
+                </p>
+                <p className="company__extracred">
+                  Phone: <span className="company__span">{item.phone}</span>
+                </p>
+                <p className="company__extracred">
+                  About company: <span className="company__span">{item.aboutCompany}</span>
+                </p>
+
+              </div>
+            </div>
+            <div className='profile__wrap-btns'>
+              <Box sx={{ '& button': { m: 1 } }}>
+                <Button variant="contained" size="large">
+                  Edit
+                </Button>
+              </Box>
+              <Box sx={{ '& button': { m: 1 } }}>
+                <Button variant="contained" size="large" onClick={() => { deleteProf(3); setLocalProfile(''); setNoProf(true) }}>
+                  delete
+                </Button>
+              </Box>
+            </div>
+          </div>)
+      }))}
+      {!localProfile && noProf && (
+        <div className='noprof__wrap'><h3 className='noprof__title'>You have no profile yet</h3>
           <Box sx={{ '& button': { m: 1 } }}>
-            <Button variant="contained" size="large">
-              Edit
+            <Button variant="contained" size="large" onClick={() => { setCreateProfile(true); setNoProf(false) }}>
+              Create profile
             </Button>
           </Box>
-          <Box sx={{ '& button': { m: 1 } }}>
-            <Button variant="contained" size="large"  onClick={() => { setLocalProfile('');  localStorage.clear(); setNoProf(true)}}>
-              delete
-            </Button>
-          </Box>
         </div>
-      </div>)}
-      {!localProfile && noProf && (<div className='noprof__wrap'><h3 className='noprof__title'>You have no profile yet</h3>
-        <Box sx={{ '& button': { m: 1 } }}>
-          <Button variant="contained" size="large" onClick={() => { setCreateProfile(true); setNoProf(false) }}>
-            Create profile
-          </Button>
-        </Box></div>
       )}
-       {createProfile && (
+      {createProfile && (
         <div className='createprof__wrap'>
           <Formik
             initialValues={{
@@ -148,7 +186,7 @@ export const EmployerProfile: React.FC = () => {
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={() => { setIsProfile(true); setCreateProfile(false); localStorage.setItem('companyProfile', JSON.stringify(values)); setLocalProfile(values) }}
+                            onClick={() => { setIsProfile(true); setCreateProfile(false); collectProfileData(values); setLocalProfile(values) }}
                             className={`sign-in__btn btn btn-primary mr-2`}
                           >
                             Save

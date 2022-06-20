@@ -2,24 +2,25 @@ import React, { useState } from 'react'
 import { Formik, Form } from 'formik'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import { nanoid } from 'nanoid'
 import { createVacancy } from '../../api.tsx'
 
 const ResumeConstructor: React.FC = () => {
- // const [vacList, setVacList] = useState([])
-
+  const [correctPhone, setCorrectPhone] = useState<boolean>(false)
   function collectVacs (values) {
+    if(!correctPhone) return
     createVacancy(values)
-    .then((data) => {
+    .then(() => {
       console.log('OKEY');
     })
-    .catch((err) => {
+    .catch(() => {
       console.log('ERROR')
     })
-    resetForm()
+    if(correctPhone){resetForm()}
+    setCorrectPhone(false)
   }
 
   const resetForm = () => {
+
     const input = document.querySelectorAll('input')
     input.forEach(function (item) {
       item.value = ''
@@ -30,7 +31,20 @@ const ResumeConstructor: React.FC = () => {
     textTransform: 'lowercase'
   }
 
-
+  function validatePhone(value) {
+    let error, re = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/
+    if (!value) {
+      error = 'Required';
+      alert('Insert phone')
+    } else if (!re.test(value)) {
+      alert('Invalid phone number')
+      error = 'Invalid phone number';
+    } else {
+      alert('OK')
+      setCorrectPhone(true)
+    }
+    return error;
+  }
 
   return (
     <div className="constr">
@@ -138,7 +152,7 @@ const ResumeConstructor: React.FC = () => {
                         />
                       </p>
                       <p>
-                        <label htmlFor={'contacts'}>Contacts</label>
+                        <label htmlFor={'contacts'}>Phone</label>
                         <br />
                         <input
                           className={'input resumeInput'}
@@ -154,7 +168,7 @@ const ResumeConstructor: React.FC = () => {
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={()=>{collectVacs(values)}}
+                            onClick={()=>{validatePhone(values.contacts); collectVacs(values)}}
                             className={`sign-in__btn btn btn-primary mr-2`}
                           >
                             Save
