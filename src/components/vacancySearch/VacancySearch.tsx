@@ -37,14 +37,14 @@ const VacancySearch: React.FC = () => {
 
   function getSomeVacs () {
     getVacancy(searchValue.toLowerCase())
-    .then((data) => {
-      vacs = data.data
-    setSearchedVacsList(vacs)
-    setIsVacs('yes')
-    })
-    .catch((err) => {
-      setIsVacs('no')
-    })
+      .then((data) => {
+        vacs = data.data
+        setSearchedVacsList(vacs)
+        setIsVacs('yes')
+      })
+      .catch(() => {
+        setIsVacs('no')
+      })
   }
 
   return (
@@ -81,7 +81,7 @@ const VacancySearch: React.FC = () => {
               variant="outlined"
               size="large"
               className="vacsearch__search-btn"
-              onClick={()=>getSomeVacs()}
+              onClick={() => getSomeVacs()}
             >
               Search
             </Button>
@@ -92,7 +92,7 @@ const VacancySearch: React.FC = () => {
               variant="contained"
               size="large"
               className="vacsearch__search-btn"
-              onClick={()=>{getAllVacs(); setShowVacs(true); setShowBtn(true)}}
+              onClick={() => { getAllVacs(); setShowVacs(true); setShowBtn(true) }}
             >
               Show all CVs
             </Button>
@@ -102,7 +102,7 @@ const VacancySearch: React.FC = () => {
               variant="contained"
               size="large"
               className="vacsearch__search-btn"
-              onClick={()=>{setShowVacs(false); setShowBtn(false)}}
+              onClick={() => { setShowVacs(false); setShowBtn(false) }}
             >
               Hide
             </Button>
@@ -128,12 +128,12 @@ const VacancySearch: React.FC = () => {
               })}
           </ul>
         )}
-                {isVacs == 'yes' && (
+        {isVacs === 'yes' && (
           <div className='searchedres__wrap'>
             <ul className='searched_list'>
-              {searchedVacsList.map((item)=>{
+              {searchedVacsList.map((item) => {
                 return (
-                  <li  className="vacsearch_item" key={item.id}>
+                  <li className="vacsearch_item" key={item.id}>
                     <NavLink to={'/vacancy/' + item.id}>
                       <p className="vaclist__title">{item.title}</p>
                       <div className="vaclist__desc-wrap">

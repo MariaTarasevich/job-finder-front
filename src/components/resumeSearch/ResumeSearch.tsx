@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, {useState} from 'react'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
@@ -10,14 +10,13 @@ import { getResume, getAllResumes } from '../../api.tsx'
 import './ResumeSearch.css'
 
 const ResumeSearch: React.FC = () => {
-  const res = JSON.parse(localStorage.getItem('resume'))
-  const [searchValue, setSearchValue] = React.useState<string>('')
-  const [searchedResumes, setSearchedResumes] = React.useState([])
-  const [isResumes, setIsResumes] = React.useState<string>('')
-  const [resumeList, setResumeList] = React.useState([])
-  const [showResumes, setShowResumes] = React.useState<boolean>(false)
-  const [showBtn, setShowBtn] = React.useState<boolean>(false)
-  let  resumes, allResumes
+  const [searchValue, setSearchValue] = useState<string>('')
+  const [searchedResumes, setSearchedResumes] = useState([])
+  const [isResumes, setIsResumes] = useState<string>('')
+  const [resumeList, setResumeList] = useState([])
+  const [showResumes, setShowResumes] = useState<boolean>(false)
+  const [showBtn, setShowBtn] = useState<boolean>(false)
+  let resumes, allResumes
 
   const vacs = JSON.parse(localStorage.getItem('vacancy'))
   console.log(vacs)
@@ -27,31 +26,27 @@ const ResumeSearch: React.FC = () => {
 
   function getSomeResume () {
     getResume(searchValue.toLowerCase())
-    .then((data) => {
-       resumes = data.data
-  //   const {name, secondName, dateOfBirth, gender, email, country, placeOfEducation, periodOfEducation, specialization, prevCompany, periodOfWork, profession, generalInfo, contacts} = resumesObj
-     setSearchedResumes(resumes)
-     setIsResumes('yes')
-    })
-    .catch((err) => {
-      alert('Sorry')
-      setIsResumes('no')
-    })
+      .then(data => {
+        resumes = data.data
+        setSearchedResumes(resumes)
+        setIsResumes('yes')
+      })
+      .catch(err => {
+        alert(err)
+        setIsResumes('no')
+      })
   }
-  
 
   const getAllRes = () => {
     getAllResumes()
-    .then((data=>{
-      allResumes = data.data
-      setResumeList(allResumes)
-    }))
-    .catch(()=>{
-      console.log('ERR')
-    })
+      .then(data => {
+        allResumes = data.data
+        setResumeList(allResumes)
+      })
+      .catch(() => {
+        console.log('ERR')
+      })
   }
-
-  // let someResumes = getResume("rtyeryte")
 
   return (
     <div className="ressearch__wrap">
@@ -87,7 +82,7 @@ const ResumeSearch: React.FC = () => {
               variant="outlined"
               size="large"
               className="ressearch__search-btn"
-              onClick={()=>getSomeResume()}
+              onClick={() => getSomeResume()}
             >
               Search
             </Button>
@@ -98,7 +93,7 @@ const ResumeSearch: React.FC = () => {
               variant="contained"
               size="large"
               className="vacsearch__search-btn"
-              onClick={()=>{getAllRes(); setShowResumes(true); setShowBtn(true)}}
+              onClick={() => { getAllRes(); setShowResumes(true); setShowBtn(true) }}
             >
               Show all CVs
             </Button>
@@ -108,7 +103,7 @@ const ResumeSearch: React.FC = () => {
               variant="contained"
               size="large"
               className="vacsearch__search-btn"
-              onClick={()=>{getAllRes(); setShowResumes(false); setShowBtn(false)}}
+              onClick={() => { getAllRes(); setShowResumes(false); setShowBtn(false) }}
             >
               Hide
             </Button>
@@ -134,12 +129,12 @@ const ResumeSearch: React.FC = () => {
               })}
           </ul>
         )}
-        {isResumes == 'yes' && (
+        {isResumes === 'yes' && (
           <div className='searchedres__wrap'>
             <ul className='searched_list'>
               {searchedResumes.map((item)=>{
                 return (
-                  <li  className="vacsearch_item" key={item.id}>
+                  <li className="vacsearch_item" key={item.id}>
                     <NavLink to={'/resume/' + item.id}>
                       <p className="vaclist__title">{item.profession}</p>
                       <div className="vaclist__desc-wrap">

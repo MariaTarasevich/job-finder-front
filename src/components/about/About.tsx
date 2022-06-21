@@ -1,9 +1,10 @@
-import Footer from '../footer/Footer.tsx';
+import React from 'react'
+import Footer from '../footer/Footer.tsx'
 import Nav from './../nav/Nav.tsx'
 import './About.css'
 
 function About() {
-    return (
+  return (
         <div className="about">
             <div className='about__wrap'>
                 <Nav />
@@ -23,7 +24,7 @@ function About() {
             </div>
             <Footer />
         </div>
-    )
+  )
 }
 
-export default About;
+export default About

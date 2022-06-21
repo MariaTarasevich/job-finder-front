@@ -3,47 +3,52 @@ import { Formik, Form } from 'formik'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import { createVacancy } from '../../api.tsx'
+import TextareaAutosize from '@mui/material/TextareaAutosize'
+import Autocomplete from '@mui/material/Autocomplete'
+import TextField from '@mui/material/TextField'
 
 const ResumeConstructor: React.FC = () => {
   const [correctPhone, setCorrectPhone] = useState<boolean>(false)
-  function collectVacs (values) {
-    if(!correctPhone) return
+  const top100Films = [{ title: 'Terminator' }, { title: 'Manager' }]
+  const defaultProps = {
+    options: top100Films,
+    getOptionLabel: (option: FilmOptionType) => option.title
+  }
+
+  function collectVacs(values) {
+    if (!correctPhone) return
     createVacancy(values)
-    .then(() => {
-      console.log('OKEY');
-    })
-    .catch(() => {
-      console.log('ERROR')
-    })
-    if(correctPhone){resetForm()}
+      .then(() => {
+        console.log('OKEY')
+      })
+      .catch(() => {
+        console.log('ERROR')
+      })
+    if (correctPhone) { resetForm() }
     setCorrectPhone(false)
   }
 
   const resetForm = () => {
-
     const input = document.querySelectorAll('input')
     input.forEach(function (item) {
       item.value = ''
     })
   }
 
-  const inpStyle = {
-    textTransform: 'lowercase'
-  }
-
-  function validatePhone(value) {
-    let error, re = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/
+  function validatePhone (value) {
+    let error
+    const re = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/
     if (!value) {
-      error = 'Required';
+      error = 'Required'
       alert('Insert phone')
     } else if (!re.test(value)) {
       alert('Invalid phone number')
-      error = 'Invalid phone number';
+      error = 'Invalid phone number'
     } else {
       alert('OK')
       setCorrectPhone(true)
     }
-    return error;
+    return error
   }
 
   return (
@@ -59,35 +64,36 @@ const ResumeConstructor: React.FC = () => {
             schedule: '',
             city: '',
             generalInfo: '',
-            contacts: '',
+            contacts: ''
           }}
           validateOnBlur
         >
           <Formik
             initialValues={{
-              acceptTerms: false,
+              acceptTerms: false
             }}
           >
             {({
               values,
               handleChange,
-              handleBlur,
+              handleBlur
             }) => (
               <Form>
                 <div className="form-group form-check">
                   <div className="form-group">
                     <div className={'from'}>
                       <p>
-                        <label htmlFor={'title'}>Vacancy title</label>
+                        <label htmlFor={'title'}>Vacancy title (choose required specialization)</label>
                         <br />
-                        <input
-                          className={'input resumeInput'}
-                          type={'text'}
-                          name={'title'}
-                          style={inpStyle}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
+                        <Autocomplete
+                          {...defaultProps}
+                          className='constr__spec'
+                          id="disable-close-on-select"
+                          disableCloseOnSelect
                           value={values.title}
+                          renderInput={(params) => (
+                            <TextField {...params} label="Specialization" variant="outlined" />
+                          )}
                         />
                       </p>
                       <p>
@@ -143,13 +149,15 @@ const ResumeConstructor: React.FC = () => {
                           General information
                         </label>
                         <br />
-                        <textarea
-                          name={'generalInfo'}
-                          className="resumeTextarea"
+                        <TextareaAutosize
+                          aria-label="empty textarea"
                           onChange={handleChange}
+                          name={'generalInfo'}
                           onBlur={handleBlur}
                           value={values.generalInfo}
+                          style={{ width: '100%' }}
                         />
+
                       </p>
                       <p>
                         <label htmlFor={'contacts'}>Phone</label>
@@ -168,8 +176,8 @@ const ResumeConstructor: React.FC = () => {
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={()=>{validatePhone(values.contacts); collectVacs(values)}}
-                            className={`sign-in__btn btn btn-primary mr-2`}
+                            onClick={() => { validatePhone(values.contacts); collectVacs(values) }}
+                            className={'sign-in__btn btn btn-primary mr-2'}
                           >
                             Save
                           </Button>

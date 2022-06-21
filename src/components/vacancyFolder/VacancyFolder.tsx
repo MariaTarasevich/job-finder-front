@@ -10,24 +10,24 @@ const VacancyFolder: React.FC = () => {
   let allVacs
   const getAllRes = () => {
     getVacs()
-    .then((data=>{
-      allVacs = data.data
-      setVacList(allVacs)
-    }))
-    .catch(()=>{
-      console.log('ERR')
-    })
+      .then((data=>{
+        allVacs = data.data
+        setVacList(allVacs)
+      }))
+      .catch(()=>{
+        console.log('ERR')
+      })
   }
   useEffect(()=>getAllRes(), [])
   const deleteVac = (id) => {
     deleteVacancy(id)
-    .then(()=>{
-      console.log('Deleted')
-      window.location.reload()
-    })
-    .catch(()=>{
-      console.log('error')
-    })
+      .then(() => {
+        console.log('Deleted')
+        window.location.reload()
+      })
+      .catch(() => {
+        console.log('error')
+      })
   }
   return (
     <div className="vac">
@@ -94,7 +94,7 @@ const VacancyFolder: React.FC = () => {
       )
         }{!vacList && (
         <h3 className="res__nores">You have no vacancies yet</h3>
-      )}
+        )}
     </div>
   )
 }

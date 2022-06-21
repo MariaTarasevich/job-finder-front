@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 import './Footer.css'
 
-const Footer: React.FC = () =>{
+const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div className="foo__top">
@@ -68,7 +68,7 @@ const Footer: React.FC = () =>{
             </div>
           </div>
           <div className='foo__copyright-wrap'>
-            <p className='foo__copyright'>© 2022 ODO "Work for You", UNP 101541485</p>
+            <p className='foo__copyright'>© 2022 ODO &ldquo;Work for You&ldquo;, UNP 101541485</p>
             <p className='foo__copyright'>Legal address: 220037, Minsk, Kozlova lane, 7G, 7 fl., office 14</p>
           </div>
         </div>

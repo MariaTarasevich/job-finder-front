@@ -1,33 +1,16 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import CssBaseline from '@mui/material/CssBaseline';
-import Grid from '@mui/material/Grid';
-import StarIcon from '@mui/icons-material/StarBorder';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
-import GlobalStyles from '@mui/material/GlobalStyles';
-import Container from '@mui/material/Container';
+import React from 'react'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Card from '@mui/material/Card'
+import CardActions from '@mui/material/CardActions'
+import CardContent from '@mui/material/CardContent'
+import CardHeader from '@mui/material/CardHeader'
+import Grid from '@mui/material/Grid'
+import StarIcon from '@mui/icons-material/StarBorder'
+import Typography from '@mui/material/Typography'
+import GlobalStyles from '@mui/material/GlobalStyles'
+import Container from '@mui/material/Container'
 import './Promotion.css'
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const tiers = [
   {
@@ -37,10 +20,10 @@ const tiers = [
       '10 views of resume per day',
       'Unlimited amount of resume',
       'Help center access',
-      'Email support',
+      'Email support'
     ],
     buttonText: 'Get started',
-    buttonVariant: 'outlined',
+    buttonVariant: 'outlined'
   },
   {
     title: 'Pro',
@@ -50,10 +33,10 @@ const tiers = [
       '30 views of resume per day',
       'Priority responces',
       'Help center access',
-      'Priority email support',
+      'Priority email support'
     ],
     buttonText: 'Get started',
-    buttonVariant: 'contained',
+    buttonVariant: 'contained'
   },
   {
     title: 'Enterprise',
@@ -62,16 +45,16 @@ const tiers = [
       'top positiion in search',
       'top positiion in responces',
       'Help center access',
-      'Phone & email support',
+      'Phone & email support'
     ],
     buttonText: 'Get started',
-    buttonVariant: 'outlined',
+    buttonVariant: 'outlined'
   },
 ];
 
-const Promotion: React.FC = () =>  {
+const Promotion: React.FC = () => {
   return (
-    <React.Fragment>
+    <>
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
       {/* Hero unit */}
       <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
@@ -155,8 +138,8 @@ const Promotion: React.FC = () =>  {
           ))}
         </Grid>
       </Container>
-    </React.Fragment>
-  );
+    </>
+  )
 }
 
 export default Promotion

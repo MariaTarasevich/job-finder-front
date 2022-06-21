@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import Avatar from '@mui/material/Avatar'
 import { getAllResumes } from '../../api.tsx'
@@ -6,40 +6,39 @@ import './ResumePage.css'
 
 export const ResumePage: React.FC = () => {
   const [resumeList, setResumeList] = useState([])
-    const params = useParams()
-    let allCVs
-    
+  const params = useParams()
+  let allCVs
 
-    function getSomeResume () {
-      getAllResumes()
-        .then((data) => {
-          allCVs = data.data
-          setResumeList(allCVs)
-        })
-        .catch((err) => {
-          alert(err)
-        })
-      }
-      useEffect(()=>getSomeResume(), [])
-    return (
+  function getSomeResume () {
+    getAllResumes()
+      .then((data) => {
+        allCVs = data.data
+        setResumeList(allCVs)
+      })
+      .catch((err) => {
+        alert(err)
+      })
+  }
+  useEffect(() => getSomeResume(), [])
+  return (
         <div className="respage">
-        {resumeList.filter(({ id }) => id == params.id).map(({       
-              id,      
-              name,
-              secondName,
-              dateOfBirth,
-              gender,
-              email,
-              country,
-              placeOfEducation,
-              periodOfEducation,
-              specialization,
-              prevCompany,
-              periodOfWork,
-              profession,
-              generalInfo,
-              contacts}) => {
-            return (
+        {resumeList.filter(({ id }) => id === params.id).map(({
+          id,
+          name,
+          secondName,
+          dateOfBirth,
+          gender,
+          email,
+          country,
+          placeOfEducation,
+          periodOfEducation,
+          specialization,
+          prevCompany,
+          periodOfWork,
+          profession,
+          generalInfo,
+          contacts }) => {
+          return (
                 <div className="respage__wrap" key={id}>
                      <div className="resume__content" >
                 <div className="resume__creds-wrap">
@@ -112,7 +111,7 @@ export const ResumePage: React.FC = () => {
                 </div>
               </div>
                 </div>
-            )})}
+          )})}
             </div>
-    )
+  )
 }

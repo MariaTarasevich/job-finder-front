@@ -1,38 +1,38 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react"
 import { useParams } from "react-router-dom"
 import Avatar from '@mui/material/Avatar'
-import { getVacs } from "../../api.tsx";
+import { getVacs } from "../../api.tsx"
 import './VacancyPage.css'
 
 export const VacancyPage: React.FC = () => {
-    const [vacList, setVacList] = useState([])
-    const params = useParams()
-    let allVacs
-    
+  const [vacList, setVacList] = useState([])
+  const params = useParams()
+  let allVacs
 
-    function getSomeResume () {
-        getVacs()
-        .then((data) => {
-            allVacs = data.data
-            setVacList(allVacs)
-        })
-        .catch((err) => {
-          alert(err)
-        })
-      }
-      useEffect(()=>getSomeResume(), [])
-    return (
-        <div className="vacpage">
-        {vacList.filter(({ id }) => id == params.id).map(({      
-            id,       
-            title,
-            salary,
-            reqExperience,
-            schedule,
-            city,
-            generalInfo,
-            contacts,}) => {
-            return (
+  function getSomeResume () {
+    getVacs()
+      .then((data) => {
+        allVacs = data.data
+        setVacList(allVacs)
+      })
+      .catch((err) => {
+        alert(err)
+      })
+  }
+  useEffect(() => getSomeResume(), [])
+  return (
+      <div className="vacpage">
+      {vacList.filter(({ id }) => id === params.id).map(({
+        id,
+        title,
+        salary,
+        reqExperience,
+        schedule,
+        city,
+        generalInfo,
+        contacts
+      }) => {
+        return (
               <div className="vac__content" key={id}>
                 <div className="vac__creds-wrap">
                   <div className="vac__creds">
@@ -72,7 +72,8 @@ export const VacancyPage: React.FC = () => {
                   </div>
                   </div>
               </div>
-            )})}
+        )
+      })}
             </div>
-    )
+  )
 }

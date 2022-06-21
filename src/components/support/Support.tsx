@@ -5,7 +5,7 @@ import Button from '@mui/material/Button'
 import './Support.css'
 
 const Support: React.FC = () => {
-    const [ supMessages, setSupMessages ] = useState('')
+  const [supMessages, setSupMessages] = useState('')
 
   function getEl() {
     const elem = document.querySelector('input')
@@ -15,12 +15,12 @@ const Support: React.FC = () => {
   return (
     <div className="support">
       <div className="support__wrap">
-          {supMessages ? '' : <p className='support__no-messages'>You haven't asked anything before</p> }
+          {supMessages ? '' : <p className='support__no-messages'>You haven&apos;t asked anything before</p> }
           <div className='support__bot-wrap'>
         <Box
           component="form"
           sx={{
-            '& > :not(style)': { m: 1, width: '25ch' },
+            '& > :not(style)': { m: 1, width: '25ch' }
           }}
           noValidate
           autoComplete="off"

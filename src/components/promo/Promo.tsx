@@ -10,20 +10,17 @@ import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import { getResume, getVacancy } from '../../api.tsx'
 
-
-
 import './Promo.css'
 
 const Promo: React.FC = () => {
   const [type, setType] = useState<string>('')
   const [searchedValue, setSearchedValue] = useState<string>('')
-  const [ searchedResumes, setSearchedResumes] = useState([])
-  const [ searchedVacancies, setSearchedVacancies] = useState([])
+  const [searchedResumes, setSearchedResumes] = useState([])
+  const [searchedVacancies, setSearchedVacancies] = useState([])
   const [isResumes, setIsResumes] = useState<string>('')
   const [isVacancies, setIsVacancies] = useState<string>('')
-  
-let resumes
-  const getSearchedValue = (e) => {  
+  let resumes
+  const getSearchedValue = (e) => {
     setSearchedValue(e.target.value)
   }
 
@@ -32,33 +29,33 @@ let resumes
   }
 
   const findValue = () => {
-    switch(type){
+    switch (type) {
       case 'resume':
         getResume(searchedValue.toLowerCase())
-        .then((data) => {
-           resumes = data.data
-         setSearchedResumes(resumes)
-         setIsResumes('yes')
-         setIsVacancies('no')
-        })
-        .catch((err) => {
-          alert('Sorry')
-          setIsResumes('no')
-        });
-        break;
+          .then((data) => {
+            resumes = data.data
+            setSearchedResumes(resumes)
+            setIsResumes('yes')
+            setIsVacancies('no')
+          })
+          .catch((err) => {
+            alert(err)
+            setIsResumes('no')
+          })
+        break
       case 'vacancy':
-      getVacancy(searchedValue.toLowerCase())
-      .then((data) => {
-         resumes = data.data
-         setSearchedVacancies(resumes)
-         setIsVacancies('yes')
-         setIsResumes('no')
-      })
-      .catch((err) => {
-        alert('Sorry')
-        setIsVacancies('no')
-      });
-      break;
+        getVacancy(searchedValue.toLowerCase())
+          .then((data) => {
+            resumes = data.data
+            setSearchedVacancies(resumes)
+            setIsVacancies('yes')
+            setIsResumes('no')
+          })
+          .catch((err) => {
+            alert(err)
+            setIsVacancies('no')
+          })
+        break
     }
   }
   return (
@@ -74,7 +71,7 @@ let resumes
             <TextField
               label="Find vacancy or resume"
               className="promo__search"
-              onChange={(e)=>getSearchedValue(e)}
+              onChange={(e) => getSearchedValue(e)}
             />
             <FormControl sx={{ m: 1, minWidth: 80 }}>
               <InputLabel id="demo-simple-select-autowidth-label">
@@ -101,7 +98,7 @@ let resumes
                 variant="outlined"
                 size="large"
                 className="promo__search-btn"
-                onClick={()=>findValue()}
+                onClick={() => findValue()}
               >
                 Search
               </Button>
@@ -128,7 +125,7 @@ let resumes
       {isResumes == 'yes' && (
         <ul className='searched__wrap'>
           {searchedResumes.map((item, index)=>{
-           return (
+            return (
             <li key={index} className="vacsearch_item">
             <NavLink to={'/resume/' + item.id}>
               <p className="vaclist__title">{item.profession}</p>
@@ -146,8 +143,8 @@ let resumes
             {isVacancies == 'yes' && (
         <ul className='searched__wrap'>
           {searchedVacancies.map((item, index)=>{
-           return (
-            <li  className="vacsearch_item" key={item.id}>
+            return (
+            <li className="vacsearch_item" key={item.id}>
             <NavLink to={'/vacancy/' + item.id}>
               <p className="vaclist__title">{item.title}</p>
               <div className="vaclist__desc-wrap">
@@ -160,7 +157,7 @@ let resumes
             )
           })}
         </ul>
-      )}
+            )}
     </div>
   )
 }

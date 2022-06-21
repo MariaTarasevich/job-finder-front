@@ -23,23 +23,30 @@ export const EmployerProfile: React.FC = () => {
 
   function collectProfileData(values) {
     createEmployerProfile(values)
-      .then((data) => {
-        console.log('OKEY');
+      .then(() => {
+        console.log('OKEY')
       })
-      .catch((err) => {
-        console.log('ERROR')
+      .catch(err => {
+        console.log(err)
       })
+  }
+
+  const resetForm = () => {
+    const input = document.querySelectorAll('input')
+    input.forEach(function (item) {
+      item.value = ''
+    })
   }
 
   const getProfile = () => {
     getCompamnyProfile()
-      .then((data => {
+      .then(data => {
         prof = data.data
         setLocalProfile(prof)
         console.log(localProfile)
-      }))
+      })
       .catch(() => {
-        console.log('ERR ')
+        console.log('ERR')
       })
   }
 
@@ -108,13 +115,13 @@ export const EmployerProfile: React.FC = () => {
         <div className='createprof__wrap'>
           <Formik
             initialValues={{
-              acceptTerms: false,
+              acceptTerms: false
             }}
           >
             {({
               values,
               handleChange,
-              handleBlur,
+              handleBlur
             }) => (
               <Form>
                 <div className="form-group form-check">
@@ -187,7 +194,7 @@ export const EmployerProfile: React.FC = () => {
                             variant="contained"
                             size="large"
                             onClick={() => { setIsProfile(true); setCreateProfile(false); collectProfileData(values); setLocalProfile(values) }}
-                            className={`sign-in__btn btn btn-primary mr-2`}
+                            className={'sign-in__btn btn btn-primary mr-2'}
                           >
                             Save
                           </Button>

@@ -7,31 +7,29 @@ import { getAllResumes, deleteResume } from '../../api.tsx'
 import './ResumeFolder.css'
 
 const ResumeFolder: React.FC = () => {
-
   const [resumeList, setResumeList] = useState([])
   let allResumes
   const getAllRes = () => {
     getAllResumes()
-    .then((data=>{
-      allResumes = data.data
-      setResumeList(allResumes)
-
-    }))
-    .catch(()=>{
-      console.log('ERR')
-    })
+      .then(data=>{
+        allResumes = data.data
+        setResumeList(allResumes)
+      })
+      .catch(() => {
+        console.log('ERR')
+      })
   }
-  useEffect(()=>getAllRes(), [])
+  useEffect(() => getAllRes(), [])
 
   const deleteCV = (id) => {
     deleteResume(id)
-    .then(()=>{
-      console.log('Deleted')
-      window.location.reload()
-    })
-    .catch(()=>{
-      console.log('error')
-    })
+      .then(() => {
+        console.log('Deleted')
+        window.location.reload()
+      })
+      .catch(() => {
+        console.log('error')
+      })
   }
   return (
     <div className="resume">
@@ -128,7 +126,7 @@ const ResumeFolder: React.FC = () => {
           })}
         </div>
       )}
-      {resumeList.length == 0 && (
+      {resumeList.length === 0 && (
         <h3 className="res__nores">You have no resume yet</h3>
       )}
     </div>

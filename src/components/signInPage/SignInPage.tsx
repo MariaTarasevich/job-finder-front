@@ -1,5 +1,5 @@
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Container from '@mui/material/Container'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 import * as React from 'react'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
@@ -7,19 +7,18 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import { NavLink } from 'react-router-dom'
-import Avatar from '@mui/material/Avatar';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
+import Avatar from '@mui/material/Avatar'
+import CssBaseline from '@mui/material/CssBaseline'
+import TextField from '@mui/material/TextField'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Checkbox from '@mui/material/Checkbox'
+import Link from '@mui/material/Link'
+import Grid from '@mui/material/Grid'
 
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';;
-
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 
 function Copyright(props) {
-    return (
+  return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
         {'Copyright © '}
         <Link color="inherit" href="#">
@@ -28,22 +27,21 @@ function Copyright(props) {
         {new Date().getFullYear()}
         {'.'}
       </Typography>
-    );
-  }
-  
-  const theme = createTheme();
+  )
+}
+const theme = createTheme()
 
 const SignInPage: React.FC = () => {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-          email: data.get('email'),
-          password: data.get('password'),
-        });
-      };
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const data = new FormData(event.currentTarget)
+    console.log({
+      email: data.get('email'),
+      password: data.get('password')
+    })
+  }
 
- return (
+  return (
     <div className="signin__wrap">
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -127,7 +125,7 @@ const SignInPage: React.FC = () => {
       </Container>
     </ThemeProvider>
     </div>
- )
+  )
 }
 
 export default SignInPage

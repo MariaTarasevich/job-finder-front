@@ -1,26 +1,34 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import { Formik, Form } from 'formik'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import './ResumeConstructor.css'
 import { string } from 'yup'
+import TextField from '@mui/material/TextField';
+import TextareaAutosize from '@mui/material/TextareaAutosize'
+import Autocomplete from '@mui/material/Autocomplete';
 import { createResume } from '../../api.tsx'
 
 const ResumeConstructor: React.FC = () => {
   const [correctEmail, setCorrectEmail] = useState<boolean>(false)
   const [correctPhone, setCorrectPhone] = useState<boolean>(false)
+  const top100Films = [{ title: 'Terminator' }, { title: 'Manager' }]
+  const defaultProps = {
+    options: top100Films,
+    getOptionLabel: (option: FilmOptionType) => option.title
+  }
+
   function collectCVs (values) {
-    if(!correctEmail || !correctPhone) return
+    if (!correctEmail || !correctPhone) return
     createResume(values)
       .then(() => {
-        console.log('OKEY');
-  
+        console.log('OKEY')
       })
       .catch(() => {
         console.log('ERROR')
       })
 
-    if(correctEmail || correctPhone){resetForm()}
+    if (correctEmail || correctPhone) { resetForm() }
     setCorrectEmail(false)
     setCorrectPhone(false)
   }
@@ -32,7 +40,7 @@ const ResumeConstructor: React.FC = () => {
     })
   }
 
-  interface  resumeFormValues {
+  interface resumeFormValues {
     id: string,
     name: string,
     secondName: string,
@@ -52,34 +60,36 @@ const ResumeConstructor: React.FC = () => {
     contacts: string,
   }
 
-  function validateEmail(value) {
-    let error, re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  function validateEmail (value) {
+    let error
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!value) {
-      error = 'Required';
+      error = 'Required'
       alert('Insert email')
     } else if (!re.test(value)) {
       alert('Invalid email address')
-      error = 'Invalid email address';
+      error = 'Invalid email address'
     } else {
       alert('OK')
       setCorrectPhone(true)
     }
-    return error;
+    return error
   }
 
-  function validatePhone(value) {
-    let error, re = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/
+  function validatePhone (value) {
+    let error
+    const re = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/
     if (!value) {
       error = 'Required';
       alert('Insert phone')
     } else if (!re.test(value)) {
       alert('Invalid phone number')
-      error = 'Invalid phone number';
+      error = 'Invalid phone number'
     } else {
       alert('OK')
       setCorrectPhone(true)
     }
-    return error;
+    return error
   }
 
   const initialValues: resumeFormValues = {
@@ -106,17 +116,16 @@ const ResumeConstructor: React.FC = () => {
     textTransform: 'lowercase'
   }
 
-
   return (
     <div className="constr">
       <div className="constr__wrap">
         <h3 className="resume__title">Create your resume here!</h3>
-        <Formik onSubmit={()=>console.log('adssa')}
+        <Formik onSubmit={() => console.log('adssa')}
           initialValues={initialValues}
           validateOnBlur
         >
           <Formik
-          onSubmit={()=>console.log('adssa')}
+            onSubmit={() => console.log('adssa')}
             initialValues={{
               id: string,
               name: string,
@@ -134,7 +143,7 @@ const ResumeConstructor: React.FC = () => {
               endOfWork: string,
               profession: string,
               generalInfo: string,
-              contacts: string,
+              contacts: string
             }}
           >
             {({
@@ -142,7 +151,7 @@ const ResumeConstructor: React.FC = () => {
               handleChange,
               handleBlur,
               isValid,
-              dirty,
+              dirty
             }) => (
               <Form>
                 <div className="form-group form-check">
@@ -267,18 +276,16 @@ const ResumeConstructor: React.FC = () => {
                           value={values.endOfEducation}
                         />
                       </p>
-                      <p>
-                        <label htmlFor={'specialization'}>Specialization</label>
-                        <br />
-                        <input
-                          className={'input resumeInput'}
-                          type={'text'}
-                          name={'specialization'}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.specialization}
-                        />
-                      </p>
+                      <Autocomplete
+                        {...defaultProps}
+                        className='constr__spec'
+                        id="disable-close-on-select"
+                        disableCloseOnSelect
+                        value={values.specialization}
+                        renderInput={(params) => (
+                          <TextField {...params} label="Specialization" variant="outlined" />
+                        )}
+                      />
                       <p>
                         <label htmlFor={'prevCompany'}>Previous company</label>
                         <br />
@@ -334,12 +341,13 @@ const ResumeConstructor: React.FC = () => {
                           General information
                         </label>
                         <br />
-                        <textarea
+                        <TextareaAutosize
                           name={'generalInfo'}
-                          className="resumeTextarea"
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.generalInfo}
+                          aria-label="empty textarea"
+                          style={{ width: '100%' }}
                         />
                       </p>
                       <p>
@@ -360,10 +368,9 @@ const ResumeConstructor: React.FC = () => {
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={()=>{validateEmail(values.email); validatePhone(values.contacts); collectCVs(values)}}
-                            className={`sign-in__btn btn btn-primary mr-2 ${
-                              dirty && isValid ? '' : 'disabled-btn'
-                            }`}
+                            onClick={() => { validateEmail(values.email); validatePhone(values.contacts); collectCVs(values) }}
+                            className={`sign-in__btn btn btn-primary mr-2 ${dirty && isValid ? '' : 'disabled-btn'
+                              }`}
                           >
                             Save
                           </Button>

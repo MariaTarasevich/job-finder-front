@@ -12,12 +12,12 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import MailIcon from '@mui/icons-material/Mail'
-import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import ApartmentIcon from '@mui/icons-material/Apartment';
-import ExtensionIcon from '@mui/icons-material/Extension';
-import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
-import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople'
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
+import ApartmentIcon from '@mui/icons-material/Apartment'
+import ExtensionIcon from '@mui/icons-material/Extension'
+import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService'
+import SupportAgentIcon from '@mui/icons-material/SupportAgent'
 import Button from '@mui/material/Button'
 import { NavLink } from 'react-router-dom'
 import Mail from '../mail/Mail.tsx'
@@ -42,8 +42,8 @@ export default function EmployerMain() {
       >
         <Toolbar>
           <Typography variant="h6" noWrap component="div" className='main__logo'>
-          <NavLink to='/' className='main__logo-link'>
-            Job finder
+            <NavLink to='/' className='main__logo-link'>
+              Job finder
             </NavLink>
           </Typography>
           <div className="nav__auth-wrap">
@@ -76,11 +76,7 @@ export default function EmployerMain() {
         variant="permanent"
         sx={{
           width: drawerWidth,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-          },
+          flexShrink: 0
         }}
       >
         <Toolbar />
@@ -95,10 +91,10 @@ export default function EmployerMain() {
                 >
                   <ListItemButton>
                     <ListItemIcon>
-                    {text == 'Company profile' && <ApartmentIcon />}
-                    {text == 'Mail' && <MailIcon />}
-                    {text == 'Responces' && <EmojiPeopleIcon />}
-                    {text == 'Promotion' && <EmojiEventsIcon />}
+                      {text == 'Company profile' && <ApartmentIcon />}
+                      {text == 'Mail' && <MailIcon />}
+                      {text == 'Responces' && <EmojiPeopleIcon />}
+                      {text == 'Promotion' && <EmojiEventsIcon />}
                     </ListItemIcon>
                     <ListItemText primary={text} />
                   </ListItemButton>
@@ -112,9 +108,9 @@ export default function EmployerMain() {
               <ListItem key={text} disablePadding onClick={() => setPage(text)}>
                 <ListItemButton>
                   <ListItemIcon>
-                  {text == 'Vacancy constructor' && <ExtensionIcon />}
-                  {text == 'My vacancies' && <HomeRepairServiceIcon />}
-                  {text === 'Support' && <SupportAgentIcon />}
+                    {text == 'Vacancy constructor' && <ExtensionIcon />}
+                    {text == 'My vacancies' && <HomeRepairServiceIcon />}
+                    {text === 'Support' && <SupportAgentIcon />}
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItemButton>
