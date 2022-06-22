@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Nav from '../nav/Nav.tsx'
 import InputLabel from '@mui/material/InputLabel'
@@ -122,9 +122,9 @@ const Promo: React.FC = () => {
           </div>
         </div>
       </div>
-      {isResumes == 'yes' && (
+      {isResumes === 'yes' && (
         <ul className='searched__wrap'>
-          {searchedResumes.map((item, index)=>{
+          {searchedResumes.map((item, index) => {
             return (
             <li key={index} className="vacsearch_item">
             <NavLink to={'/resume/' + item.id}>
@@ -140,9 +140,9 @@ const Promo: React.FC = () => {
           })}
         </ul>
       )}
-            {isVacancies == 'yes' && (
+            {isVacancies === 'yes' && (
         <ul className='searched__wrap'>
-          {searchedVacancies.map((item, index)=>{
+          {searchedVacancies.map((item, index) => {
             return (
             <li className="vacsearch_item" key={item.id}>
             <NavLink to={'/vacancy/' + item.id}>

@@ -1,12 +1,12 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Formik, Form } from 'formik'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import './ResumeConstructor.css'
 import { string } from 'yup'
-import TextField from '@mui/material/TextField';
+import TextField from '@mui/material/TextField'
 import TextareaAutosize from '@mui/material/TextareaAutosize'
-import Autocomplete from '@mui/material/Autocomplete';
+import Autocomplete from '@mui/material/Autocomplete'
 import { createResume } from '../../api.tsx'
 
 const ResumeConstructor: React.FC = () => {
@@ -15,7 +15,7 @@ const ResumeConstructor: React.FC = () => {
   const top100Films = [{ title: 'Terminator' }, { title: 'Manager' }]
   const defaultProps = {
     options: top100Films,
-    getOptionLabel: (option: FilmOptionType) => option.title
+    getOptionLabel: (option/* : FilmOptionType */) => option.title
   }
 
   function collectCVs (values) {
@@ -78,9 +78,9 @@ const ResumeConstructor: React.FC = () => {
 
   function validatePhone (value) {
     let error
-    const re = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/
+    const re = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s.]{0,1}[0-9]{3}[-\s.]{0,1}[0-9]{4}$/
     if (!value) {
-      error = 'Required';
+      error = 'Required'
       alert('Insert phone')
     } else if (!re.test(value)) {
       alert('Invalid phone number')
@@ -109,7 +109,7 @@ const ResumeConstructor: React.FC = () => {
     endOfWork: '',
     profession: '',
     generalInfo: '',
-    contacts: '',
+    contacts: ''
   }
 
   const inpStyle = {

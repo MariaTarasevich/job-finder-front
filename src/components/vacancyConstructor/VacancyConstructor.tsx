@@ -12,10 +12,10 @@ const ResumeConstructor: React.FC = () => {
   const top100Films = [{ title: 'Terminator' }, { title: 'Manager' }]
   const defaultProps = {
     options: top100Films,
-    getOptionLabel: (option: FilmOptionType) => option.title
+    getOptionLabel: (option/* : FilmOptionType */) => option.title
   }
 
-  function collectVacs(values) {
+  function collectVacs (values) {
     if (!correctPhone) return
     createVacancy(values)
       .then(() => {
@@ -37,7 +37,7 @@ const ResumeConstructor: React.FC = () => {
 
   function validatePhone (value) {
     let error
-    const re = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/
+    const re = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s.]{0,1}[0-9]{3}[-\s.]{0,1}[0-9]{4}$/
     if (!value) {
       error = 'Required'
       alert('Insert phone')

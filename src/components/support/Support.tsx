@@ -7,9 +7,9 @@ import './Support.css'
 const Support: React.FC = () => {
   const [supMessages, setSupMessages] = useState('')
 
-  function getEl() {
+  function getEl () {
     const elem = document.querySelector('input')
-    console.log(elem.value)
+    console.log(elem.value, setSupMessages)
   }
 
   return (

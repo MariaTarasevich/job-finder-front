@@ -15,24 +15,23 @@ const VacancySearch: React.FC = () => {
   const [isVacs, setIsVacs] = React.useState('')
   const [showVacs, setShowVacs] = React.useState<boolean>(false)
   const [vacsList, setVacList] = React.useState([])
-  const [searchedVacsList, setSearchedVacsList] =  React.useState([])
+  const [searchedVacsList, setSearchedVacsList] = React.useState([])
   const [showBtn, setShowBtn] = React.useState<boolean>(false)
 
-
-  let allVacs, vacs, vacsObj
+  let allVacs, vacs
   const showSearchVal = (e) => {
     setSearchValue(e.target.value)
   }
 
   const getAllVacs = () => {
     getVacs()
-    .then((data=>{
-      allVacs = data.data
-      setVacList(allVacs)
-    }))
-    .catch(()=>{
-      console.log('ERR')
-    })
+      .then(data => {
+        allVacs = data.data
+        setVacList(allVacs)
+      })
+      .catch(() => {
+        console.log('ERR')
+      })
   }
 
   function getSomeVacs () {

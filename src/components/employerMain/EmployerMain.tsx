@@ -30,7 +30,7 @@ import VacancyFolder from '../vacancyFolder/VacancyFolder.tsx'
 
 const drawerWidth = 240
 
-export default function EmployerMain() {
+export default function EmployerMain () {
   const [page, setPage] = useState<string>('')
 
   return (
@@ -91,10 +91,10 @@ export default function EmployerMain() {
                 >
                   <ListItemButton>
                     <ListItemIcon>
-                      {text == 'Company profile' && <ApartmentIcon />}
-                      {text == 'Mail' && <MailIcon />}
-                      {text == 'Responces' && <EmojiPeopleIcon />}
-                      {text == 'Promotion' && <EmojiEventsIcon />}
+                      {text === 'Company profile' && <ApartmentIcon />}
+                      {text === 'Mail' && <MailIcon />}
+                      {text === 'Responces' && <EmojiPeopleIcon />}
+                      {text === 'Promotion' && <EmojiEventsIcon />}
                     </ListItemIcon>
                     <ListItemText primary={text} />
                   </ListItemButton>
@@ -108,8 +108,8 @@ export default function EmployerMain() {
               <ListItem key={text} disablePadding onClick={() => setPage(text)}>
                 <ListItemButton>
                   <ListItemIcon>
-                    {text == 'Vacancy constructor' && <ExtensionIcon />}
-                    {text == 'My vacancies' && <HomeRepairServiceIcon />}
+                    {text === 'Vacancy constructor' && <ExtensionIcon />}
+                    {text === 'My vacancies' && <HomeRepairServiceIcon />}
                     {text === 'Support' && <SupportAgentIcon />}
                   </ListItemIcon>
                   <ListItemText primary={text} />

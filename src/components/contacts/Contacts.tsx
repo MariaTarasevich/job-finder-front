@@ -3,7 +3,7 @@ import Footer from '../footer/Footer.tsx'
 import Nav from './../nav/Nav.tsx'
 import './Contacts.css'
 
-function Contacts() {
+function Contacts () {
   return (
     <div className="contacts">
         <div className='contacts__wrap'>
@@ -11,7 +11,7 @@ function Contacts() {
             <div className='contacts__content'>
                 <div className="contacts__address">
                     <ul>
-                        <li className="contacts__headline">ODO "WORK FOR YOU"</li>
+                        <li className="contacts__headline">ODO &ldquo;WORK FOR YOU&ldquo;</li>
                         <li>Minsk, per. Kozlova, 7G, 7th floor</li>
                         <li>Republic of Belarus,</li>
                         <li>220037, Minsk lane . Kozlova, 7G, 7th floor, room 14</li>
@@ -38,4 +38,4 @@ function Contacts() {
   )
 }
 
-export default Contacts;
+export default Contacts

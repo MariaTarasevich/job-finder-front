@@ -3,7 +3,7 @@ import Footer from '../footer/Footer.tsx'
 import Nav from './../nav/Nav.tsx'
 import './About.css'
 
-function About() {
+function About () {
   return (
         <div className="about">
             <div className='about__wrap'>

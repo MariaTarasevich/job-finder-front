@@ -11,7 +11,7 @@ const ResumeFolder: React.FC = () => {
   let allResumes
   const getAllRes = () => {
     getAllResumes()
-      .then(data=>{
+      .then(data => {
         allResumes = data.data
         setResumeList(allResumes)
       })
@@ -114,7 +114,7 @@ const ResumeFolder: React.FC = () => {
                         </Button>
                       </Box>
                       <Box sx={{ '& button': { m: 1 } }}>
-                        <Button variant="contained" size="large" onClick={()=>deleteCV(item.id)}>
+                        <Button variant="contained" size="large" onClick={() => deleteCV(item.id)}>
                           delete
                         </Button>
                       </Box>

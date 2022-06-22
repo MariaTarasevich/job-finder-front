@@ -3,6 +3,7 @@ import './Responces.css'
 
 const Responces: React.FC = () => {
   const [res, setRes] = useState('')
+  console.log(setRes)
   return (
     <div className='responces'>
         {res

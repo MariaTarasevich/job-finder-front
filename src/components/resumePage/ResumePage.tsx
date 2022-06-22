@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar'
 import { getAllResumes } from '../../api.tsx'
 import './ResumePage.css'
@@ -37,7 +37,8 @@ export const ResumePage: React.FC = () => {
           periodOfWork,
           profession,
           generalInfo,
-          contacts }) => {
+          contacts
+        }) => {
           return (
                 <div className="respage__wrap" key={id}>
                      <div className="resume__content" >
@@ -111,7 +112,8 @@ export const ResumePage: React.FC = () => {
                 </div>
               </div>
                 </div>
-          )})}
+          )
+        })}
             </div>
   )
 }

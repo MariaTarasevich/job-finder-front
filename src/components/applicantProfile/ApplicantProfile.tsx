@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
+import { useDropzone } from 'react-dropzone'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -6,21 +7,23 @@ import { Formik, Form } from 'formik'
 import { createApplicantProfile, getApplicantProfile, deleteApplicantProf } from './../../api.tsx'
 import './ApplicantProfile.css'
 
-export default function ApplicantProfile() {
-
+export default function ApplicantProfile () {
   const [isProfile, setIsProfile] = useState<boolean>(true)
   const [createProfile, setCreateProfile] = useState<boolean>(false)
   const [noProf, setNoProf] = useState<boolean>(true)
   const [localProfile, setLocalProfile] = useState('')
   let prof
-
-  function collectProfileData(values) {
+  const onDrop = useCallback(acceptedFiles => {
+    console.log(acceptedFiles)
+  }, [])
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+  function collectProfileData (values) {
     createApplicantProfile(values)
       .then(() => {
         console.log('OKEY')
       })
       .catch(err => {
-        console.log(err)
+        console.log(err, isProfile)
       })
   }
 
@@ -80,6 +83,14 @@ export default function ApplicantProfile() {
                 <p className="profile__extracred">
                   Gender: <span className="profile__span">{item.gender}</span>
                 </p>
+              </div>
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                {
+                  isDragActive
+                    ? <p>Drop the files here ...</p>
+                    : <p>Drag n drop some files here, or click to select files</p>
+                }
               </div>
             </div>
             <div className='profile__wrap-btns'>

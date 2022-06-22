@@ -17,7 +17,7 @@ import Grid from '@mui/material/Grid'
 
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 
-function Copyright(props) {
+function Copyright (props) {
   return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
         {'Copyright © '}
@@ -65,7 +65,7 @@ const SignInPage: React.FC = () => {
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            alignItems: 'center'
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>

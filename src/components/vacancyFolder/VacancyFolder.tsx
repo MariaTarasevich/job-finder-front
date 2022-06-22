@@ -10,15 +10,15 @@ const VacancyFolder: React.FC = () => {
   let allVacs
   const getAllRes = () => {
     getVacs()
-      .then((data=>{
+      .then(data => {
         allVacs = data.data
         setVacList(allVacs)
-      }))
-      .catch(()=>{
+      })
+      .catch(() => {
         console.log('ERR')
       })
   }
-  useEffect(()=>getAllRes(), [])
+  useEffect(() => getAllRes(), [])
   const deleteVac = (id) => {
     deleteVacancy(id)
       .then(() => {
@@ -80,7 +80,7 @@ const VacancyFolder: React.FC = () => {
                         </Button>
                       </Box>
                       <Box sx={{ '& button': { m: 1 } }}>
-                        <Button variant="contained" size="large" onClick={()=>deleteVac(item.id)}>
+                        <Button variant="contained" size="large" onClick={() => deleteVac(item.id)}>
                           delete
                         </Button>
                       </Box>

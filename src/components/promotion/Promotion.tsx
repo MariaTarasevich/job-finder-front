@@ -49,8 +49,8 @@ const tiers = [
     ],
     buttonText: 'Get started',
     buttonVariant: 'outlined'
-  },
-];
+  }
+]
 
 const Promotion: React.FC = () => {
   return (
@@ -90,13 +90,13 @@ const Promotion: React.FC = () => {
                   titleTypographyProps={{ align: 'center' }}
                   action={tier.title === 'Pro' ? <StarIcon /> : null}
                   subheaderTypographyProps={{
-                    align: 'center',
+                    align: 'center'
                   }}
                   sx={{
                     backgroundColor: (theme) =>
                       theme.palette.mode === 'light'
                         ? theme.palette.grey[200]
-                        : theme.palette.grey[700],
+                        : theme.palette.grey[700]
                   }}
                 />
                 <CardContent>
@@ -105,7 +105,7 @@ const Promotion: React.FC = () => {
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'baseline',
-                      mb: 2,
+                      mb: 2
                     }}
                   >
                     <Typography component="h2" variant="h3" color="text.primary">

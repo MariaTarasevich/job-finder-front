@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
@@ -75,7 +75,7 @@ const ResumeSearch: React.FC = () => {
           <TextField
             label="Find resume"
             className="ressearch__search"
-            onChange={(e) => {showSearchVal(e); setShowResumes(false)}}
+            onChange={(e) => { showSearchVal(e); setShowResumes(false) }}
           />
           <Box sx={{ '& button': { m: 1 } }}>
             <Button
@@ -132,7 +132,7 @@ const ResumeSearch: React.FC = () => {
         {isResumes === 'yes' && (
           <div className='searchedres__wrap'>
             <ul className='searched_list'>
-              {searchedResumes.map((item)=>{
+              {searchedResumes.map((item) => {
                 return (
                   <li className="vacsearch_item" key={item.id}>
                     <NavLink to={'/resume/' + item.id}>

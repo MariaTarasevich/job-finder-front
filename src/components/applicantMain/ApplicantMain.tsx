@@ -12,12 +12,12 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import MailIcon from '@mui/icons-material/Mail'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import ExtensionIcon from '@mui/icons-material/Extension';
-import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople'
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
+import ExtensionIcon from '@mui/icons-material/Extension'
+import SupportAgentIcon from '@mui/icons-material/SupportAgent'
+import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService'
 import Button from '@mui/material/Button'
 import { NavLink } from 'react-router-dom'
 import './ApplicantMain.css'
@@ -92,10 +92,10 @@ const ApplicantMain: React.FC = () => {
                 >
                   <ListItemButton>
                     <ListItemIcon>
-                      {text == 'Profile' && <AccountCircleIcon />}
-                      {text == 'Mail' && <MailIcon />}
-                      {text == 'Responces' && <EmojiPeopleIcon />}
-                      {text == 'Promotion' && <EmojiEventsIcon />}
+                      {text === 'Profile' && <AccountCircleIcon />}
+                      {text === 'Mail' && <MailIcon />}
+                      {text === 'Responces' && <EmojiPeopleIcon />}
+                      {text === 'Promotion' && <EmojiEventsIcon />}
                     </ListItemIcon>
                     <ListItemText primary={text} />
                   </ListItemButton>
@@ -109,8 +109,8 @@ const ApplicantMain: React.FC = () => {
               <ListItem key={text} disablePadding onClick={() => setPage(text)}>
                 <ListItemButton>
                   <ListItemIcon>
-                  {text == 'Resume constructor' && <ExtensionIcon />}
-                  {text == 'My resume' && <HomeRepairServiceIcon />}
+                  {text === 'Resume constructor' && <ExtensionIcon />}
+                  {text === 'My resume' && <HomeRepairServiceIcon />}
                   {text === 'Support' && <SupportAgentIcon />}
                   </ListItemIcon>
                   <ListItemText primary={text} />

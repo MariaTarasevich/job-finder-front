@@ -21,13 +21,13 @@ export const EmployerProfile: React.FC = () => {
     aboutCompany: ''
   }
 
-  function collectProfileData(values) {
+  function collectProfileData (values) {
     createEmployerProfile(values)
       .then(() => {
         console.log('OKEY')
       })
       .catch(err => {
-        console.log(err)
+        console.log(err, isProfile, companyProf)
       })
   }
 
