@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField'
 
 const ResumeConstructor: React.FC = () => {
   const [correctPhone, setCorrectPhone] = useState<boolean>(false)
-  const top100Films = [{ title: 'Terminator' }, { title: 'Manager' }]
+  const top100Films = [{ title: 'Terminator' }, { title: 'manager' }]
   const defaultProps = {
     options: top100Films,
     getOptionLabel: (option/* : FilmOptionType */) => option.title
@@ -37,7 +37,7 @@ const ResumeConstructor: React.FC = () => {
 
   function validatePhone (value) {
     let error
-    const re = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s.]{0,1}[0-9]{3}[-\s.]{0,1}[0-9]{4}$/
+    const re = /^[1-9]+[0-9]*$/
     if (!value) {
       error = 'Required'
       alert('Insert phone')
@@ -88,9 +88,10 @@ const ResumeConstructor: React.FC = () => {
                         <Autocomplete
                           {...defaultProps}
                           className='constr__spec'
-                          id="disable-close-on-select"
+                          id="controlled-demo"
                           disableCloseOnSelect
                           value={values.title}
+                          onChange={(e) => { values.title = e.target.value }}
                           renderInput={(params) => (
                             <TextField {...params} label="Specialization" variant="outlined" />
                           )}
@@ -176,7 +177,7 @@ const ResumeConstructor: React.FC = () => {
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={() => { validatePhone(values.contacts); collectVacs(values) }}
+                            onClick={() => { console.log(values); validatePhone(values.contacts); collectVacs(values) }}
                             className={'sign-in__btn btn btn-primary mr-2'}
                           >
                             Save
