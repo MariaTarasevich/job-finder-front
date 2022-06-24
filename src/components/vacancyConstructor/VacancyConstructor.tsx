@@ -16,7 +16,6 @@ const ResumeConstructor: React.FC = () => {
   // }
 
   function collectVacs (values) {
-    if (!correctPhone) return
     createVacancy(values)
       .then(() => {
         console.log('OKEY')
@@ -101,7 +100,6 @@ const ResumeConstructor: React.FC = () => {
                             <TextField {...params} label='Specialization' variant='outlined' />
                           )}
                         /> */}
-                                              <p>
                         <label htmlFor={'title'}>Title</label>
                         <br />
                         <input
@@ -113,8 +111,7 @@ const ResumeConstructor: React.FC = () => {
                           onBlur={handleBlur}
                           value={values.title}
                         />
-                      </p>
-                      </p>
+                                             </p>
                       <p>
                         <label htmlFor={'salary'}>Salary</label>
                         <br />

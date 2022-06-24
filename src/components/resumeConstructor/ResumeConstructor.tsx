@@ -19,10 +19,10 @@ const ResumeConstructor: React.FC = () => {
   // }
 
   function collectCVs (values) {
-    if (!correctEmail || !correctPhone) return
     createResume(values)
       .then(() => {
         console.log('OKEY')
+        console.log(values)
       })
       .catch(() => {
         console.log('ERROR')
@@ -78,7 +78,7 @@ const ResumeConstructor: React.FC = () => {
 
   function validatePhone (value) {
     let error
-    const re = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s.]{0,1}[0-9]{3}[-\s.]{0,1}[0-9]{4}$/
+    const re = /^[1-9]+[0-9]*$/
     if (!value) {
       error = 'Required'
       alert('Insert phone')
@@ -295,7 +295,6 @@ const ResumeConstructor: React.FC = () => {
                           name={'specialization'}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          style={inpStyle}
                           value={values.specialization}
                         />
                       <p>
