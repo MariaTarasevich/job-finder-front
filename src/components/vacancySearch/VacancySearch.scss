@@ -8,10 +8,9 @@
 }
 
 .vacsearch__search-block {
-    margin-top: 5em;
+    margin-top: 2em;
     display: flex;
-    width: 30%;
-    
+    width: 100%;
     justify-content: space-between;
     align-items: center;
 }
@@ -53,3 +52,13 @@
     margin-top: 2%;
 }
 
+.vacsearch__content-wrap {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vacsearch__subtitle {
+    margin-top: 2em;
+}

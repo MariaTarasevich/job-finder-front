@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
@@ -15,14 +15,13 @@ import Link from '@mui/material/Link'
 import Grid from '@mui/material/Grid'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Container from '@mui/material/Container'
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
-function Copyright(props) {
-
+function Copyright (props) {
   return (
     <Typography
       variant="body2"
@@ -41,21 +40,20 @@ function Copyright(props) {
 }
 
 const theme = createTheme()
-export default function SignUpPage() {
-  const [type, setType] = React.useState('');
+const SignUpPage: React.FC = () => {
+  const [type, setType] = useState('')
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
     console.log({
       email: data.get('email'),
-      password: data.get('password'),
+      password: data.get('password')
     })
   }
 
-
   const handleType = (event) => {
-    setType(event.target.value);
-  };
+    setType(event.target.value)
+  }
   return (
     <div className="signup__wrap">
       <Box sx={{ flexGrow: 1 }}>
@@ -81,7 +79,7 @@ export default function SignUpPage() {
               marginTop: 8,
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -194,3 +192,4 @@ export default function SignUpPage() {
     </div>
   )
 }
+export default SignUpPage

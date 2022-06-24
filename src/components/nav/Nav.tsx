@@ -2,12 +2,12 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './Nav.css'
 
-function Nav() {
+const Nav: React.FC = () => {
   return (
     <div className="nav__wrap">
       <div className="nav__logo-wrap">
         <NavLink to="/" className="nav__logo-link">
-          <img src="https://via.placeholder.com/100x50" className="nav__logo" alt='logo'/>
+          <img src="https://via.placeholder.com/100x50" className="nav__logo" alt='logo' />
         </NavLink>
       </div>
       <div className="nav__search-wrap">

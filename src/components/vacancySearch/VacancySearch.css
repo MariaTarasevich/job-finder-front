@@ -17,11 +17,11 @@
 }
 
 .vacsearch__search-block {
-  margin-top: 5em;
+  margin-top: 2em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 30%;
+  width: 100%;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -71,5 +71,23 @@
 
 .vaclist__desc-wrap {
   margin-top: 2%;
+}
+
+.vacsearch__content-wrap {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.vacsearch__subtitle {
+  margin-top: 2em;
 }
 /*# sourceMappingURL=VacancySearch.css.map */

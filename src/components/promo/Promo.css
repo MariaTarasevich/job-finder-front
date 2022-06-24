@@ -82,4 +82,19 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
+
+.searched__wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style: none;
+}
 /*# sourceMappingURL=Promo.css.map */

@@ -1,25 +1,31 @@
 import React, { useState } from 'react'
-import { Formik, Field, Form, ErrorMessage } from 'formik'
-import * as yup from 'yup'
+import { Formik, Form } from 'formik'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import { nanoid } from 'nanoid'
+import { createVacancy } from '../../api.tsx'
+import TextareaAutosize from '@mui/material/TextareaAutosize'
+// import Autocomplete from '@mui/material/Autocomplete'
+// import TextField from '@mui/material/TextField'
 
-export default function ResumeConstructor() {
- // const [vacList, setVacList] = useState([])
+const ResumeConstructor: React.FC = () => {
+  const [correctPhone, setCorrectPhone] = useState<boolean>(false)
+  // const top100Films = [{ title: 'Terminator' }, { title: 'manager' }]
+  // const defaultProps = {
+  //   options: top100Films,
+  //   getOptionLabel: (option/* : FilmOptionType */) => option.title
+  // }
 
   function collectVacs (values) {
-    let vacList = []
-    let loc = localStorage.getItem('vacancy')
-    if (loc) {
-      vacList = JSON.parse(localStorage.getItem('vacancy'))
-      vacList.push(values)
-    } else {
-      vacList.push(values)
-    }
-    console.log(vacList)
-
-    localStorage.setItem('vacancy', JSON.stringify(vacList))
+    if (!correctPhone) return
+    createVacancy(values)
+      .then(() => {
+        console.log('OKEY')
+      })
+      .catch(() => {
+        console.log('ERROR')
+      })
+    if (correctPhone) { resetForm() }
+    setCorrectPhone(false)
   }
 
   const resetForm = () => {
@@ -29,10 +35,30 @@ export default function ResumeConstructor() {
     })
   }
 
+  const inpStyle = {
+    textTransform: 'lowercase'
+  }
+
+  function validatePhone (value) {
+    let error
+    const re = /^[1-9]+[0-9]*$/
+    if (!value) {
+      error = 'Required'
+      alert('Insert phone')
+    } else if (!re.test(value)) {
+      alert('Invalid phone number')
+      error = 'Invalid phone number'
+    } else {
+      alert('OK')
+      setCorrectPhone(true)
+    }
+    return error
+  }
+
   return (
-    <div className="constr">
-      <div className="constr__wrap">
-        <h3 className="vac__title">Create your vacancy here!</h3>
+    <div className='constr'>
+      <div className='constr__wrap'>
+        <h3 className='vac__title'>Create your vacancy here!</h3>
         <Formik
           initialValues={{
             id: '',
@@ -42,40 +68,52 @@ export default function ResumeConstructor() {
             schedule: '',
             city: '',
             generalInfo: '',
-            contacts: '',
+            contacts: ''
           }}
           validateOnBlur
         >
           <Formik
             initialValues={{
-              acceptTerms: false,
+              acceptTerms: false
             }}
-            validationSchema={yup.object().shape({
-              acceptTerms: yup
-                .bool()
-                .oneOf([true], 'Accept Terms & Conditions is required'),
-            })}
           >
             {({
               values,
               handleChange,
-              handleBlur,
+              handleBlur
             }) => (
               <Form>
-                <div className="form-group form-check">
-                  <div className="form-group">
+                <div className='form-group form-check'>
+                  <div className='form-group'>
                     <div className={'from'}>
                       <p>
-                        <label htmlFor={'title'}>Vacancy title</label>
+{/*                         <label htmlFor={'title'}>Vacancy title (choose required specialization)</label>
+                        <br />
+                        <Autocomplete
+                          {...defaultProps}
+                          className='constr__spec'
+                          id='controlled-demo'
+                          disableCloseOnSelect
+                          onChange={handleChange}
+                          value={values.title}
+                          onChange={(e) => { values.title = e.target.value }}
+                          renderInput={(params) => (
+                            <TextField {...params} label='Specialization' variant='outlined' />
+                          )}
+                        /> */}
+                                              <p>
+                        <label htmlFor={'title'}>Title</label>
                         <br />
                         <input
                           className={'input resumeInput'}
                           type={'text'}
                           name={'title'}
                           onChange={handleChange}
+                          style={inpStyle}
                           onBlur={handleBlur}
                           value={values.title}
                         />
+                      </p>
                       </p>
                       <p>
                         <label htmlFor={'salary'}>Salary</label>
@@ -130,16 +168,18 @@ export default function ResumeConstructor() {
                           General information
                         </label>
                         <br />
-                        <textarea
-                          name={'generalInfo'}
-                          className="resumeTextarea"
+                        <TextareaAutosize
+                          aria-label='empty textarea'
                           onChange={handleChange}
+                          name={'generalInfo'}
                           onBlur={handleBlur}
                           value={values.generalInfo}
+                          style={{ width: '100%' }}
                         />
+
                       </p>
                       <p>
-                        <label htmlFor={'contacts'}>Contacts</label>
+                        <label htmlFor={'contacts'}>Phone</label>
                         <br />
                         <input
                           className={'input resumeInput'}
@@ -150,23 +190,23 @@ export default function ResumeConstructor() {
                           value={values.contacts}
                         />
                       </p>
-                      <div className="constr_btns-wrap">
+                      <div className='constr_btns-wrap'>
                         <Box sx={{ '& button': { m: 1 } }}>
                           <Button
-                            variant="contained"
-                            size="large"
-                            onClick={()=>{values.id=nanoid(); collectVacs(values)}}
-                            className={`sign-in__btn btn btn-primary mr-2`}
+                            variant='contained'
+                            size='large'
+                            onClick={() => { console.log(values); validatePhone(values.contacts); collectVacs(values) }}
+                            className={'sign-in__btn btn btn-primary mr-2'}
                           >
                             Save
                           </Button>
                         </Box>
                         <Box sx={{ '& button': { m: 1 } }}>
                           <Button
-                            variant="contained"
-                            size="large"
-                            type="reset"
-                            className="btn btn-secondary constr___reset-btn"
+                            variant='contained'
+                            size='large'
+                            type='reset'
+                            className='btn btn-secondary constr___reset-btn'
                             onClick={() => resetForm()}
                           >
                             Reset
@@ -184,3 +224,4 @@ export default function ResumeConstructor() {
     </div>
   )
 }
+export default ResumeConstructor

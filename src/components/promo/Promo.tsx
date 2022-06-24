@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import Nav from '../nav/Nav'
+import Nav from '../nav/Nav.tsx'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
@@ -8,14 +8,55 @@ import Select from '@mui/material/Select'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
+import { getResume, getVacancy } from '../../api.tsx'
 
 import './Promo.css'
 
-function Promo() {
-  const [type, setType] = React.useState('')
+const Promo: React.FC = () => {
+  const [type, setType] = useState<string>('')
+  const [searchedValue, setSearchedValue] = useState<string>('')
+  const [searchedResumes, setSearchedResumes] = useState([])
+  const [searchedVacancies, setSearchedVacancies] = useState([])
+  const [isResumes, setIsResumes] = useState<string>('')
+  const [isVacancies, setIsVacancies] = useState<string>('')
+  let resumes
+  const getSearchedValue = (e) => {
+    setSearchedValue(e.target.value)
+  }
 
   const handleChange = (event) => {
     setType(event.target.value)
+  }
+
+  const findValue = () => {
+    switch (type) {
+      case 'resume':
+        getResume(searchedValue.toLowerCase())
+          .then((data) => {
+            resumes = data.data
+            setSearchedResumes(resumes)
+            setIsResumes('yes')
+            setIsVacancies('no')
+          })
+          .catch((err) => {
+            alert(err)
+            setIsResumes('no')
+          })
+        break
+      case 'vacancy':
+        getVacancy(searchedValue.toLowerCase())
+          .then((data) => {
+            resumes = data.data
+            setSearchedVacancies(resumes)
+            setIsVacancies('yes')
+            setIsResumes('no')
+          })
+          .catch((err) => {
+            alert(err)
+            setIsVacancies('no')
+          })
+        break
+    }
   }
   return (
     <div className="promo__wrap">
@@ -30,10 +71,11 @@ function Promo() {
             <TextField
               label="Find vacancy or resume"
               className="promo__search"
+              onChange={(e) => getSearchedValue(e)}
             />
             <FormControl sx={{ m: 1, minWidth: 80 }}>
               <InputLabel id="demo-simple-select-autowidth-label">
-                Age
+                Type
               </InputLabel>
               <Select
                 labelId="demo-simple-select-autowidth-label"
@@ -49,7 +91,6 @@ function Promo() {
                 </MenuItem>
                 <MenuItem value={'vacancy'}>Vacancy</MenuItem>
                 <MenuItem value={'resume'}>Resume</MenuItem>
-                <MenuItem value={'company'}>Company</MenuItem>
               </Select>
             </FormControl>
             <Box sx={{ '& button': { m: 1 } }}>
@@ -57,20 +98,21 @@ function Promo() {
                 variant="outlined"
                 size="large"
                 className="promo__search-btn"
+                onClick={() => findValue()}
               >
                 Search
               </Button>
             </Box>
           </div>
           <div className="promo__btns-block">
-            <NavLink to="/" className='promo__post-link'>
+            <NavLink to="/signup" className='promo__post-link'>
               <Box sx={{ '& button': { m: 1 } }}>
                 <Button variant="contained" size="large" className="promo__post">
                   Post a vacancy
                 </Button>
               </Box>
             </NavLink>
-            <NavLink to="/" className='promo__post-link'>
+            <NavLink to="/signup" className='promo__post-link'>
               <Box sx={{ '& button': { m: 1 } }}>
                 <Button variant="contained" size="large" className="promo__post">
                   Post a resume
@@ -80,6 +122,42 @@ function Promo() {
           </div>
         </div>
       </div>
+      {isResumes === 'yes' && (
+        <ul className='searched__wrap'>
+          {searchedResumes.map((item, index) => {
+            return (
+            <li key={index} className="vacsearch_item">
+            <NavLink to={'/resume/' + item.id}>
+              <p className="vaclist__title">{item.profession}</p>
+              <div className="vaclist__desc-wrap">
+                <p className="vaclist__desc">{item.generalInfo}</p>
+                <p className="vaclist__desc">{item.country}</p>
+                <p className="vaclist__desc">{item.placeOfEducation}</p>
+              </div>
+            </NavLink>
+          </li>
+            )
+          })}
+        </ul>
+      )}
+            {isVacancies === 'yes' && (
+        <ul className='searched__wrap'>
+          {searchedVacancies.map((item, index) => {
+            return (
+            <li className="vacsearch_item" key={item.id}>
+            <NavLink to={'/vacancy/' + item.id}>
+              <p className="vaclist__title">{item.title}</p>
+              <div className="vaclist__desc-wrap">
+                <p className="vaclist__desc">{item.salary}</p>
+                <p className="vaclist__desc">{item.reqExperience}</p>
+                <p className="vaclist__desc">{item.schedule}</p>
+              </div>
+            </NavLink>
+          </li>
+            )
+          })}
+        </ul>
+            )}
     </div>
   )
 }

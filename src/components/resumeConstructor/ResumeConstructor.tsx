@@ -1,24 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Formik, Form } from 'formik'
-import * as yup from 'yup'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import './ResumeConstructor.css'
-import { nanoid } from 'nanoid'
+import { string } from 'yup'
+// import TextField from '@mui/material/TextField'
+import TextareaAutosize from '@mui/material/TextareaAutosize'
+// import Autocomplete from '@mui/material/Autocomplete'
+import { createResume } from '../../api.tsx'
 
-export default function ResumeConstructor() {
+const ResumeConstructor: React.FC = () => {
+  const [correctEmail, setCorrectEmail] = useState<boolean>(false)
+  const [correctPhone, setCorrectPhone] = useState<boolean>(false)
+  // const top100Films = [{ title: 'Terminator' }, { title: 'Manager' }]
+  // const defaultProps = {
+  //   options: top100Films,
+  //   getOptionLabel: (option/* : FilmOptionType */) => option.title
+  // }
+
   function collectCVs (values) {
-    let resList = []
-    let loc = localStorage.getItem('resume')
-    if (loc) {
-      resList = JSON.parse(localStorage.getItem('resume'))
-      resList.push(values)
-    } else {
-      resList.push(values)
-    }
-    console.log(resList)
+    if (!correctEmail || !correctPhone) return
+    createResume(values)
+      .then(() => {
+        console.log('OKEY')
+      })
+      .catch(() => {
+        console.log('ERROR')
+      })
 
-    localStorage.setItem('resume', JSON.stringify(resList))
+    if (correctEmail || correctPhone) { resetForm() }
+    setCorrectEmail(false)
+    setCorrectPhone(false)
   }
 
   const resetForm = () => {
@@ -28,61 +40,118 @@ export default function ResumeConstructor() {
     })
   }
 
-  function validateEmail(value) {
-    let error;
+  interface resumeFormValues {
+    id: string,
+    name: string,
+    secondName: string,
+    dateOfBirth: string,
+    gender: string,
+    email: string,
+    country: string,
+    placeOfEducation: string,
+    startOfEducation: string,
+    endOfEducation: string,
+    specialization: string,
+    prevCompany: string,
+    startOfWork: string,
+    endOfWork: string,
+    profession: string,
+    generalInfo: string,
+    contacts: string,
+  }
+
+  function validateEmail (value) {
+    let error
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!value) {
-      error = 'Required';
+      error = 'Required'
       alert('Insert email')
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+    } else if (!re.test(value)) {
       alert('Invalid email address')
-      error = 'Invalid email address';
+      error = 'Invalid email address'
+    } else {
+      alert('OK')
+      setCorrectPhone(true)
     }
-    return error;
+    return error
+  }
+
+  function validatePhone (value) {
+    let error
+    const re = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s.]{0,1}[0-9]{3}[-\s.]{0,1}[0-9]{4}$/
+    if (!value) {
+      error = 'Required'
+      alert('Insert phone')
+    } else if (!re.test(value)) {
+      alert('Invalid phone number')
+      error = 'Invalid phone number'
+    } else {
+      alert('OK')
+      setCorrectPhone(true)
+    }
+    return error
+  }
+
+  const initialValues: resumeFormValues = {
+    id: '',
+    name: '',
+    secondName: '',
+    dateOfBirth: '',
+    gender: '',
+    email: '',
+    country: '',
+    placeOfEducation: '',
+    startOfEducation: '',
+    endOfEducation: '',
+    specialization: '',
+    prevCompany: '',
+    startOfWork: '',
+    endOfWork: '',
+    profession: '',
+    generalInfo: '',
+    contacts: ''
+  }
+
+  const inpStyle = {
+    textTransform: 'lowercase'
   }
 
   return (
     <div className="constr">
       <div className="constr__wrap">
         <h3 className="resume__title">Create your resume here!</h3>
-        <Formik
-          initialValues={{
-            id: '',
-            name: '',
-            secondName: '',
-            dateOfBirth: '',
-            gender: '',
-            email: '',
-            country: '',
-            placeOfEducation: '',
-            periodOfEducation: '',
-            specialization: '',
-            prevCompany: '',
-            periodOfWork: '',
-            profession: '',
-            generalInfo: '',
-            contacts: '',
-          }}
+        <Formik onSubmit={() => console.log('adssa')}
+          initialValues={initialValues}
           validateOnBlur
         >
           <Formik
+            onSubmit={() => console.log('adssa')}
             initialValues={{
-              acceptTerms: false,
+              id: string,
+              name: string,
+              secondName: string,
+              dateOfBirth: string,
+              gender: string,
+              email: string,
+              country: string,
+              placeOfEducation: string,
+              startOfEducation: string,
+              endOfEducation: string,
+              specialization: string,
+              prevCompany: string,
+              startOfWork: string,
+              endOfWork: string,
+              profession: string,
+              generalInfo: string,
+              contacts: string
             }}
-            validationSchema={yup.object().shape({
-              acceptTerms: yup
-                .bool()
-                .oneOf([true], 'Accept Terms & Conditions is required'),
-            })}
           >
             {({
               values,
-              errors,
-              touched,
               handleChange,
               handleBlur,
               isValid,
-              handleSubmit,
-              dirty,
+              dirty
             }) => (
               <Form>
                 <div className="form-group form-check">
@@ -180,20 +249,44 @@ export default function ResumeConstructor() {
                         />
                       </p>
                       <p>
-                        <label htmlFor={'periodOfEducation'}>
-                          Period of education
+                        <label htmlFor={'startOfEducation'}>
+                          Period of education (start)
                         </label>
                         <br />
                         <input
                           className={'input resumeInput'}
                           type={'text'}
-                          name={'periodOfEducation'}
+                          name={'startOfEducation'}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          value={values.periodOfEducation}
+                          value={values.startOfEducation}
                         />
                       </p>
                       <p>
+                        <label htmlFor={'endOfEducation'}>
+                          Period of education (end)
+                        </label>
+                        <br />
+                        <input
+                          className={'input resumeInput'}
+                          type={'text'}
+                          name={'endOfEducation'}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.endOfEducation}
+                        />
+                      </p>
+                      {/* <Autocomplete
+                        {...defaultProps}
+                        className='constr__spec'
+                        id="controlled-demo"
+                        disableCloseOnSelect
+                        onChange={handleChange}
+                        value={values.specialization}
+                        renderInput={(params) => (
+                          <TextField {...params} label="Specialization" variant="outlined" />
+                        )}
+                      /> */}
                         <label htmlFor={'specialization'}>Specialization</label>
                         <br />
                         <input
@@ -202,9 +295,9 @@ export default function ResumeConstructor() {
                           name={'specialization'}
                           onChange={handleChange}
                           onBlur={handleBlur}
+                          style={inpStyle}
                           value={values.specialization}
                         />
-                      </p>
                       <p>
                         <label htmlFor={'prevCompany'}>Previous company</label>
                         <br />
@@ -218,15 +311,27 @@ export default function ResumeConstructor() {
                         />
                       </p>
                       <p>
-                        <label htmlFor={'periodOfWork'}>Period of work</label>
+                        <label htmlFor={'startOfWork'}>Period of work (start)</label>
                         <br />
                         <input
                           className={'input resumeInput'}
                           type={'text'}
-                          name={'periodOfWork'}
+                          name={'startOfWork'}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          value={values.periodOfWork}
+                          value={values.startOfWork}
+                        />
+                      </p>
+                      <p>
+                        <label htmlFor={'endOfWork'}>Period of work (end)</label>
+                        <br />
+                        <input
+                          className={'input resumeInput'}
+                          type={'text'}
+                          name={'endOfWork'}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.endOfWork}
                         />
                       </p>
                       <p>
@@ -236,6 +341,7 @@ export default function ResumeConstructor() {
                           className={'input resumeInput'}
                           type={'text'}
                           name={'profession'}
+                          style={inpStyle}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.profession}
@@ -247,16 +353,17 @@ export default function ResumeConstructor() {
                           General information
                         </label>
                         <br />
-                        <textarea
+                        <TextareaAutosize
                           name={'generalInfo'}
-                          className="resumeTextarea"
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.generalInfo}
+                          aria-label="empty textarea"
+                          style={{ width: '100%' }}
                         />
                       </p>
                       <p>
-                        <label htmlFor={'contacts'}>Contacts</label>
+                        <label htmlFor={'contacts'}>Phone</label>
                         <br />
                         <input
                           className={'input resumeInput'}
@@ -267,16 +374,15 @@ export default function ResumeConstructor() {
                           value={values.contacts}
                         />
                       </p>
-                      <p className='constr__req-info'>* is for requires fields</p>
+                      <p className='constr__req-info'>* is for required fields</p>
                       <div className="constr_btns-wrap">
                         <Box sx={{ '& button': { m: 1 } }}>
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={()=>{ values.id= nanoid(); collectCVs(values)}}
-                            className={`sign-in__btn btn btn-primary mr-2 ${
-                              dirty && isValid ? '' : 'disabled-btn'
-                            }`}
+                            onClick={() => { validateEmail(values.email); validatePhone(values.contacts); collectCVs(values) }}
+                            className={`sign-in__btn btn btn-primary mr-2 ${dirty && isValid ? '' : 'disabled-btn'
+                              }`}
                           >
                             Save
                           </Button>
@@ -304,3 +410,4 @@ export default function ResumeConstructor() {
     </div>
   )
 }
+export default ResumeConstructor

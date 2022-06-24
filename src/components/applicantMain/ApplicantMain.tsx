@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import AppBar from '@mui/material/AppBar'
@@ -11,8 +11,13 @@ import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
 import MailIcon from '@mui/icons-material/Mail'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople'
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
+import ExtensionIcon from '@mui/icons-material/Extension'
+import SupportAgentIcon from '@mui/icons-material/SupportAgent'
+import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService'
 import Button from '@mui/material/Button'
 import { NavLink } from 'react-router-dom'
 import './ApplicantMain.css'
@@ -25,9 +30,8 @@ import ResumeFolder from '../resumeFolder/ResumeFolder.tsx'
 import Support from '../support/Support.tsx'
 
 const drawerWidth = 240
-
-export default function ApplicantMain() {
-  const [page, setPage] = React.useState('')
+const ApplicantMain: React.FC = () => {
+  const [page, setPage] = useState<string>('')
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -73,18 +77,14 @@ export default function ApplicantMain() {
         variant="permanent"
         sx={{
           width: drawerWidth,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-          },
+          flexShrink: 0
         }}
       >
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
             {['Profile', 'Mail', 'Responces', 'Promotion'].map(
-              (text, index) => (
+              (text) => (
                 <ListItem
                   key={text}
                   disablePadding
@@ -92,7 +92,10 @@ export default function ApplicantMain() {
                 >
                   <ListItemButton>
                     <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                      {text === 'Profile' && <AccountCircleIcon />}
+                      {text === 'Mail' && <MailIcon />}
+                      {text === 'Responces' && <EmojiPeopleIcon />}
+                      {text === 'Promotion' && <EmojiEventsIcon />}
                     </ListItemIcon>
                     <ListItemText primary={text} />
                   </ListItemButton>
@@ -106,7 +109,9 @@ export default function ApplicantMain() {
               <ListItem key={text} disablePadding onClick={() => setPage(text)}>
                 <ListItemButton>
                   <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {text === 'Resume constructor' && <ExtensionIcon />}
+                  {text === 'My resume' && <HomeRepairServiceIcon />}
+                  {text === 'Support' && <SupportAgentIcon />}
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItemButton>
@@ -130,3 +135,5 @@ export default function ApplicantMain() {
     </Box>
   )
 }
+
+export default ApplicantMain
