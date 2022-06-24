@@ -4,16 +4,16 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import { createVacancy } from '../../api.tsx'
 import TextareaAutosize from '@mui/material/TextareaAutosize'
-import Autocomplete from '@mui/material/Autocomplete'
-import TextField from '@mui/material/TextField'
+// import Autocomplete from '@mui/material/Autocomplete'
+// import TextField from '@mui/material/TextField'
 
 const ResumeConstructor: React.FC = () => {
   const [correctPhone, setCorrectPhone] = useState<boolean>(false)
-  const top100Films = [{ title: 'Terminator' }, { title: 'manager' }]
-  const defaultProps = {
-    options: top100Films,
-    getOptionLabel: (option/* : FilmOptionType */) => option.title
-  }
+  // const top100Films = [{ title: 'Terminator' }, { title: 'manager' }]
+  // const defaultProps = {
+  //   options: top100Films,
+  //   getOptionLabel: (option/* : FilmOptionType */) => option.title
+  // }
 
   function collectVacs (values) {
     if (!correctPhone) return
@@ -35,6 +35,10 @@ const ResumeConstructor: React.FC = () => {
     })
   }
 
+  const inpStyle = {
+    textTransform: 'lowercase'
+  }
+
   function validatePhone (value) {
     let error
     const re = /^[1-9]+[0-9]*$/
@@ -52,9 +56,9 @@ const ResumeConstructor: React.FC = () => {
   }
 
   return (
-    <div className="constr">
-      <div className="constr__wrap">
-        <h3 className="vac__title">Create your vacancy here!</h3>
+    <div className='constr'>
+      <div className='constr__wrap'>
+        <h3 className='vac__title'>Create your vacancy here!</h3>
         <Formik
           initialValues={{
             id: '',
@@ -79,23 +83,37 @@ const ResumeConstructor: React.FC = () => {
               handleBlur
             }) => (
               <Form>
-                <div className="form-group form-check">
-                  <div className="form-group">
+                <div className='form-group form-check'>
+                  <div className='form-group'>
                     <div className={'from'}>
                       <p>
-                        <label htmlFor={'title'}>Vacancy title (choose required specialization)</label>
+{/*                         <label htmlFor={'title'}>Vacancy title (choose required specialization)</label>
                         <br />
                         <Autocomplete
                           {...defaultProps}
                           className='constr__spec'
-                          id="controlled-demo"
+                          id='controlled-demo'
                           disableCloseOnSelect
+                          onChange={handleChange}
                           value={values.title}
                           onChange={(e) => { values.title = e.target.value }}
                           renderInput={(params) => (
-                            <TextField {...params} label="Specialization" variant="outlined" />
+                            <TextField {...params} label='Specialization' variant='outlined' />
                           )}
+                        /> */}
+                                              <p>
+                        <label htmlFor={'title'}>Title</label>
+                        <br />
+                        <input
+                          className={'input resumeInput'}
+                          type={'text'}
+                          name={'title'}
+                          onChange={handleChange}
+                          style={inpStyle}
+                          onBlur={handleBlur}
+                          value={values.title}
                         />
+                      </p>
                       </p>
                       <p>
                         <label htmlFor={'salary'}>Salary</label>
@@ -151,7 +169,7 @@ const ResumeConstructor: React.FC = () => {
                         </label>
                         <br />
                         <TextareaAutosize
-                          aria-label="empty textarea"
+                          aria-label='empty textarea'
                           onChange={handleChange}
                           name={'generalInfo'}
                           onBlur={handleBlur}
@@ -172,11 +190,11 @@ const ResumeConstructor: React.FC = () => {
                           value={values.contacts}
                         />
                       </p>
-                      <div className="constr_btns-wrap">
+                      <div className='constr_btns-wrap'>
                         <Box sx={{ '& button': { m: 1 } }}>
                           <Button
-                            variant="contained"
-                            size="large"
+                            variant='contained'
+                            size='large'
                             onClick={() => { console.log(values); validatePhone(values.contacts); collectVacs(values) }}
                             className={'sign-in__btn btn btn-primary mr-2'}
                           >
@@ -185,10 +203,10 @@ const ResumeConstructor: React.FC = () => {
                         </Box>
                         <Box sx={{ '& button': { m: 1 } }}>
                           <Button
-                            variant="contained"
-                            size="large"
-                            type="reset"
-                            className="btn btn-secondary constr___reset-btn"
+                            variant='contained'
+                            size='large'
+                            type='reset'
+                            className='btn btn-secondary constr___reset-btn'
                             onClick={() => resetForm()}
                           >
                             Reset

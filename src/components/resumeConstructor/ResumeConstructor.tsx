@@ -4,19 +4,19 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import './ResumeConstructor.css'
 import { string } from 'yup'
-import TextField from '@mui/material/TextField'
+// import TextField from '@mui/material/TextField'
 import TextareaAutosize from '@mui/material/TextareaAutosize'
-import Autocomplete from '@mui/material/Autocomplete'
+// import Autocomplete from '@mui/material/Autocomplete'
 import { createResume } from '../../api.tsx'
 
 const ResumeConstructor: React.FC = () => {
   const [correctEmail, setCorrectEmail] = useState<boolean>(false)
   const [correctPhone, setCorrectPhone] = useState<boolean>(false)
-  const top100Films = [{ title: 'Terminator' }, { title: 'Manager' }]
-  const defaultProps = {
-    options: top100Films,
-    getOptionLabel: (option/* : FilmOptionType */) => option.title
-  }
+  // const top100Films = [{ title: 'Terminator' }, { title: 'Manager' }]
+  // const defaultProps = {
+  //   options: top100Films,
+  //   getOptionLabel: (option/* : FilmOptionType */) => option.title
+  // }
 
   function collectCVs (values) {
     if (!correctEmail || !correctPhone) return
@@ -276,16 +276,28 @@ const ResumeConstructor: React.FC = () => {
                           value={values.endOfEducation}
                         />
                       </p>
-                      <Autocomplete
+                      {/* <Autocomplete
                         {...defaultProps}
                         className='constr__spec'
-                        id="disable-close-on-select"
+                        id="controlled-demo"
                         disableCloseOnSelect
+                        onChange={handleChange}
                         value={values.specialization}
                         renderInput={(params) => (
                           <TextField {...params} label="Specialization" variant="outlined" />
                         )}
-                      />
+                      /> */}
+                        <label htmlFor={'specialization'}>Specialization</label>
+                        <br />
+                        <input
+                          className={'input resumeInput'}
+                          type={'text'}
+                          name={'specialization'}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          style={inpStyle}
+                          value={values.specialization}
+                        />
                       <p>
                         <label htmlFor={'prevCompany'}>Previous company</label>
                         <br />
