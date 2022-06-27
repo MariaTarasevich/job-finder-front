@@ -30,7 +30,7 @@
 }
 
 .foo__logo-link {
-  height: 4em;
+  height: 4rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -64,8 +64,8 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-top: 5%;
-  padding-bottom: 5%;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 .foo__bot-wrap {
@@ -101,7 +101,7 @@
 }
 
 .foo__nav-title, .foo__nav-link {
-  margin-bottom: 5%;
+  margin-bottom: 5rem;
 }
 
 .foo__copyright-wrap {

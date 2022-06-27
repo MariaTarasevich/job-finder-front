@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 const url = 'http://localhost:3003/'
 
 export const createResume = resume => axios.post(url + 'resumes', resume)

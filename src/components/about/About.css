@@ -22,7 +22,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 5% 0 5% 0;
+  padding: 7rem 0 7rem 0;
 }
 
 .about__content-wrap {
@@ -40,11 +40,11 @@
 }
 
 .aboout__title {
-  margin-bottom: 5%;
+  margin-bottom: 5rem;
   text-align: center;
 }
 
 .about__paragraph {
-  line-height: 2em;
+  line-height: 2rem;
 }
 /*# sourceMappingURL=About.css.map */

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import AppBar from '@mui/material/AppBar'
@@ -19,7 +20,7 @@ import ExtensionIcon from '@mui/icons-material/Extension'
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService'
 import SupportAgentIcon from '@mui/icons-material/SupportAgent'
 import Button from '@mui/material/Button'
-import { NavLink } from 'react-router-dom'
+
 import Mail from '../mail/Mail.tsx'
 import VacancyConstructor from '../vacancyConstructor/VacancyConstructor.tsx'
 import Promotion from '../promotion/Promotion.tsx'
@@ -31,7 +32,7 @@ import VacancyFolder from '../vacancyFolder/VacancyFolder.tsx'
 const drawerWidth = 240
 
 export default function EmployerMain () {
-  const [page, setPage] = useState<string>('')
+  const [applicantPageType, setApplicantPageType] = useState<string>('')
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -85,9 +86,9 @@ export default function EmployerMain () {
             {['Company profile', 'Mail', 'Responces', 'Promotion'].map(
               (text, index) => (
                 <ListItem
-                  key={text}
+                  key={index}
                   disablePadding
-                  onClick={() => setPage(text)}
+                  onClick={() => setApplicantPageType(text)}
                 >
                   <ListItemButton>
                     <ListItemIcon>
@@ -105,7 +106,7 @@ export default function EmployerMain () {
           <Divider />
           <List>
             {['Vacancy constructor', 'My vacancies', 'Support'].map((text, index) => (
-              <ListItem key={text} disablePadding onClick={() => setPage(text)}>
+              <ListItem key={index} disablePadding onClick={() => setApplicantPageType(text)}>
                 <ListItemButton>
                   <ListItemIcon>
                     {text === 'Vacancy constructor' && <ExtensionIcon />}
@@ -121,14 +122,14 @@ export default function EmployerMain () {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
-        {page === '' && <EmployerProfile />}
-        {page === 'Company profile' && <EmployerProfile />}
-        {page === 'Mail' && <Mail />}
-        {page === 'Vacancy constructor' && <VacancyConstructor />}
-        {page === 'Promotion' && <Promotion />}
-        {page === 'Responces' && <Responces />}
-        {page === 'My vacancies' && <VacancyFolder />}
-        {page === 'Support' && <Support />}
+        {applicantPageType === '' && <EmployerProfile />}
+        {applicantPageType === 'Company profile' && <EmployerProfile />}
+        {applicantPageType === 'Mail' && <Mail />}
+        {applicantPageType === 'Vacancy constructor' && <VacancyConstructor />}
+        {applicantPageType === 'Promotion' && <Promotion />}
+        {applicantPageType === 'Responces' && <Responces />}
+        {applicantPageType === 'My vacancies' && <VacancyFolder />}
+        {applicantPageType === 'Support' && <Support />}
         <div className="main__bot"></div>
       </Box>
     </Box>

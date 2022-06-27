@@ -4,7 +4,9 @@ import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import { Formik, Form } from 'formik'
+
 import { createApplicantProfile, getApplicantProfile, deleteApplicantProf } from './../../api.tsx'
+
 import './ApplicantProfile.css'
 
 export default function ApplicantProfile () {

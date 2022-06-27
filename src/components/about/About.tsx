@@ -1,6 +1,8 @@
 import React from 'react'
+
 import Footer from '../footer/Footer.tsx'
-import Nav from './../nav/Nav.tsx'
+import Nav from '../nav/MainPageNavigation.tsx'
+
 import './About.css'
 
 function About () {

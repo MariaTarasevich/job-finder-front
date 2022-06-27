@@ -1,8 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import './Nav.css'
 
-const Nav: React.FC = () => {
+import './MainPageNavigation.css'
+
+const MainPageNavigation: React.FC = () => {
   return (
     <div className="nav__wrap">
       <div className="nav__logo-wrap">
@@ -30,4 +31,4 @@ const Nav: React.FC = () => {
   )
 }
 
-export default Nav
+export default MainPageNavigation

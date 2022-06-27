@@ -10,6 +10,7 @@ import StarIcon from '@mui/icons-material/StarBorder'
 import Typography from '@mui/material/Typography'
 import GlobalStyles from '@mui/material/GlobalStyles'
 import Container from '@mui/material/Container'
+
 import './Promotion.css'
 
 const tiers = [

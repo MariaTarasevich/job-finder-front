@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import './SignUpPage.css'
-import { NavLink } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar'
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
@@ -20,6 +19,8 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+
+import './SignUpPage.css'
 
 function Copyright (props) {
   return (

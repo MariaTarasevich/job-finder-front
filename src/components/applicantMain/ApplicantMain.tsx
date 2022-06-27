@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import AppBar from '@mui/material/AppBar'
@@ -19,8 +20,7 @@ import ExtensionIcon from '@mui/icons-material/Extension'
 import SupportAgentIcon from '@mui/icons-material/SupportAgent'
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService'
 import Button from '@mui/material/Button'
-import { NavLink } from 'react-router-dom'
-import './ApplicantMain.css'
+
 import ApplicantProfile from '../applicantProfile/ApplicantProfile.tsx'
 import Mail from '../mail/Mail.tsx'
 import ResumeConstructor from '../resumeConstructor/ResumeConstructor.tsx'
@@ -29,9 +29,38 @@ import Responces from '../responces/Responces.tsx'
 import ResumeFolder from '../resumeFolder/ResumeFolder.tsx'
 import Support from '../support/Support.tsx'
 
-const drawerWidth = 240
+import './ApplicantMain.css'
+
+const DRAWER_WIDTH = 240
 const ApplicantMain: React.FC = () => {
-  const [page, setPage] = useState<string>('')
+  const [applicantPageType, setApplicantPageType] = useState<string>('')
+
+  const topApplicantmenu = {
+    PROFILE: 'Profile',
+    MAIL: 'Mail',
+    RESPONCES: 'Responces',
+    PROMOTION: 'Promotion'
+  }
+
+  const botApplicantmenu = {
+    RESUME_CONSTRUCTOR: 'Resume constructor',
+    MY_RESUME: 'My resume',
+    SUPPORT: 'Support'
+  }
+
+  const topApplicantmenuArr = []
+
+  const botApplicantmenuArr = []
+
+  for (const page in topApplicantmenu) {
+    topApplicantmenuArr.push(page)
+  }
+
+  for (const page in botApplicantmenu) {
+    botApplicantmenuArr.push(page)
+  }
+
+  console.log(botApplicantmenuArr)
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -76,19 +105,19 @@ const ApplicantMain: React.FC = () => {
       <Drawer
         variant="permanent"
         sx={{
-          width: drawerWidth,
+          width: DRAWER_WIDTH,
           flexShrink: 0
         }}
       >
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
-            {['Profile', 'Mail', 'Responces', 'Promotion'].map(
+            {topApplicantmenuArr.map(
               (text) => (
                 <ListItem
                   key={text}
                   disablePadding
-                  onClick={() => setPage(text)}
+                  onClick={() => setApplicantPageType(text)}
                 >
                   <ListItemButton>
                     <ListItemIcon>
@@ -106,7 +135,7 @@ const ApplicantMain: React.FC = () => {
           <Divider />
           <List>
             {['Resume constructor', 'My resume', 'Support'].map((text, index) => (
-              <ListItem key={text} disablePadding onClick={() => setPage(text)}>
+              <ListItem key={text} disablePadding onClick={() => setApplicantPageType(text)}>
                 <ListItemButton>
                   <ListItemIcon>
                   {text === 'Resume constructor' && <ExtensionIcon />}
@@ -122,14 +151,14 @@ const ApplicantMain: React.FC = () => {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
-        {page === '' && <ApplicantProfile />}
-        {page === 'Profile' && <ApplicantProfile />}
-        {page === 'Mail' && <Mail />}
-        {page === 'Resume constructor' && <ResumeConstructor />}
-        {page === 'Promotion' && <Promotion />}
-        {page === 'Responces' && <Responces />}
-        {page === 'My resume' && <ResumeFolder />}
-        {page === 'Support' && <Support />}
+        {applicantPageType === '' && <ApplicantProfile />}
+        {applicantPageType === 'Profile' && <ApplicantProfile />}
+        {applicantPageType === 'Mail' && <Mail />}
+        {applicantPageType === 'Resume constructor' && <ResumeConstructor />}
+        {applicantPageType === 'Promotion' && <Promotion />}
+        {applicantPageType === 'Responces' && <Responces />}
+        {applicantPageType === 'My resume' && <ResumeFolder />}
+        {applicantPageType === 'Support' && <Support />}
         <div className="main__bot"></div>
       </Box>
     </Box>

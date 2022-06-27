@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import { Formik, Form } from 'formik'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import './ResumeConstructor.css'
 import { string } from 'yup'
 // import TextField from '@mui/material/TextField'
 import TextareaAutosize from '@mui/material/TextareaAutosize'
 // import Autocomplete from '@mui/material/Autocomplete'
+
 import { createResume } from '../../api.tsx'
+
+import './ResumeConstructor.css'
 
 const ResumeConstructor: React.FC = () => {
   const [correctEmail, setCorrectEmail] = useState<boolean>(false)

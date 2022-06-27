@@ -15,7 +15,7 @@
 }
 
 .nav__logo-wrap, .nav__search-wrap, .nav__auth-wrap {
-  height: 4em;
+  height: 4rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -44,6 +44,6 @@
 }
 
 .nav__search-link {
-  margin-left: 5%;
+  margin-left: 5rem;
 }
-/*# sourceMappingURL=Nav.css.map */
+/*# sourceMappingURL=MainPageNavigation.css.map */

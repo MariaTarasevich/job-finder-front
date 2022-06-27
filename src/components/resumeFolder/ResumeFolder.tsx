@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+
 import { getAllResumes, deleteResume } from '../../api.tsx'
 
 import './ResumeFolder.css'

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar'
+
 import { getVacs } from '../../api.tsx'
+
 import './VacancyPage.css'
 
-export const VacancyPage: React.FC = () => {
+const VacancyPage: React.FC = () => {
   const [vacList, setVacList] = useState([])
   const params = useParams()
   let allVacs
@@ -77,3 +79,5 @@ export const VacancyPage: React.FC = () => {
             </div>
   )
 }
+
+export default VacancyPage

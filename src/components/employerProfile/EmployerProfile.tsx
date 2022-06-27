@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
+import { Formik, Form } from 'formik'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+
 import { createEmployerProfile, getCompamnyProfile, deleteCompanyProf } from './../../api.tsx'
-import { Formik, Form } from 'formik'
 
 import './EmployerProfile.css'
 
-export const EmployerProfile: React.FC = () => {
+const EmployerProfile: React.FC = () => {
   const [isProfile, setIsProfile] = useState<boolean>(true)
   const [createProfile, setCreateProfile] = useState<boolean>(false)
   const [noProf, setNoProf] = useState<boolean>(true)

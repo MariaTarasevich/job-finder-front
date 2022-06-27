@@ -17,7 +17,7 @@
 }
 
 .ressearch__search-block {
-  margin-top: 5em;
+  margin-top: 5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -31,7 +31,7 @@
 }
 
 .ressearch__search {
-  width: 30em;
+  width: 30rem;
 }
 
 .ressearch__title {

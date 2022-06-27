@@ -6,7 +6,9 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import { NavLink } from 'react-router-dom'
 import TextField from '@mui/material/TextField'
+
 import { getResume, getAllResumes } from '../../api.tsx'
+
 import './ResumeSearch.css'
 
 const ResumeSearch: React.FC = () => {

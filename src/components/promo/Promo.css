@@ -4,7 +4,7 @@
 }
 
 .promo__content-wrap {
-  height: 30em;
+  height: 30rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -46,7 +46,7 @@
 }
 
 .promo__search {
-  width: 30em;
+  width: 30rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -60,7 +60,7 @@
 }
 
 .promo__select {
-  width: 20em;
+  width: 20rem;
   color: sienna;
 }
 
@@ -69,12 +69,12 @@
 }
 
 .promo__post {
-  width: 14em;
-  height: 3em;
+  width: 14rem;
+  height: 3rem;
 }
 
 .promo__btns-block {
-  width: 30em;
+  width: 30rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

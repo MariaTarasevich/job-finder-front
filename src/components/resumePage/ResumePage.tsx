@@ -4,7 +4,7 @@ import Avatar from '@mui/material/Avatar'
 import { getAllResumes } from '../../api.tsx'
 import './ResumePage.css'
 
-export const ResumePage: React.FC = () => {
+const ResumePage: React.FC = () => {
   const [resumeList, setResumeList] = useState([])
   const params = useParams()
   let allCVs
@@ -117,3 +117,5 @@ export const ResumePage: React.FC = () => {
             </div>
   )
 }
+
+export default ResumePage

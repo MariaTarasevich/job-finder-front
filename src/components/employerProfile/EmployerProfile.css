@@ -20,7 +20,7 @@
   border-radius: 4px 0 0 4px;
   -webkit-box-shadow: 0 4px 14px rgba(0, 0, 0, 0.055);
           box-shadow: 0 4px 14px rgba(0, 0, 0, 0.055);
-  padding: 2em;
+  padding: 2rem;
 }
 
 .company__creds {
@@ -33,7 +33,7 @@
 }
 
 .company__name {
-  margin-left: 1em;
+  margin-left: 1rem;
   font-weight: bold;
   font-size: 24px;
 }
@@ -47,8 +47,8 @@
 }
 
 .company__extracreds {
-  margin-top: 5%;
-  height: 15em;
+  margin-top: 5rem;
+  height: 15rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

@@ -17,7 +17,7 @@
 }
 
 .vacsearch__search-block {
-  margin-top: 2em;
+  margin-top: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -31,7 +31,7 @@
 }
 
 .vacsearch__search {
-  width: 30em;
+  width: 30rem;
 }
 
 .vacsearch__title {
@@ -59,9 +59,9 @@
 
 .vacsearch_item {
   border: 1px solid rgba(160, 161, 161, 0.37);
-  padding: 2em;
+  padding: 2rem;
   width: 60%;
-  margin-bottom: 1%;
+  margin-bottom: 1rem;
 }
 
 .vaclist__title {
@@ -70,7 +70,7 @@
 }
 
 .vaclist__desc-wrap {
-  margin-top: 2%;
+  margin-top: 2rem;
 }
 
 .vacsearch__content-wrap {
@@ -88,6 +88,6 @@
 }
 
 .vacsearch__subtitle {
-  margin-top: 2em;
+  margin-top: 2rem;
 }
 /*# sourceMappingURL=VacancySearch.css.map */
