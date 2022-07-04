@@ -29,10 +29,35 @@ import Support from '../support/Support.tsx'
 import EmployerProfile from '../employerProfile/EmployerProfile.tsx'
 import VacancyFolder from '../vacancyFolder/VacancyFolder.tsx'
 
-const drawerWidth = 240
+import { logout } from './../../api.tsx'
+
+import './EmployerMain.css'
+
+const DRAWER_WIDTH = 240
 
 export default function EmployerMain () {
-  const [applicantPageType, setApplicantPageType] = useState<string>('')
+  const [employerPageType, setEmployerPageType] = useState<string>('')
+
+  const topApplicantmenu = {
+    COMPANY_PROFILE: 'Company profile',
+    MAIL: 'Mail',
+    RESPONCES: 'Responces',
+    PROMOTION: 'Promotion'
+  }
+
+  const botApplicantmenu = {
+    VACANCY_CONSTRUCTOR: 'Vacancy constructor',
+    MY_VACANCIES: 'My vacancies',
+    SUPPORT: 'Support'
+  }
+
+  let topApplicantMenuArr = []
+
+  let botApplicantMenuArr = []
+
+  topApplicantMenuArr = Object.values(topApplicantmenu)
+
+  botApplicantMenuArr = Object.values(botApplicantmenu)
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -65,6 +90,7 @@ export default function EmployerMain () {
                   variant="contained"
                   size="large"
                   className="promo__search-btn button__sign-out"
+                  onClick={() => logout()}
                 >
                   Sign out
                 </Button>
@@ -76,19 +102,19 @@ export default function EmployerMain () {
       <Drawer
         variant="permanent"
         sx={{
-          width: drawerWidth,
+          width: DRAWER_WIDTH,
           flexShrink: 0
         }}
       >
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
-            {['Company profile', 'Mail', 'Responces', 'Promotion'].map(
+            {topApplicantMenuArr.map(
               (text, index) => (
                 <ListItem
                   key={index}
                   disablePadding
-                  onClick={() => setApplicantPageType(text)}
+                  onClick={() => setEmployerPageType(text)}
                 >
                   <ListItemButton>
                     <ListItemIcon>
@@ -105,8 +131,8 @@ export default function EmployerMain () {
           </List>
           <Divider />
           <List>
-            {['Vacancy constructor', 'My vacancies', 'Support'].map((text, index) => (
-              <ListItem key={index} disablePadding onClick={() => setApplicantPageType(text)}>
+            {botApplicantMenuArr.map((text, index) => (
+              <ListItem key={index} disablePadding onClick={() => setEmployerPageType(text)}>
                 <ListItemButton>
                   <ListItemIcon>
                     {text === 'Vacancy constructor' && <ExtensionIcon />}
@@ -122,14 +148,14 @@ export default function EmployerMain () {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
-        {applicantPageType === '' && <EmployerProfile />}
-        {applicantPageType === 'Company profile' && <EmployerProfile />}
-        {applicantPageType === 'Mail' && <Mail />}
-        {applicantPageType === 'Vacancy constructor' && <VacancyConstructor />}
-        {applicantPageType === 'Promotion' && <Promotion />}
-        {applicantPageType === 'Responces' && <Responces />}
-        {applicantPageType === 'My vacancies' && <VacancyFolder />}
-        {applicantPageType === 'Support' && <Support />}
+        {employerPageType === '' && <EmployerProfile />}
+        {employerPageType === 'Company profile' && <EmployerProfile />}
+        {employerPageType === 'Mail' && <Mail />}
+        {employerPageType === 'Vacancy constructor' && <VacancyConstructor />}
+        {employerPageType === 'Promotion' && <Promotion />}
+        {employerPageType === 'Responces' && <Responces />}
+        {employerPageType === 'My vacancies' && <VacancyFolder />}
+        {employerPageType === 'Support' && <Support />}
         <div className="main__bot"></div>
       </Box>
     </Box>

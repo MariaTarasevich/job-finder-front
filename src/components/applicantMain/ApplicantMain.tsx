@@ -28,6 +28,7 @@ import Promotion from '../promotion/Promotion.tsx'
 import Responces from '../responces/Responces.tsx'
 import ResumeFolder from '../resumeFolder/ResumeFolder.tsx'
 import Support from '../support/Support.tsx'
+import { logout } from './../../api.tsx'
 
 import './ApplicantMain.css'
 
@@ -48,19 +49,13 @@ const ApplicantMain: React.FC = () => {
     SUPPORT: 'Support'
   }
 
-  const topApplicantmenuArr = []
+  let topApplicantMenuArr = []
 
-  const botApplicantmenuArr = []
+  let botApplicantMenuArr = []
 
-  for (const page in topApplicantmenu) {
-    topApplicantmenuArr.push(page)
-  }
+  topApplicantMenuArr = Object.values(topApplicantmenu)
 
-  for (const page in botApplicantmenu) {
-    botApplicantmenuArr.push(page)
-  }
-
-  console.log(botApplicantmenuArr)
+  botApplicantMenuArr = Object.values(botApplicantmenu)
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -94,6 +89,7 @@ const ApplicantMain: React.FC = () => {
                   variant="contained"
                   size="large"
                   className="promo__search-btn button__sign-out"
+                  onClick={() => logout()}
                 >
                   Sign out
                 </Button>
@@ -112,7 +108,7 @@ const ApplicantMain: React.FC = () => {
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
-            {topApplicantmenuArr.map(
+            {topApplicantMenuArr.map(
               (text) => (
                 <ListItem
                   key={text}
@@ -134,7 +130,7 @@ const ApplicantMain: React.FC = () => {
           </List>
           <Divider />
           <List>
-            {['Resume constructor', 'My resume', 'Support'].map((text, index) => (
+            {botApplicantMenuArr.map((text, index) => (
               <ListItem key={text} disablePadding onClick={() => setApplicantPageType(text)}>
                 <ListItemButton>
                   <ListItemIcon>

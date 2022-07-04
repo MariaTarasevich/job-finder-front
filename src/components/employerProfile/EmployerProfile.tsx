@@ -13,7 +13,7 @@ const EmployerProfile: React.FC = () => {
   const [createProfile, setCreateProfile] = useState<boolean>(false)
   const [noProf, setNoProf] = useState<boolean>(true)
   const [localProfile, setLocalProfile] = useState('')
-  let prof
+  let empProfile
   const companyProf = {
     name: '',
     email: '',
@@ -42,8 +42,8 @@ const EmployerProfile: React.FC = () => {
   const getProfile = () => {
     getCompamnyProfile()
       .then(data => {
-        prof = data.data
-        setLocalProfile(prof)
+        empProfile = data.data
+        setLocalProfile(empProfile)
         console.log(localProfile)
       })
       .catch(() => {

@@ -20,6 +20,8 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
+import { registrateUser } from './../../api.tsx'
+
 import './SignUpPage.css'
 
 function Copyright (props) {
@@ -41,15 +43,38 @@ function Copyright (props) {
 }
 
 const theme = createTheme()
+
 const SignUpPage: React.FC = () => {
   const [type, setType] = useState('')
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
+
     console.log({
       email: data.get('email'),
-      password: data.get('password')
+      password: data.get('password'),
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
+      type: type
     })
+  }
+
+  function collectRegData (event) {
+    const data = new FormData(event.currentTarget)
+    const dataObj = {
+      email: data.get('email'),
+      password: data.get('password'),
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
+      type: type
+    }
+    registrateUser(dataObj)
+      .then(() => {
+        console.log('OKEY')
+      })
+      .catch(() => {
+        console.log('ERROR')
+      })
   }
 
   const handleType = (event) => {
@@ -92,7 +117,7 @@ const SignUpPage: React.FC = () => {
             <Box
               component="form"
               noValidate
-              onSubmit={handleSubmit}
+              onSubmit={(e) => { handleSubmit(e); collectRegData(e) }}
               sx={{ mt: 3 }}
             >
               <Grid container spacing={2}>

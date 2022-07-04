@@ -14,8 +14,11 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
 import Link from '@mui/material/Link'
 import Grid from '@mui/material/Grid'
-
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+
+import { registrateUser } from './../../api.tsx'
+
+import './SignInPage.css'
 
 function Copyright (props) {
   return (
@@ -30,6 +33,21 @@ function Copyright (props) {
   )
 }
 const theme = createTheme()
+
+function collectLoginData (event) {
+  const data = new FormData(event.currentTarget)
+  const dataObj = {
+    email: data.get('email'),
+    password: data.get('password')
+  }
+  registrateUser(dataObj)
+    .then(() => {
+      console.log('OKEY')
+    })
+    .catch(() => {
+      console.log('ERROR')
+    })
+}
 
 const SignInPage: React.FC = () => {
   const handleSubmit = (event) => {
@@ -74,7 +92,7 @@ const SignInPage: React.FC = () => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={(e) => { handleSubmit(e); collectLoginData(e) }} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required

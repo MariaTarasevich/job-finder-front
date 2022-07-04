@@ -14,7 +14,7 @@ export default function ApplicantProfile () {
   const [createProfile, setCreateProfile] = useState<boolean>(false)
   const [noProf, setNoProf] = useState<boolean>(true)
   const [localProfile, setLocalProfile] = useState('')
-  let prof
+  let applicProfile
   const onDrop = useCallback(acceptedFiles => {
     console.log(acceptedFiles)
   }, [])
@@ -39,8 +39,8 @@ export default function ApplicantProfile () {
   const getProfile = () => {
     getApplicantProfile()
       .then(data => {
-        prof = data.data
-        setLocalProfile(prof)
+        applicProfile = data.data
+        setLocalProfile(applicProfile)
         console.log(localProfile)
       })
       .catch(err => {
