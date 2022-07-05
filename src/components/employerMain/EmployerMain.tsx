@@ -21,17 +21,17 @@ import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService'
 import SupportAgentIcon from '@mui/icons-material/SupportAgent'
 import Button from '@mui/material/Button'
 
-import Mail from '../mail/Mail.tsx'
-import VacancyConstructor from '../vacancyConstructor/VacancyConstructor.tsx'
-import Promotion from '../promotion/Promotion.tsx'
-import Responces from '../responces/Responces.tsx'
-import Support from '../support/Support.tsx'
-import EmployerProfile from '../employerProfile/EmployerProfile.tsx'
-import VacancyFolder from '../vacancyFolder/VacancyFolder.tsx'
+import Mail from 'components/mail/Mail.tsx'
+import VacancyConstructor from 'components/vacancyConstructor/VacancyConstructor.tsx'
+import Promotion from 'components/promotion/Promotion.tsx'
+import Responces from 'components/responces/Responces.tsx'
+import Support from 'components/support/Support.tsx'
+import EmployerProfile from 'components/employerProfile/EmployerProfile.tsx'
+import VacancyFolder from 'components/vacancyFolder/VacancyFolder.tsx'
 
-import { logout } from './../../api.tsx'
+import { logout } from 'api.tsx'
 
-import './EmployerMain.css'
+import './EmployerMain.scss'
 
 const DRAWER_WIDTH = 240
 

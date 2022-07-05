@@ -16,9 +16,9 @@ import Link from '@mui/material/Link'
 import Grid from '@mui/material/Grid'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 
-import { registrateUser } from './../../api.tsx'
+import { registrateUser } from 'api.tsx'
 
-import './SignInPage.css'
+import './SignInPage.scss'
 
 function Copyright (props) {
   return (

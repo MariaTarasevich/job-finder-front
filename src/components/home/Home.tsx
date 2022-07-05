@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Footer from '../footer/Footer.tsx'
-import Promo from '../promo/Promo.tsx'
+import Footer from 'components/footer/Footer.tsx'
+import Promo from 'components/promo/Promo.tsx'
 
-import './Home.css'
+import './Home.scss'
 
 const Home: React.FC = () => {
   return (

@@ -4,9 +4,9 @@ import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 
-import { createEmployerProfile, getCompamnyProfile, deleteCompanyProf } from './../../api.tsx'
+import { createEmployerProfile, getCompamnyProfile, deleteCompanyProf } from 'api.tsx'
 
-import './EmployerProfile.css'
+import './EmployerProfile.scss'
 
 const EmployerProfile: React.FC = () => {
   const [isProfile, setIsProfile] = useState<boolean>(true)

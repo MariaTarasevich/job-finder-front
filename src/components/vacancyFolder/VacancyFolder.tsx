@@ -3,9 +3,9 @@ import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 
-import { getVacs, deleteVacancy } from '../../api.tsx'
+import { getVacs, deleteVacancy } from 'api.tsx'
 
-import './VacancyFolder.css'
+import './VacancyFolder.scss'
 
 const VacancyFolder: React.FC = () => {
   const [vacList, setVacList] = useState([])

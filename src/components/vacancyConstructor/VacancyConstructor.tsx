@@ -6,7 +6,7 @@ import TextareaAutosize from '@mui/material/TextareaAutosize'
 // import Autocomplete from '@mui/material/Autocomplete'
 // import TextField from '@mui/material/TextField'
 
-import { createVacancy } from '../../api.tsx'
+import { createVacancy } from 'api.tsx'
 
 const ResumeConstructor: React.FC = () => {
   const [correctPhone, setCorrectPhone] = useState<boolean>(false)

@@ -3,9 +3,9 @@ import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 
-import { getAllResumes, deleteResume } from '../../api.tsx'
+import { getAllResumes, deleteResume } from 'api.tsx'
 
-import './ResumeFolder.css'
+import './ResumeFolder.scss'
 
 const ResumeFolder: React.FC = () => {
   const [resumeList, setResumeList] = useState([])

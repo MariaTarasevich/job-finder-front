@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 
-import './Responces.css'
-
 const Responces: React.FC = () => {
   const [res, setRes] = useState('')
   console.log(setRes)

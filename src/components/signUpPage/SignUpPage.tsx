@@ -20,9 +20,9 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
-import { registrateUser } from './../../api.tsx'
+import { registrateUser } from 'api.tsx'
 
-import './SignUpPage.css'
+import './SignUpPage.scss'
 
 function Copyright (props) {
   return (

@@ -7,9 +7,9 @@ import { string } from 'yup'
 import TextareaAutosize from '@mui/material/TextareaAutosize'
 // import Autocomplete from '@mui/material/Autocomplete'
 
-import { createResume } from '../../api.tsx'
+import { createResume } from 'api.tsx'
 
-import './ResumeConstructor.css'
+import './ResumeConstructor.scss'
 
 const ResumeConstructor: React.FC = () => {
   const [correctEmail, setCorrectEmail] = useState<boolean>(false)

@@ -21,16 +21,16 @@ import SupportAgentIcon from '@mui/icons-material/SupportAgent'
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService'
 import Button from '@mui/material/Button'
 
-import ApplicantProfile from '../applicantProfile/ApplicantProfile.tsx'
-import Mail from '../mail/Mail.tsx'
-import ResumeConstructor from '../resumeConstructor/ResumeConstructor.tsx'
-import Promotion from '../promotion/Promotion.tsx'
-import Responces from '../responces/Responces.tsx'
-import ResumeFolder from '../resumeFolder/ResumeFolder.tsx'
-import Support from '../support/Support.tsx'
-import { logout } from './../../api.tsx'
+import ApplicantProfile from 'components/applicantProfile/ApplicantProfile.tsx'
+import Mail from 'components/mail/Mail.tsx'
+import ResumeConstructor from 'components/resumeConstructor/ResumeConstructor.tsx'
+import Promotion from 'components/promotion/Promotion.tsx'
+import Responces from 'components/responces/Responces.tsx'
+import ResumeFolder from 'components/resumeFolder/ResumeFolder.tsx'
+import Support from 'components/support/Support.tsx'
+import { logout } from 'api.tsx'
 
-import './ApplicantMain.css'
+import './ApplicantMain.scss'
 
 const DRAWER_WIDTH = 240
 const ApplicantMain: React.FC = () => {

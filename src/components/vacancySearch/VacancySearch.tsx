@@ -8,9 +8,9 @@ import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Slider from '@mui/material/Slider'
 
-import { getVacs, getVacancy } from '../../api.tsx'
+import { getVacs, getVacancy } from 'api.tsx'
 
-import './VacancySearch.css'
+import './VacancySearch.scss'
 
 function valuetext (value: number) {
   return `${value}°C`

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar'
-import { getAllResumes } from '../../api.tsx'
-import './ResumePage.css'
+
+import { getAllResumes } from 'api.tsx'
+
+import './ResumePage.scss'
 
 const ResumePage: React.FC = () => {
   const [resumeList, setResumeList] = useState([])

@@ -8,7 +8,7 @@
 .support__wrap {
     height: 70vh;
     width: 75%;
-    padding: 1rem;
+    padding: 20px;
     border: 1px solid rgba(224, 224, 224, 1);
     display: flex;
     flex-direction: column;
@@ -20,7 +20,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 40px;
 }
 
 .support__bot-wrap form {
@@ -36,7 +36,7 @@
 }
 
 .support__send-btn {
-    margin-left: 2em !important;
+    margin-left: 40px !important;
 }
 
 .support__no-messages {

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar'
 
-import { getVacs } from '../../api.tsx'
+import { getVacs } from 'api.tsx'
 
-import './VacancyPage.css'
+import './VacancyPage.scss'
 
 const VacancyPage: React.FC = () => {
   const [vacList, setVacList] = useState([])

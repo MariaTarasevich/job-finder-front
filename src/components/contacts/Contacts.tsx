@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Footer from '../footer/Footer.tsx'
-import Nav from '../nav/MainPageNavigation.tsx'
+import Footer from 'components/footer/Footer.tsx'
+import Nav from 'components/nav/MainPageNavigation.tsx'
 
-import './Contacts.css'
+import './Contacts.scss'
 
 function Contacts () {
   return (

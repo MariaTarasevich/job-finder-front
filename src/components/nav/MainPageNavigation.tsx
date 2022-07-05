@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-import './MainPageNavigation.css'
+import './MainPageNavigation.scss'
 
 const MainPageNavigation: React.FC = () => {
   return (

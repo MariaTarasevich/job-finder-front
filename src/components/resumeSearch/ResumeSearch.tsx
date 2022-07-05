@@ -7,9 +7,9 @@ import Button from '@mui/material/Button'
 import { NavLink } from 'react-router-dom'
 import TextField from '@mui/material/TextField'
 
-import { getResume, getAllResumes } from '../../api.tsx'
+import { getResume, getAllResumes } from 'api.tsx'
 
-import './ResumeSearch.css'
+import './ResumeSearch.scss'
 
 const ResumeSearch: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string>('')

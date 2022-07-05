@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import Nav from '../nav/MainPageNavigation.tsx'
+
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
@@ -9,9 +9,10 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 
-import { getResume, getVacancy } from '../../api.tsx'
+import Nav from 'components/nav/MainPageNavigation.tsx'
+import { getResume, getVacancy } from 'api.tsx'
 
-import './Promo.css'
+import './Promo.scss'
 
 const Promo: React.FC = () => {
   const [type, setType] = useState<string>('')

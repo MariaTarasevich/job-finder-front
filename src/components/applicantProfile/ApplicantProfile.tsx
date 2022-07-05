@@ -5,9 +5,9 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import { Formik, Form } from 'formik'
 
-import { createApplicantProfile, getApplicantProfile, deleteApplicantProf } from './../../api.tsx'
+import { createApplicantProfile, getApplicantProfile, deleteApplicantProf } from 'api.tsx'
 
-import './ApplicantProfile.css'
+import './ApplicantProfile.scss'
 
 export default function ApplicantProfile () {
   const [isProfile, setIsProfile] = useState<boolean>(true)
