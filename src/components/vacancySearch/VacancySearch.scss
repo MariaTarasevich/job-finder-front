@@ -62,3 +62,46 @@
 .vacsearch__subtitle {
     margin-top: 40px;
 }
+
+@media (max-width: 1024px){
+    .vacsearch__content-wrap {
+        width: 47%;
+    }
+}
+
+@media (max-width: 768px){
+    .vacsearch__content-wrap {
+        width: 60%;
+    }
+}
+
+@media (max-width: 425px){
+    .vacsearch__title {
+        font-size: 28px;
+    }
+
+    .vacsearch__content-wrap {
+        width: 78%;
+    }
+}
+
+
+@media (max-width: 375px){
+    .vacsearch__title {
+        font-size: 23px;
+    }
+
+    .vacsearch__search-block {
+        flex-direction: column;
+    }
+
+    .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+        width: 100%;
+    }
+}
+
+@media (max-width: 320px){
+    .vacsearch__title {
+        font-size: 20px;
+    }
+}

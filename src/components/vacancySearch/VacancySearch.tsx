@@ -138,7 +138,7 @@ const VacancySearch: React.FC = () => {
             className='vacsearch__search-btn'
             onClick={() => { getAllVacs(); setShowVacs(true); setShowBtn(true) }}
           >
-            Show all CVs
+            Show all vacancies
           </Button>
         </Box>)}
         {showBtn && (<Box sx={{ '& button': { m: 1 } }}>

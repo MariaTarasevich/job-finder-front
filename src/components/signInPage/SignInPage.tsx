@@ -16,7 +16,7 @@ import Link from '@mui/material/Link'
 import Grid from '@mui/material/Grid'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 
-import { registrateUser } from 'api.tsx'
+import { loginUser } from 'api.tsx'
 
 import './SignInPage.scss'
 
@@ -40,7 +40,7 @@ function collectLoginData (event) {
     email: data.get('email'),
     password: data.get('password')
   }
-  registrateUser(dataObj)
+  loginUser(dataObj)
     .then(() => {
       console.log('OKEY')
     })

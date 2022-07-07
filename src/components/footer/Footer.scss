@@ -84,3 +84,70 @@
 .foo__copyright {
     color:rgb(36, 36, 36)
 }
+
+@media (max-width: 1024px) {
+    .foo__soc {
+        width: 14%;
+    }
+
+    .foo__nav {
+        width: 65%;
+    }
+
+    .foo__copyright-wrap {
+        margin-left: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .foo__soc {
+        width: 20%;
+    }
+
+    .foo__nav {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .foo__bot-wrap {
+        flex-direction: column;
+    }
+
+    .foo__copyright-wrap {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 425px) {
+    .foo__soc {
+        width: 30%;
+    }
+
+    .foo__nav-link, .foo__nav-title {
+        font-size: 14px;
+    }
+
+    .foo__copyright {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 425px) {
+    .foo__content {
+        width: 90%;
+    }
+}
+
+@media (max-width: 375px) {
+    .foo__content {
+        width: 90%;
+    }
+    .foo__bot {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+}
+
+@media (max-width: 425px) {
+
+}

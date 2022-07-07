@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Formik, Form } from 'formik'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -7,9 +7,10 @@ import TextareaAutosize from '@mui/material/TextareaAutosize'
 // import TextField from '@mui/material/TextField'
 
 import { createVacancy } from 'api.tsx'
+import { string } from 'yup'
 
 const ResumeConstructor: React.FC = () => {
-  const [correctPhone, setCorrectPhone] = useState<boolean>(false)
+/*   const [correctPhone, setCorrectPhone] = useState<boolean>(false) */
   // const top100Films = [{ title: 'Terminator' }, { title: 'manager' }]
   // const defaultProps = {
   //   options: top100Films,
@@ -24,8 +25,6 @@ const ResumeConstructor: React.FC = () => {
       .catch(() => {
         console.log('ERROR')
       })
-    if (correctPhone) { resetForm() }
-    setCorrectPhone(false)
   }
 
   const resetForm = () => {
@@ -39,7 +38,7 @@ const ResumeConstructor: React.FC = () => {
     textTransform: 'lowercase'
   }
 
-  function validatePhone (value) {
+  /*   function validatePhone (value) {
     let error
     const re = /^[1-9]+[0-9]*$/
     if (!value) {
@@ -53,7 +52,7 @@ const ResumeConstructor: React.FC = () => {
       setCorrectPhone(true)
     }
     return error
-  }
+  } */
 
   return (
     <div className='constr'>
@@ -61,7 +60,6 @@ const ResumeConstructor: React.FC = () => {
         <h3 className='vac__title'>Create your vacancy here!</h3>
         <Formik
           initialValues={{
-            id: '',
             title: '',
             salary: '',
             reqExperience: '',
@@ -74,7 +72,13 @@ const ResumeConstructor: React.FC = () => {
         >
           <Formik
             initialValues={{
-              acceptTerms: false
+              title: string,
+              salary: string,
+              reqExperience: string,
+              schedule: string,
+              city: string,
+              generalInfo: string,
+              contacts: string
             }}
           >
             {({
@@ -193,7 +197,7 @@ const ResumeConstructor: React.FC = () => {
                           <Button
                             variant='contained'
                             size='large'
-                            onClick={() => { console.log(values); validatePhone(values.contacts); collectVacs(values) }}
+                            onClick={() => { console.log(values); collectVacs(values) }}
                             className={'sign-in__btn btn btn-primary mr-2'}
                           >
                             Save

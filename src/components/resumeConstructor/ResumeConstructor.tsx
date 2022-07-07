@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import { string } from 'yup'
 // import TextField from '@mui/material/TextField'
-import TextareaAutosize from '@mui/material/TextareaAutosize'
+
 // import Autocomplete from '@mui/material/Autocomplete'
 
 import { createResume } from 'api.tsx'
@@ -95,7 +95,6 @@ const ResumeConstructor: React.FC = () => {
   }
 
   const initialValues: resumeFormValues = {
-    id: '',
     name: '',
     secondName: '',
     dateOfBirth: '',
@@ -129,7 +128,6 @@ const ResumeConstructor: React.FC = () => {
           <Formik
             onSubmit={() => console.log('adssa')}
             initialValues={{
-              id: string,
               name: string,
               secondName: string,
               dateOfBirth: string,
@@ -354,12 +352,11 @@ const ResumeConstructor: React.FC = () => {
                           General information
                         </label>
                         <br />
-                        <TextareaAutosize
+                        <input
                           name={'generalInfo'}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.generalInfo}
-                          aria-label="empty textarea"
                           style={{ width: '100%' }}
                         />
                       </p>
@@ -381,7 +378,7 @@ const ResumeConstructor: React.FC = () => {
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={() => { validateEmail(values.email); validatePhone(values.contacts); collectCVs(values) }}
+                            onClick={() => { console.log(values); validateEmail(values.email); validatePhone(values.contacts); collectCVs(values) }}
                             className={`sign-in__btn btn btn-primary mr-2 ${dirty && isValid ? '' : 'disabled-btn'
                               }`}
                           >

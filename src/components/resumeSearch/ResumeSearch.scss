@@ -34,3 +34,59 @@
 .vacsearch_item {
  width: 70%;
 }
+
+
+@media (max-width: 1024px){
+    .ressearch__content-wrap {
+        width: 47%;
+    }
+
+    .ressearch__search-block {
+        width: 58%;
+    }
+}
+
+@media (max-width: 768px){
+    .ressearch__content-wrap {
+        width: 60%;
+    }
+}
+
+@media (max-width: 425px){
+    .ressearch__title {
+        font-size: 28px;
+    }
+
+    .ressearch__content-wrap {
+        width: 78%;
+    }
+
+    .ressearch__search-block {
+        width: 91%;
+    }
+}
+
+
+@media (max-width: 375px){
+    .ressearch__title {
+        font-size: 23px;
+    }
+
+    .ressearch__search-block {
+        flex-direction: column;
+    }
+
+    .css-1y942vo-MuiButtonBase-root-MuiButton-root {
+        margin-right: 17px !important;
+    }
+
+/*     css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+        width: 100%;
+    } */
+}
+
+@media (max-width: 320px){
+    .ressearch__title {
+        font-size: 20px;
+    }
+}
