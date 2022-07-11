@@ -3,11 +3,13 @@ import { Formik, Form } from 'formik'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import TextareaAutosize from '@mui/material/TextareaAutosize'
+import { string } from 'yup'
 // import Autocomplete from '@mui/material/Autocomplete'
 // import TextField from '@mui/material/TextField'
 
 import { createVacancy } from 'api.tsx'
-import { string } from 'yup'
+
+import './VacancyConstructor.scss'
 
 const ResumeConstructor: React.FC = () => {
 /*   const [correctPhone, setCorrectPhone] = useState<boolean>(false) */

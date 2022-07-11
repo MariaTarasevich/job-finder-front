@@ -79,9 +79,15 @@ const ResumeFolder: React.FC = () => {
                       </span>
                     </p>
                     <p className="resume__extracred">
-                      Reriod of education:{' '}
+                      Start of education:{' '}
                       <span className="profile__span">
-                        {item.periodOfEducation}
+                        {item.startOfEducation}
+                      </span>
+                    </p>
+                    <p className="resume__extracred">
+                      Start of education:{' '}
+                      <span className="profile__span">
+                        {item.endOfEducation}
                       </span>
                     </p>
                     <p className="resume__extracred">
@@ -95,8 +101,12 @@ const ResumeFolder: React.FC = () => {
                       <span className="profile__span">{item.prevCompany}</span>
                     </p>
                     <p className="resume__extracred">
-                      Period of work:{' '}
-                      <span className="profile__span">{item.periodOfWork}</span>
+                      Start of work:{' '}
+                      <span className="profile__span">{item.startOfWork}</span>
+                    </p>
+                    <p className="resume__extracred">
+                      End of work:{' '}
+                      <span className="profile__span">{item.endOfWork}</span>
                     </p>
                     <p className="resume__extracred">
                       Previous company:{' '}

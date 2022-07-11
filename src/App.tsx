@@ -6,6 +6,7 @@ import lf202drribtu from './lotties/lf202drribtu.json'
 import './App.css'
 
 const ApplicantMain = React.lazy(() => import('./components/applicantMain/ApplicantMain.tsx'))
+const AdminMain = React.lazy(() => import('./components/adminMain/AdminMain.tsx'))
 const EmployerMain = React.lazy(() => import('./components/employerMain/EmployerMain.tsx'))
 const Home = React.lazy(() => import('./components/home/Home.tsx'))
 const ResumePage = React.lazy(() => import('./components/resumePage/ResumePage.tsx'))
@@ -31,6 +32,7 @@ const App: React.FC = () => {
         <Route path='/' element={<Suspense fallback={<Lottie animationData={ lf202drribtu } style={ PRELOAD_STYLE } />}><Home /></Suspense>} />
         <Route path='/applicant' element={<Suspense fallback={<Lottie animationData={ lf202drribtu } style={ PRELOAD_STYLE } />}><ApplicantMain /></Suspense>} />
         <Route path='/employer' element={<Suspense fallback={<Lottie animationData={ lf202drribtu } style={ PRELOAD_STYLE } />}><EmployerMain /></Suspense>} />
+        <Route path='/admin' element={<Suspense fallback={<Lottie animationData={ lf202drribtu } style={ PRELOAD_STYLE } />}><AdminMain /></Suspense>} />
         <Route path='/signup' element={<Suspense fallback={<Lottie animationData={ lf202drribtu } style={ PRELOAD_STYLE } />}><SignUpPage /></Suspense>} />
         <Route path='/signin' element={<Suspense fallback={<Lottie animationData={ lf202drribtu } style={ PRELOAD_STYLE } />}><SignInPage /></Suspense>} />
         <Route path='/resumesearch' element={<Suspense fallback={<Lottie animationData={ lf202drribtu } style={ PRELOAD_STYLE } />}><ResumeSearch /></Suspense>} />

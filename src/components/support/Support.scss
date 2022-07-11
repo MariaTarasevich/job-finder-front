@@ -43,3 +43,40 @@
     color: rgba(90, 89, 89, 0.603);
     font-size: 14px;
 }
+
+@media (max-width:768px) {
+    .css-zxdg2z {
+        padding: 0 !important;
+    }
+
+    .support__wrap {
+        padding: 10px;
+        width: 100%;
+    }
+}
+@media (max-width:425px){
+.css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
+    max-width: 130px;
+}
+
+.css-cveggr-MuiListItemIcon-root {
+    min-width: auto !important;
+}
+
+.css-10hburv-MuiTypography-root  {
+    font-size: 14px;
+}
+
+.css-i4bv87-MuiSvgIcon-root {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
+    padding: 8px 5px !important;
+}
+
+.css-1kv5qg2-MuiDrawer-docked {
+    width: 137px;
+}
+}

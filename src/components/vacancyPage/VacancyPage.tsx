@@ -21,6 +21,7 @@ const VacancyPage: React.FC = () => {
         alert(err)
       })
   }
+
   useEffect(() => getSomeResume(), [])
   return (
       <div className="vacpage">

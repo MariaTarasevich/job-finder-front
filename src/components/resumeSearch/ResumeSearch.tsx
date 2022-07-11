@@ -113,7 +113,7 @@ const ResumeSearch: React.FC = () => {
       </div>
       <div className="vacsearch__list-wrap">
         {showResumes && (
-          <ul className="vacseatch__list">
+          <ul className="vacsearch__list">
             {resumeList
               .map((item, index) => {
                 return (
