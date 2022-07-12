@@ -15,6 +15,7 @@ const ResumeFolder: React.FC = () => {
       .then(data => {
         allResumes = data.data
         setResumeList(allResumes)
+        console.log(allResumes)
       })
       .catch(() => {
         console.log('ERR')

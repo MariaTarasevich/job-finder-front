@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 
@@ -41,11 +40,6 @@ const VacancyFolder: React.FC = () => {
                 <div className="vac__creds-wrap">
                   <div className="vac__creds">
                     <div className="vac__creds-content">
-                      <Avatar
-                        alt="Company"
-                        src="/static/images/avatar/1.jpg"
-                        onClick={() => console.log(vacList)}
-                      />
                       <p className="vac__name">{item.title}</p>
                     </div>
                   </div>

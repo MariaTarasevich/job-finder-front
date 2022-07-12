@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Formik, Form } from 'formik'
-import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 
@@ -12,7 +11,7 @@ const EmployerProfile: React.FC = () => {
   const [isProfile, setIsProfile] = useState<boolean>(true)
   const [createProfile, setCreateProfile] = useState<boolean>(false)
   const [noProf, setNoProf] = useState<boolean>(true)
-  const [localProfile, setLocalProfile] = useState('')
+  const [localProfile, setLocalProfile] = useState([])
   let empProfile
   const companyProf = {
     name: '',
@@ -65,12 +64,11 @@ const EmployerProfile: React.FC = () => {
   useEffect(() => { getProfile(); console.log(Boolean(localProfile), typeof (localProfile)) }, [])
   return (
     <div className="company__wrap">
-      {localProfile && (localProfile.map((item, index) => {
+      {localProfile.length > 0 && (localProfile.map((item, index) => {
         return (
           <div className="company" key={index}>
             <div className="company__creds-wrap">
               <div className="company__creds">
-                <Avatar alt="User" src="/static/images/avatar/1.jpg" />
                 <p className="company__name">{item.name}</p>
               </div>
               <div className="company__extracreds">
@@ -96,14 +94,14 @@ const EmployerProfile: React.FC = () => {
                 </Button>
               </Box>
               <Box sx={{ '& button': { m: 1 } }}>
-                <Button variant="contained" size="large" onClick={() => { deleteProf(3); setLocalProfile(''); setNoProf(true) }}>
+                <Button variant="contained" size="large" onClick={() => { deleteProf(localProfile[0].id); setLocalProfile([]); setNoProf(true) }}>
                   delete
                 </Button>
               </Box>
             </div>
           </div>)
       }))}
-      {!localProfile && noProf && (
+      {localProfile.length === 0 && noProf && (
         <div className='noprof__wrap'><h3 className='noprof__title'>You have no profile yet</h3>
           <Box sx={{ '& button': { m: 1 } }}>
             <Button variant="contained" size="large" onClick={() => { setCreateProfile(true); setNoProf(false) }}>

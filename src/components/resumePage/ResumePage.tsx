@@ -33,10 +33,12 @@ const ResumePage: React.FC = () => {
           email,
           country,
           placeOfEducation,
-          periodOfEducation,
+          startOfEducation,
+          endOfEducation,
           specialization,
           prevCompany,
-          periodOfWork,
+          startOfWork,
+          endOfWork,
           profession,
           generalInfo,
           contacts
@@ -83,9 +85,15 @@ const ResumePage: React.FC = () => {
                       </span>
                     </p>
                     <p className="resume__extracred">
-                      Reriod of education:{' '}
+                      Start of education:{' '}
                       <span className="profile__span">
-                        {periodOfEducation}
+                        {startOfEducation}
+                      </span>
+                    </p>
+                    <p className="resume__extracred">
+                      End of education:{' '}
+                      <span className="profile__span">
+                        {endOfEducation}
                       </span>
                     </p>
                     <p className="resume__extracred">
@@ -99,8 +107,12 @@ const ResumePage: React.FC = () => {
                       <span className="profile__span">{prevCompany}</span>
                     </p>
                     <p className="resume__extracred">
-                      Period of work:{' '}
-                      <span className="profile__span">{periodOfWork}</span>
+                      Start of work:{' '}
+                      <span className="profile__span">{startOfWork}</span>
+                    </p>
+                    <p className="resume__extracred">
+                      End of work:{' '}
+                      <span className="profile__span">{endOfWork}</span>
                     </p>
                     <p className="resume__extracred">
                       Previous company:{' '}

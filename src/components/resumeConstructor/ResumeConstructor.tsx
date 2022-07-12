@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+// import { useDropzone } from 'react-dropzone'
 import { Formik, Form } from 'formik'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -20,6 +21,10 @@ const ResumeConstructor: React.FC = () => {
   //   getOptionLabel: (option/* : FilmOptionType */) => option.title
   // }
 
+  /*   const onDrop = useCallback(acceptedFiles => {
+    console.log(acceptedFiles)
+  }, []) */
+  // const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
   function collectCVs (values) {
     createResume(values)
       .then(() => {
@@ -60,6 +65,7 @@ const ResumeConstructor: React.FC = () => {
     profession: string,
     generalInfo: string,
     contacts: string,
+    imgUrl: string
   }
 
   function validateEmail (value) {
@@ -110,7 +116,8 @@ const ResumeConstructor: React.FC = () => {
     endOfWork: '',
     profession: '',
     generalInfo: '',
-    contacts: ''
+    contacts: '',
+    imgUrl: ''
   }
 
   const inpStyle = {
@@ -143,7 +150,8 @@ const ResumeConstructor: React.FC = () => {
               endOfWork: string,
               profession: string,
               generalInfo: string,
-              contacts: string
+              contacts: string,
+              imgUrl: string
             }}
           >
             {({
@@ -287,16 +295,16 @@ const ResumeConstructor: React.FC = () => {
                           <TextField {...params} label="Specialization" variant="outlined" />
                         )}
                       /> */}
-                        <label htmlFor={'specialization'}>Specialization</label>
-                        <br />
-                        <input
-                          className={'input resumeInput'}
-                          type={'text'}
-                          name={'specialization'}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.specialization}
-                        />
+                      <label htmlFor={'specialization'}>Specialization</label>
+                      <br />
+                      <input
+                        className={'input resumeInput'}
+                        type={'text'}
+                        name={'specialization'}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.specialization}
+                      />
                       <p>
                         <label htmlFor={'prevCompany'}>Previous company</label>
                         <br />
@@ -372,6 +380,26 @@ const ResumeConstructor: React.FC = () => {
                           value={values.contacts}
                         />
                       </p>
+                      <p>
+                        <label htmlFor={'imgUrl'}>imgUrl</label>
+                        <br />
+                        <input
+                          className={'input resumeInput'}
+                          type={'text'}
+                          name={'imgUrl'}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.imgUrl}
+                        />
+                      </p>
+                      <div /*  {...getRootProps()} */>
+{/*                         <input /* {...getInputProps()} *//* type='text' value={values.imgUrl} /> */}
+{/*                         {
+                          isDragActive
+                            ? <p>Drop the files here ...</p>
+                            : <p>Drag n drop some files here, or click to select files</p>
+                        } */}
+                      </div>
                       <p className='constr__req-info'>* is for required fields</p>
                       <div className="constr_btns-wrap">
                         <Box sx={{ '& button': { m: 1 } }}>

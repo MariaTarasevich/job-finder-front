@@ -13,7 +13,7 @@ export default function ApplicantProfile () {
   const [isProfile, setIsProfile] = useState<boolean>(true)
   const [createProfile, setCreateProfile] = useState<boolean>(false)
   const [noProf, setNoProf] = useState<boolean>(true)
-  const [localProfile, setLocalProfile] = useState('')
+  const [localProfile, setLocalProfile] = useState([])
   let applicProfile
   const onDrop = useCallback(acceptedFiles => {
     console.log(acceptedFiles)
@@ -38,10 +38,11 @@ export default function ApplicantProfile () {
 
   const getProfile = () => {
     getApplicantProfile()
-      .then(data => {
-        applicProfile = data.data
+      .then(db => {
+        applicProfile = db.data
+        console.log(applicProfile.length)
         setLocalProfile(applicProfile)
-        console.log(localProfile)
+        console.log(db)
       })
       .catch(err => {
         console.log(err)
@@ -63,8 +64,8 @@ export default function ApplicantProfile () {
 
   return (
     <div className="profile__wrap">
-      {localProfile && (localProfile.map((item, index) => {
-        return (
+    {localProfile.length > 0 && (<div className='profcont__wrap'>{localProfile.map((item, index) => {
+      return (
           <div className="profile" key={index}>
             <div className="profile__creds-wrap">
               <div className="profile__creds">
@@ -86,14 +87,7 @@ export default function ApplicantProfile () {
                   Gender: <span className="profile__span">{item.gender}</span>
                 </p>
               </div>
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                {
-                  isDragActive
-                    ? <p>Drop the files here ...</p>
-                    : <p>Drag n drop some files here, or click to select files</p>
-                }
-              </div>
+
             </div>
             <div className='profile__wrap-btns'>
               <Box sx={{ '& button': { m: 1 } }}>
@@ -102,14 +96,16 @@ export default function ApplicantProfile () {
                 </Button>
               </Box>
               <Box sx={{ '& button': { m: 1 } }}>
-                <Button variant="contained" size="large" onClick={() => { deleteProf(1); setLocalProfile(''); setNoProf(true) }}>
+                <Button variant="contained" size="large" onClick={() => { deleteProf(localProfile[0].id); setLocalProfile([]); setNoProf(true) }}>
                   delete
                 </Button>
               </Box>
             </div>
-          </div>)
-      }))}
-      {!localProfile && noProf && (<div className='noprof__wrap'><h3 className='noprof__title'>You have no profile yet</h3>
+          </div>
+      )
+    })}
+      </div>)}
+      {localProfile.length === 0 && noProf && (<div className='noprof__wrap'><h3 className='noprof__title'>You have no profile yet</h3>
         <Box sx={{ '& button': { m: 1 } }}>
           <Button variant="contained" size="large" onClick={() => { setCreateProfile(true); setNoProf(false) }}>
             Create profile
@@ -120,7 +116,12 @@ export default function ApplicantProfile () {
         <div className='createprof__wrap'>
           <Formik
             initialValues={{
-              acceptTerms: false
+              name: '',
+              surname: '',
+              email: '',
+              age: '',
+              phone: '',
+              imgUrl: ''
             }}
           >
             {({
@@ -204,12 +205,20 @@ export default function ApplicantProfile () {
                           value={values.gender}
                         />
                       </p>
+                      <div {...getRootProps()}>
+                <input {...getInputProps()} value={values.imgUrl}/>
+                {
+                  isDragActive
+                    ? <p>Drop the files here ...</p>
+                    : <p>Drag n drop some files here, or click to select files</p>
+                }
+              </div>
                       <div className="constr_btns-wrap">
                         <Box sx={{ '& button': { m: 1 } }}>
                           <Button
                             variant="contained"
                             size="large"
-                            onClick={() => { setIsProfile(true); setCreateProfile(false); collectProfileData(values); setLocalProfile(values) }}
+                            onClick={() => { setIsProfile(true); setCreateProfile(false); console.log(values); collectProfileData(values); setLocalProfile(values) }}
                             className={'sign-in__btn btn btn-primary mr-2'}
                           >
                             Save
