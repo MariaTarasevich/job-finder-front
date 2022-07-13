@@ -24,7 +24,7 @@ const ResumePage: React.FC = () => {
   useEffect(() => getSomeResume(), [])
   return (
         <div className="respage">
-        {resumeList.filter(({ id }) => id === params.id).map(({
+        {resumeList.filter(({ id }) => +id === +params.id).map(({
           id,
           name,
           secondName,

@@ -16,6 +16,7 @@ const VacancyPage: React.FC = () => {
       .then((data) => {
         allVacs = data.data
         setVacList(allVacs)
+        console.log(params.id)
       })
       .catch((err) => {
         alert(err)
@@ -25,7 +26,7 @@ const VacancyPage: React.FC = () => {
   useEffect(() => getSomeResume(), [])
   return (
       <div className="vacpage">
-      {vacList.filter(({ id }) => id === params.id).map(({
+      {vacList.filter(({ id }) => +id === +params.id).map(({
         id,
         title,
         salary,

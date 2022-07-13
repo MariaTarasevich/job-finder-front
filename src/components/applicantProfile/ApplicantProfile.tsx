@@ -206,7 +206,7 @@ export default function ApplicantProfile () {
                         />
                       </p>
                       <div {...getRootProps()}>
-                <input {...getInputProps()} value={values.imgUrl}/>
+                <input {...getInputProps()} name={'imgUrl'} value={values.imgUrl}/>
                 {
                   isDragActive
                     ? <p>Drop the files here ...</p>

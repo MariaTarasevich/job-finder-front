@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-// import { useDropzone } from 'react-dropzone'
+import React, { useState, useCallback } from 'react'
+import { useDropzone } from 'react-dropzone'
 import { Formik, Form } from 'formik'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -21,10 +21,10 @@ const ResumeConstructor: React.FC = () => {
   //   getOptionLabel: (option/* : FilmOptionType */) => option.title
   // }
 
-  /*   const onDrop = useCallback(acceptedFiles => {
+  const onDrop = useCallback(acceptedFiles => {
     console.log(acceptedFiles)
-  }, []) */
-  // const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+  }, [])
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
   function collectCVs (values) {
     createResume(values)
       .then(() => {
@@ -380,25 +380,13 @@ const ResumeConstructor: React.FC = () => {
                           value={values.contacts}
                         />
                       </p>
-                      <p>
-                        <label htmlFor={'imgUrl'}>imgUrl</label>
-                        <br />
-                        <input
-                          className={'input resumeInput'}
-                          type={'text'}
-                          name={'imgUrl'}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.imgUrl}
-                        />
-                      </p>
-                      <div /*  {...getRootProps()} */>
-{/*                         <input /* {...getInputProps()} *//* type='text' value={values.imgUrl} /> */}
-{/*                         {
+                      <div {...getRootProps()} >
+                        <input {...getInputProps()} name={'imgUrl'} type='text' value={values.imgUrl} />
+                       {
                           isDragActive
                             ? <p>Drop the files here ...</p>
                             : <p>Drag n drop some files here, or click to select files</p>
-                        } */}
+                        }
                       </div>
                       <p className='constr__req-info'>* is for required fields</p>
                       <div className="constr_btns-wrap">

@@ -4,3 +4,78 @@
     justify-content: center;
     padding-top: 60px;
 }
+
+.vac__wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.vac__content {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    border: 1px solid #e0e0e0;
+    border-right: 0;
+    border-radius: 4px 0 0 4px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.055);
+    padding: 2rem;
+    height: 100%;
+    margin-bottom: 2rem;
+}
+
+.vac__creds-wrap {
+    width: 100%;
+}
+
+.vac__creds {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.vac__name {
+    margin-left: 5rem;
+}
+
+.vac__creds-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.vac__name {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.vac__creds-wrap, .vac__extracreds  {
+    height: 100%;
+}
+
+.vac__extracred {
+    margin-bottom: 30px;
+}
+
+.vac__creds-wrap .css-69324s {
+    display: flex;
+    justify-content: center;
+}
+
+.vac__span {
+    font-weight: bold;
+}
+
+.vac__btn-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.vac__btn-cont {
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+}

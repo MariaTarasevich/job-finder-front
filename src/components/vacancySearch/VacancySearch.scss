@@ -72,6 +72,9 @@
 }
 
 .vacsearch_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 70%;
     list-style: none;
     border: 1px solid rgb(146, 146, 146);

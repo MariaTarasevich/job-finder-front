@@ -11,6 +11,7 @@ import Slider from '@mui/material/Slider'
 import { getVacs, getVacancy } from 'api.tsx'
 
 import './VacancySearch.scss'
+import { respondToVacancy } from 'api'
 
 function valuetext (value: number) {
   return `${value}°C`
@@ -79,6 +80,12 @@ const VacancySearch: React.FC = () => {
       })
   }
 
+  function respToThisVacancy (id, item) {
+    respondToVacancy(id, item)
+      .then(() => console.log('success'))
+      .catch(() => console.log('failure'))
+  }
+
   return (
     <div className='vacsearch__wrap'>
       <Box sx={{ flexGrow: 1 }}>
@@ -102,23 +109,23 @@ const VacancySearch: React.FC = () => {
       </Box>
       <div className='vacsearch__content'>
         <div className='vacsearch__content-wrap'>
-        <h2 className='vacsearch__title'>Find your best job ASAP.</h2>
-        <div className='vacsearch__search-block'>
-          <TextField
-            label='Find vacancy'
-            className='vacsearch__search'
-            onChange={(e) => showSearchVal(e)}
-          />
-          <Box sx={{ '& button': { m: 1 } }}>
-            <Button
-              variant='outlined'
-              size='large'
-              className='vacsearch__search-btn'
-              onClick={() => getSomeVacs()}
-            >
-              Search
-            </Button>
-          </Box>
+          <h2 className='vacsearch__title'>Find your best job ASAP.</h2>
+          <div className='vacsearch__search-block'>
+            <TextField
+              label='Find vacancy'
+              className='vacsearch__search'
+              onChange={(e) => showSearchVal(e)}
+            />
+            <Box sx={{ '& button': { m: 1 } }}>
+              <Button
+                variant='outlined'
+                size='large'
+                className='vacsearch__search-btn'
+                onClick={() => getSomeVacs()}
+              >
+                Search
+              </Button>
+            </Box>
           </div>
           <p className='vacsearch__subtitle'>Choose a salary range</p>
           <Slider
@@ -167,6 +174,14 @@ const VacancySearch: React.FC = () => {
                         <p className='vaclist__desc'>{item.schedule}</p>
                       </div>
                     </NavLink>
+                    <Button
+                      variant='contained'
+                      size='large'
+                      className='vac__resp-btn'
+                      onClick={() => { respToThisVacancy(item.id, item) }}
+                    >
+                      Respond
+                    </Button>
                   </li>
                 )
               })}
