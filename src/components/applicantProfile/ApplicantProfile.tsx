@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, useRef } from 'react'
 import { useDropzone } from 'react-dropzone'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import { Formik, Form } from 'formik'
 
-import { createApplicantProfile, getApplicantProfile, deleteApplicantProf } from 'api.tsx'
+import { createApplicantProfile, getApplicantProfile, deleteApplicantProf, editApplicantProfile } from 'api.tsx'
 
 import './ApplicantProfile.scss'
 
@@ -14,6 +14,46 @@ export default function ApplicantProfile () {
   const [createProfile, setCreateProfile] = useState<boolean>(false)
   const [noProf, setNoProf] = useState<boolean>(true)
   const [localProfile, setLocalProfile] = useState([])
+  const [editItems, setEditItems] = useState<boolean>(false)
+  const [profId, setProfId] = useState('')
+
+  const [editedName, setEditedName] = useState('')
+  const [editedSurname, setEditedSurname] = useState('')
+  const [editedEmail, setEditedEmail] = useState('')
+  const [editedAge, setEditedAge] = useState('')
+  const [editedPhone, setEditedPhone] = useState('')
+  const [editedPic, setEditedPic] = useState('')
+
+  const nameInputRef = useRef()
+  const surnameInputRef = useRef()
+  const emailInputRef = useRef()
+  const ageInputRef = useRef()
+  const phoneInputRef = useRef()
+  const picInputRef = useRef()
+
+  const saveInputValues = () => {
+    setEditedName(nameInputRef.current.value)
+    setEditedSurname(surnameInputRef.current.value)
+    setEditedEmail(emailInputRef.current.value)
+    setEditedAge(ageInputRef.current.value)
+    setEditedPhone(phoneInputRef.current.value)
+    setEditedPic(picInputRef.current.value)
+    editApplicantProfile(profId, {
+      name: editedName,
+      surname: editedSurname,
+      email: editedEmail,
+      age: editedAge,
+      phone: editedPhone,
+      imgUrl: editedPic
+    })
+      .then(() => {
+        console.log('OKEY')
+      })
+      .catch(() => {
+        console.log('NOT OK')
+      })
+  }
+
   let applicProfile
   const onDrop = useCallback(acceptedFiles => {
     console.log(acceptedFiles)
@@ -42,7 +82,6 @@ export default function ApplicantProfile () {
         applicProfile = db.data
         console.log(applicProfile.length)
         setLocalProfile(applicProfile)
-        console.log(db)
       })
       .catch(err => {
         console.log(err)
@@ -60,7 +99,7 @@ export default function ApplicantProfile () {
       })
   }
 
-  useEffect(() => getProfile(), [])
+  useEffect(() => { getProfile(); localProfile.map(({ id }) => setProfId(id)) }, [])
 
   return (
     <div className="profile__wrap">
@@ -69,31 +108,41 @@ export default function ApplicantProfile () {
           <div className="profile" key={index}>
             <div className="profile__creds-wrap">
               <div className="profile__creds">
-                <Avatar alt="User" src="/static/images/avatar/1.jpg" />
-                <p className="profile__name">{item.name}</p>
-                <p className="profile__name">{item.surname}</p>
+                {editItems
+                  ? <div {...getRootProps()}>
+                <input {...getInputProps()} name={'imgUrl'} ref={picInputRef} value={(e) => setEditedPic(e.target.value)}/>
+                {
+                  isDragActive
+                    ? <p>Drop the files here ...</p>
+                    : <p>Drag n drop some files here, or click to select files</p>
+                }
+              </div>
+                  : <Avatar alt="User" src={editedPic} />}
+                { editItems ? <input ref={nameInputRef} type='text' /> : <p className="profile__name">{editedName.length > 0 ? editedName : item.name}</p> }
+                { editItems ? <input ref={surnameInputRef} type='text' /> : <p className="profile__name">{editedSurname.length > 0 ? editedSurname : item.surname}</p> }
               </div>
               <div className="profile__extracreds">
                 <p className="profile__extracred">
-                  Email: <span className="profile__span">{item.email}</span>
+                  Email: {editItems ? <input ref={emailInputRef} type='text' /> : <span className="profile__span">{editedEmail.length > 0 ? editedEmail : item.email}</span>}
                 </p>
                 <p className="profile__extracred">
-                  Age: <span className="profile__span">{item.age}</span>
+                  Age: {editItems ? <input ref={ageInputRef} type='text' /> : <span className="profile__span">{editedAge.length > 0 ? editedAge : item.age}</span>}
                 </p>
                 <p className="profile__extracred">
-                  Phone: <span className="profile__span">{item.phone}</span>
-                </p>
-                <p className="profile__extracred">
-                  Gender: <span className="profile__span">{item.gender}</span>
+                  Phone: {editItems ? <input ref={phoneInputRef} type='text' /> : <span className="profile__span">{editedPhone.length > 0 ? editedPhone : item.phone}</span>}
                 </p>
               </div>
 
             </div>
             <div className='profile__wrap-btns'>
               <Box sx={{ '& button': { m: 1 } }}>
-                <Button variant="contained" size="large">
-                  Edit
+                {editItems
+                  ? <Button variant="contained" size="large" onClick={() => { setEditItems(false); saveInputValues() }}>
+                  Save
                 </Button>
+                  : <Button variant="contained" size="large" onClick={() => setEditItems(true)}>
+                  Edit
+                </Button>}
               </Box>
               <Box sx={{ '& button': { m: 1 } }}>
                 <Button variant="contained" size="large" onClick={() => { deleteProf(localProfile[0].id); setLocalProfile([]); setNoProf(true) }}>
@@ -191,18 +240,6 @@ export default function ApplicantProfile () {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.phone}
-                        />
-                      </p>
-                      <p>
-                        <label htmlFor={'gender'}>Gender</label>
-                        <br />
-                        <input
-                          className={'input resumeInput'}
-                          type={'text'}
-                          name={'gender'}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.gender}
                         />
                       </p>
                       <div {...getRootProps()}>

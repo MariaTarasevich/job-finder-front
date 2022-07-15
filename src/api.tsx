@@ -20,3 +20,5 @@ export const createEmployerProfile = employerProfile => axios.post(url + 'compan
 export const registrateUser = data => axios.post(url + 'registration', data)
 export const loginUser = data => axios.post(url + 'login', data)
 export const logout = () => axios.post(url + 'logout')
+export const editApplicantProfile = (id, profData) => axios.put(url + 'applicant/' + id, profData)
+export const editEmployerProfile = (id, profData) => axios.put(url + 'company/' + id, profData)

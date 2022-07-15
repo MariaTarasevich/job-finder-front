@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Formik, Form } from 'formik'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 
-import { createEmployerProfile, getCompamnyProfile, deleteCompanyProf } from 'api.tsx'
+import { createEmployerProfile, getCompamnyProfile, deleteCompanyProf, editEmployerProfile } from 'api.tsx'
 
 import './EmployerProfile.scss'
 
@@ -19,6 +19,39 @@ const EmployerProfile: React.FC = () => {
     address: '',
     phone: '',
     aboutCompany: ''
+  }
+
+  const [editedName, setEditedName] = useState('')
+  const [editedEmail, setEditedEmail] = useState('')
+  const [editedAddress, setEditedAddress] = useState('')
+  const [editedPhone, setEditedPhone] = useState('')
+  const [editedAboutCompany, setEditedAboutCompany] = useState('')
+
+  const nameInputRef = useRef()
+  const emailInputRef = useRef()
+  const addressInputRef = useRef()
+  const phoneInputRef = useRef()
+  const aboutCompanyInputRef = useRef()
+
+  const saveInputValues = () => {
+    setEditedName(nameInputRef.current.value)
+    setEditedEmail(emailInputRef.current.value)
+    setEditedAddress(addressInputRef.current.value)
+    setEditedPhone(phoneInputRef.current.value)
+    setEditedAboutCompany(aboutCompanyInputRef.current.value)
+    editEmployerProfile(profId, {
+      name: editedName,
+      email: editedEmail,
+      address: editedAddress,
+      phone: editedPhone,
+      aboutCompany: editedAboutCompany
+    })
+      .then(() => {
+        console.log('OKEY')
+      })
+      .catch(() => {
+        console.log('NOT OK')
+      })
   }
 
   function collectProfileData (values) {

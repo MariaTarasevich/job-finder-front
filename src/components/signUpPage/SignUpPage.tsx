@@ -154,7 +154,7 @@ const SignUpPage: React.FC = () => {
                 </Grid>
                 <FormControl sx={{ m: 1, minWidth: 80 }}>
                   <InputLabel id="demo-simple-select-autowidth-label">
-                    You
+                    You *
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-autowidth-label"
@@ -191,14 +191,15 @@ const SignUpPage: React.FC = () => {
                   />
                 </Grid>
               </Grid>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Sign Up
-              </Button>
+              <NavLink to={type === 'employer' ? '/employer' : '/applicant'}>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Sign Up
+                </Button></NavLink>
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <NavLink
